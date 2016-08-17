@@ -13,14 +13,14 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(){
                 // style: 'mapbox://styles/mapbox/streets-v9',
                 // style: 'mapbox://styles/mapbox/outdoors-v9',
                 center: [103.8198, 1.3521],
-                zoom: 16,
+                zoom: 13.5,
                 pitch: 60,
                 interactive: true,
                 attributionControl: false
             });
 
-            $scope.map.addControl(new mapboxgl.Navigation({position: 'bottom-right'}));
-            $scope.map.addControl(new mapboxgl.Geolocate({position: 'bottom-right'}));
+            // $scope.map.addControl(new mapboxgl.Navigation({position: 'bottom-right'}));
+            // $scope.map.addControl(new mapboxgl.Geolocate({position: 'bottom-right'}));
 
             $scope.randomFly = function() {
                 $scope.map.flyTo({
