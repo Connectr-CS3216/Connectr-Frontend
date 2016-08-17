@@ -38,21 +38,3 @@ angular
         redirectTo: '/'
       });
   });
-
-
-var drag = false;
-
-document.addEventListener('mousedown', function(e) {
-    drag = false;
-    var x = e.clientX;
-    var y = e.clientY;
-
-    document.addEventListener('mousemove', function(e) {
-        if (Math.abs(e.clientX - x) || Math.abs(e.clientY - y) > 1)
-            drag = true;
-    });
-});
-
-document.addEventListener('mouseup', function() {
-    document.removeEventListener('mousemove', false);
-});
