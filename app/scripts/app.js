@@ -54,5 +54,5 @@ document.addEventListener('mousedown', function(e) {
 });
 
 document.addEventListener('mouseup', function() {
-    document.removeEventListener('mousemove');
+    document.removeEventListener('mousemove', false);
 });
