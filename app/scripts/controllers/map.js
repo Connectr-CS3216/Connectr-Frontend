@@ -2,16 +2,14 @@
 
 /**
  * @ngdoc function
- * @name connectrFrontendApp.controller:AboutCtrl
+ * @name connectrFrontendApp.controller:MapCtrl
  * @description
- * # AboutCtrl
+ * # MapCtrl
  * Controller of the connectrFrontendApp
  */
-angular.module('connectrFrontendApp')
-  .controller('MapCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+
+angular.module('connectrFrontendApp').controller('MapCtrl', ['$scope', 
+  	function ($scope) {
+  		
+  	}
+]);
