@@ -2,7 +2,7 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(){
     return {
         scope: true,
         replace: true,
-        template: '<div id="map" ng-click="randomFly()"></div>',
+        template: '<div id="map" ng-click="mapDidClick($event)"></div>',
         link: function($scope) {
             mapboxgl.accessToken = "pk.eyJ1IjoibnVsbDA5MjY0IiwiYSI6ImNpcnlrcTZmYzAwMGYyeXBkaGF1c2JxZ2EifQ.pEmdeamPVAasYgavpT629g";
 
@@ -28,6 +28,12 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(){
                         103.8198 + (Math.random() - 0.5) * 0.1,
                         1.3521 + (Math.random() - 0.5) * 0.1]
                 });
+            }
+
+            $scope.mapDidClick = function($event) {
+                if (!drag) {
+                    $scope.randomFly()
+                }
             }
         }
     };
