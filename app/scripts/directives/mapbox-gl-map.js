@@ -33,37 +33,36 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(){
                 // $scope.randomFly(point["lng"], point["lat"])
             });
 
-            $scope.map.on('load', function(e) {
-                //faked data points
-                $scope.map.addSource("earthquakes", {
+            $scope.addPointsFromGeojson = function(name, data, colors) {
+                $scope.map.addSource(name, {
                     type: "geojson",
-                    data: "../../fake-data/earthquakes.geojson",
+                    data: data,
                     cluster: true,
                     clusterMaxZoom: 14,
                     clusterRadius: 50
                 });
 
                 $scope.map.addLayer({
-                    "id": "unclustered-points",
+                    "id": name + "-unclustered-points",
                     "type": "symbol",
-                    "source": "earthquakes",
+                    "source": name,
                     "layout": {
                         "icon-image": "marker-15"
                     }
                 });
 
                 var layers = [
-                    [500, '#78909c'],
-                    [150, '#90a4ae'],
-                    [20, '#b0bec5'],
-                    [0, '#cfd8dc']
+                    [500, colors[0]],
+                    [150, colors[1]],
+                    [20, colors[2]],
+                    [0, colors[3]]
                 ];
 
                 layers.forEach(function (layer, i) {
                     $scope.map.addLayer({
-                        "id": "cluster-" + i,
+                        "id": name + "-cluster-" + i,
                         "type": "circle",
-                        "source": "earthquakes",
+                        "source": name,
                         "paint": {
                             "circle-color": layer[1],
                             "circle-radius": 10,
@@ -78,9 +77,9 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(){
                 });
 
                 $scope.map.addLayer({
-                    "id": "cluster-count",
+                    "id": name + "-cluster-count",
                     "type": "symbol",
-                    "source": "earthquakes",
+                    "source": name,
                     "layout": {
                         "text-field": "{point_count}",
                         "text-font": [
@@ -90,6 +89,12 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(){
                         "text-size": 8,
                     }
                 });
+            }
+
+            $scope.map.on('load', function(e) {
+                //faked data points
+                $scope.addPointsFromGeojson("earthquakes1", "../../fake-data/earthquakes1.geojson", ['#78909c','#90a4ae','#b0bec5','#cfd8dc'])
+                $scope.addPointsFromGeojson("earthquakes2", "../../fake-data/earthquakes2.geojson", ['#ffca28','#ffd54f','#ffe082','#ffecb3'])
             })
         }
     };
