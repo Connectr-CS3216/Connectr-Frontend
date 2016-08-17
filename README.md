@@ -5,7 +5,7 @@ version 0.15.1.
 
 ## Install
 
-Download repository
+Download repository  
 Run 'npm install' to install node_modules and 'bower install' for bower_components.
 
 ## Build & development
