@@ -20,20 +20,10 @@ angular
   ])
   .config(function ($routeProvider, $authProvider, fbid) {
     $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
-      })
       .when('/login', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
         isLogin: true
-      })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
       })
       .when('/map', {
         templateUrl: 'views/map.html',
@@ -41,7 +31,7 @@ angular
         controllerAs: 'map'
       })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/login'
       });
 
     $authProvider.httpInterceptor = function() { return true; };
