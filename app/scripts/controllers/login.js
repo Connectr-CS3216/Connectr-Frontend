@@ -6,7 +6,7 @@ angular.module('connectrFrontendApp')
     // user data to be stored in session
     var data = {};
 
-    $scope.authenticate = function(provider) {
+    $scope.login = function(provider) {
       $auth.authenticate(provider)
       .then(function() {
         // Signed in
@@ -37,6 +37,12 @@ angular.module('connectrFrontendApp')
       } else {
          $location.url('/login');
       }
+    }
+
+    $scope.logout = function() {
+      $auth.logout();
+      // clear session
+      session.save();
     }
 
     function initialise() {
