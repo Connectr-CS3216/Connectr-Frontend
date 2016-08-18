@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('connectrFrontendApp')
-  .controller('LoginCtrl', function($scope, $location, $auth, $http, session) {
+  .controller('LoginCtrl', function($scope, $location, $auth, $http, session, apis) {
 
     // user data to be stored in session
     var data = {};
@@ -10,18 +10,36 @@ angular.module('connectrFrontendApp')
       $auth.authenticate(provider)
       .then(function() {
         // Signed in
+        
+        // Uncomment this to direct to map
         redirect();
-      })
-      .catch(function() {
 
+        // Uncomment this to test server
+        // apis.verifyFacebookToken.post(
+        //   {
+        //     "access_token": $auth.getToken()
+        //   }
+        // ).success(function(data) {
+        //   console.log('success', data);
+
+        //   apis.whoAmI.get({
+        //     'token': data
+        //   })
+        //   .success(function(data) {
+        //     console.log('whoami', data);
+        //   });
+        // }).error(function(err) {
+        //   console.log('failed', err);
+        // });
       });
+  
     };
 
     function redirect() {
       if ($auth.isAuthenticated()) {
         // Signed in
         data.accessToken = $auth.getToken();
-        $http.get('https://graph.facebook.com/v2.7/me')
+        apis.facebookUser.get()
         .then(function(res) {
           data.userid = res.data.id;
           data.username = res.data.name;
@@ -43,11 +61,11 @@ angular.module('connectrFrontendApp')
       $auth.logout();
       // clear session
       session.save();
-    }
+    };
 
-    function initialise() {
-      redirect();
-    }
+    // function initialise() {
+    //   redirect();
+    // }
 
     $auth.logout();
     //initialise();
