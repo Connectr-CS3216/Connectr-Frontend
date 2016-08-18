@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('connectrFrontendApp').directive('mapboxGlMap', function(){
     return {
         scope: true,
