@@ -44,10 +44,23 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(){
 
                 $scope.map.addLayer({
                     "id": name + "-unclustered-points",
-                    "type": "symbol",
+                    "type": "circle",
                     "source": name,
-                    "layout": {
-                        "icon-image": "marker-15"
+                    "paint": {
+                        "circle-color": colors[3],
+                        "circle-radius": 5,
+                        "circle-opacity": 0.9
+                    }
+                });
+
+                $scope.map.addLayer({
+                    "id": name + "-unclustered-points-shadow",
+                    "type": "circle",
+                    "source": name,
+                    "paint": {
+                        "circle-color": "#ffffff",
+                        "circle-radius": 7,
+                        "circle-opacity": 0.3
                     }
                 });
 
@@ -67,6 +80,22 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(){
                             "circle-color": layer[1],
                             "circle-radius": 10,
                             "circle-opacity": 0.9
+                        },
+                        "filter": i === 0 ?
+                            [">=", "point_count", layer[0]] :
+                            ["all",
+                                [">=", "point_count", layer[0]],
+                                ["<", "point_count", layers[i - 1][0]]]
+                    });
+
+                    $scope.map.addLayer({
+                        "id": name + "-cluster-shadow-" + i,
+                        "type": "circle",
+                        "source": name,
+                        "paint": {
+                            "circle-color": layer[1],
+                            "circle-radius": 13,
+                            "circle-opacity": 0.3
                         },
                         "filter": i === 0 ?
                             [">=", "point_count", layer[0]] :
