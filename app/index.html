@@ -41,6 +41,7 @@
 
             <ul class="nav navbar-nav">
               <li class="active"><a href="#/">Home</a></li>
+              <li><a ng-href="#/login">Login</a></li>
               <li><a ng-href="#/about">About</a></li>
               <li><a ng-href="#/map">Map</a></li>
             </ul>
@@ -64,7 +65,6 @@
        ga('send', 'pageview');
     </script>
 
-
     <!-- Mapbox GL JS -->
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.22.0/mapbox-gl.js'></script>
 
@@ -79,15 +79,20 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/satellizer/dist/satellizer.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/login.js"></script>
         <script src="scripts/controllers/about.js"></script>
         <script src="scripts/controllers/map.js"></script>
         <script src="scripts/directives/mapbox-gl-map.js"></script>
+        <script src="scripts/services/keys.js"></script>
+        <script src="scripts/services/session.js"></script>
+
         <!-- endbuild -->
 </body>
 </html>
