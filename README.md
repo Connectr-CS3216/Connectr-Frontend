@@ -5,13 +5,21 @@ version 0.15.1.
 
 ## Install
 
-Download repository  
-Run 'npm install' to install node_modules and 'bower install' for bower_components.
+- Download repository  
+
+- Install `grunt-cli`, `bower`:  
+`npm install -g grunt-cli bower`
+
+- Install Ruby by downloading from [here](http://rubyinstaller.org/downloads/) or use Homebrew
+- Install the compass gem:  
+`gem install compass`
+
+- Run `npm install` to install node_modules and `bower install` for bower_components.
 
 ## Build & development
 
-Run `grunt` for building and `grunt serve` for preview.
+- Run `grunt` for building and `grunt serve` for preview.
 
 ## Testing
 
-Running `grunt test` will run the unit tests with karma.
+- Running `grunt test` will run the unit tests with karma.
