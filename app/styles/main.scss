@@ -91,9 +91,47 @@ body {
 }
 
 #map { 
-  position:inherit; 
+  position:absolute; 
   top:0; 
   bottom:0; 
   left: 0;
   width:100%; 
+}
+
+#map-left-panel {
+  display: block;
+  position:absolute; 
+  top:0; 
+  bottom:0; 
+  left: 0;
+  width:20%; 
+  padding: 10px;
+  border: none;
+  color: #fff;
+  background: #000;
+  opacity: 0.7;
+
+  .brand {
+    font-size: 20px;
+    color: #fff;
+    text-decoration: none;
+    margin: 10px;
+    display: block;
+    font-weight: 500;
+  }
+
+  .logout-box {
+    display: block;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    padding: 10px;
+    line-height: 30px;
+
+    .logout-button {
+      color: yellow;
+      cursor: pointer;
+    }
+  }
 }
