@@ -10,27 +10,27 @@ angular.module('connectrFrontendApp')
       $auth.authenticate(provider)
       .then(function() {
         // Signed in
-        
-        // Uncomment this to direct to map
-        redirect();
 
         // Uncomment this to test server
-        // apis.verifyFacebookToken.post(
-        //   {
-        //     "access_token": $auth.getToken()
-        //   }
-        // ).success(function(data) {
-        //   console.log('success', data);
+        apis.verifyFacebookToken.post(
+          {
+            "access_token": $auth.getToken()
+          }
+        ).success(function(data) {
+          console.log('success', data);
 
-        //   apis.whoAmI.get({
-        //     'token': data
-        //   })
-        //   .success(function(data) {
-        //     console.log('whoami', data);
-        //   });
-        // }).error(function(err) {
-        //   console.log('failed', err);
-        // });
+          apis.whoAmI.get({
+            'token': data
+          })
+          .success(function(data) {
+            console.log('whoami', data);
+          });
+        }).error(function(err) {
+          console.log('failed', err);
+        });
+
+        // Uncomment this to direct to map
+        redirect();
       });
   
     };

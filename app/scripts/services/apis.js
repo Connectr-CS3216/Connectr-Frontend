@@ -12,7 +12,7 @@ angular.module('connectrFrontendApp')
   .service('apis', function apis($http) {
     // AngularJS will instantiate a singleton by calling "new" on this function
     
-    var apiHost = 'http://connectr.tk';
+    var apiHost = 'http://connectr.tk/api';
 
     // explicit falsey values are ok, but null and undefined and empty string are not
     // note not allowing -0, NaN etc.
