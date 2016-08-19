@@ -64,7 +64,9 @@ angular.module('connectrFrontendApp')
 
     this.whoAmI = {
       get: function(parameters) {
-        return $http.get(buildUrl(apiHost + '/whoami', parameters));
+        return $http.get(buildUrl(apiHost + '/whoami', parameters), {
+          skipAuthorization: true
+        });
       }
     };
 
