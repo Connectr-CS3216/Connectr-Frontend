@@ -207,3 +207,34 @@ body {
   color: #fff;
   background-color: #294786;
 }
+
+.centered {
+  margin-left: auto;
+  margin-right: auto;
+  float: none;
+}
+
+.title-container {
+  z-index: 1000;
+  position: absolute;
+  top: 35%;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+}
+
+.wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -155px; /* the bottom margin is the negative value of the footer's height */
+}
+.footer, .push {
+    height: 155px; /* .push must be the same height as .footer */
+}
+
+.text-slogan {
+  color: #ffffff;
+  font-weight: 100;
+  font-size: -webkit-xxx-large;
+}

@@ -38,8 +38,4 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($scope, $l
   }
 
   initialise();
-
-  console.log(session.accessToken());
-  console.log(session.userid());
-  console.log(session.username());
 });
