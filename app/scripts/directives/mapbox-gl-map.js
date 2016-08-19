@@ -21,6 +21,10 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(){
                 attributionControl: false
             });
 
+            // disable map rotation
+            $scope.map.dragRotate.disable();
+            $scope.map.touchZoomRotate.disableRotation();
+
             $scope.map.addControl(new mapboxgl.Navigation({position: 'bottom-right'}));
             $scope.map.addControl(new mapboxgl.Geolocate({position: 'bottom-right'}));
 
