@@ -7,6 +7,8 @@ angular.module('connectrFrontendApp')
     var data = {};
 
     $scope.login = function(provider) {
+      console.log('here');
+
       $auth.authenticate(provider)
       .then(function() {
         // Signed in
