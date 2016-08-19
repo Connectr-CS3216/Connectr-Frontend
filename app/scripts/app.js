@@ -20,6 +20,10 @@ angular
   ])
   .config(function ($routeProvider, $authProvider, fbid) {
     $routeProvider
+      .when('/', {
+        templateUrl: 'views/home.html',
+        controller: 'HomeCtrl'
+      })
       .when('/login', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
@@ -31,7 +35,7 @@ angular
         controllerAs: 'map'
       })
       .otherwise({
-        redirectTo: '/login'
+        redirectTo: '/'
       });
 
     $authProvider.httpInterceptor = function() { return true; };
@@ -67,7 +71,7 @@ angular
       $rootScope.$on('$routeChangeStart', function(e, next){
         if (session.isEmpty() && !next.isLogin) {
           // reload the login route
-          $location.url('/login');
+          $location.url('/');
         }
       });
   });
