@@ -57,11 +57,11 @@ angular.module('connectrFrontendApp')
       }
     }
 
-    $scope.logout = function() {
-      $auth.logout();
-      // clear session
-      session.save();
-    };
+    // $scope.logout = function() {
+    //   $auth.logout();
+    //   // clear session
+    //   session.save();
+    // };
 
     // function initialise() {
     //   redirect();
