@@ -17,6 +17,20 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($scope, $l
     $location.url('/login');
   };
 
+  $scope.collapseClassBinding = {
+    'collapse': 'panel-expanded'
+  }
+
+  $scope.toggleLeftPanel = function() {
+    if ($scope.collapseClassBinding.collapse === 'panel-expanded') {
+      $scope.collapseClassBinding.collapse = 'panel-collapse'
+    } else {
+      $scope.collapseClassBinding.collapse = 'panel-expanded'
+    }
+
+    console.log($scope.collapseClassBinding)
+  }
+
   function initialise() {
     $scope.user = {
       name: session.username()
