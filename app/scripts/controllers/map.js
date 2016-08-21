@@ -14,7 +14,7 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($scope, $l
     $auth.logout();
     // clear session
     session.save();
-    $location.url('/login');
+    $location.url('/');
   };
 
   $scope.collapseClassBinding = {
@@ -28,7 +28,7 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($scope, $l
       $scope.collapseClassBinding.collapse = 'panel-expanded'
     }
 
-    console.log($scope.collapseClassBinding)
+    //console.log($scope.collapseClassBinding)
   }
 
   function initialise() {
