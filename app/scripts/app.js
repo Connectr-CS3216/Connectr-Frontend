@@ -38,9 +38,6 @@ angular
     $authProvider.withCredentials = false;
     $authProvider.tokenRoot = null;
     $authProvider.baseUrl = '/';
-    $authProvider.loginUrl = '/auth/login';
-    $authProvider.signupUrl = '/auth/signup';
-    $authProvider.unlinkUrl = '/auth/unlink/';
     $authProvider.tokenName = 'token';
     $authProvider.tokenPrefix = 'satellizer';
     $authProvider.tokenHeader = 'Authorization';
@@ -50,9 +47,7 @@ angular
     // Facebook
     $authProvider.facebook({
       name: 'facebook',
-      url: '/auth/facebook',
       authorizationEndpoint: 'https://www.facebook.com/v2.5/dialog/oauth',
-      redirectUri: window.location.origin + '/login',
       requiredUrlParams: ['display', 'scope'],
       scope: ['email', 'user_tagged_places'],
       scopeDelimiter: ',',
