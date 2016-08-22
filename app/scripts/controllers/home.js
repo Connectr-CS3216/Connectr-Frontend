@@ -22,7 +22,8 @@ angular.module('connectrFrontendApp').controller('HomeCtrl', function ($scope, $
           console.log('success', data);
 
           apis.checkins.get({
-            'token': data
+            'token': data,
+            'format': 'geojson'
           })
           .success(function(data) {
             console.log('checkins', data);
