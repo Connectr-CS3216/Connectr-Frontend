@@ -134,8 +134,8 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(){
 
             $scope.map.on('load', function(e) {
                 //faked data points
-                $scope.addPointsFromGeojson("earthquakes1", "../../fake-data/earthquakes1.geojson", ['#78909c','#90a4ae','#b0bec5','#cfd8dc'])
-                $scope.addPointsFromGeojson("earthquakes2", "../../fake-data/earthquakes2.geojson", ['#ffca28','#ffd54f','#ffe082','#ffecb3'])
+                $scope.addPointsFromGeojson("earthquakes-dataset-1", "../../fake-data/earthquakes1.geojson", ['#78909c','#90a4ae','#b0bec5','#cfd8dc'])
+                $scope.addPointsFromGeojson("earthquakes-dataset-2", "../../fake-data/earthquakes2.geojson", ['#ffca28','#ffd54f','#ffe082','#ffecb3'])
             })
 
             var popup = new mapboxgl.Popup({
@@ -164,7 +164,7 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(){
                 var html = feature.properties["Secondary ID"]
                 if (html === undefined) {
                     var count = feature.properties.point_count
-                    html = count + " places"
+                    html = count + " places<br>" + "source: " + feature.layer.source
                 }
 
                 // Populate the popup and set its coordinates
