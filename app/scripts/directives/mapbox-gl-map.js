@@ -38,7 +38,10 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(){
                 // $scope.randomFly(point["lng"], point["lat"])
             });
 
+            $scope.mapAnnotationLayers = []
+
             $scope.addPointsFromGeojson = function(name, data, colors) {
+
                 $scope.map.addSource(name, {
                     type: "geojson",
                     data: data,
@@ -57,6 +60,8 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(){
                         "circle-opacity": 0.9
                     }
                 });
+
+                $scope.mapAnnotationLayers.push(name + "-unclustered-points")
 
                 $scope.map.addLayer({
                     "id": name + "-unclustered-points-shadow",
@@ -92,6 +97,8 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(){
                                 [">=", "point_count", layer[0]],
                                 ["<", "point_count", layers[i - 1][0]]]
                     });
+
+                    $scope.mapAnnotationLayers.push(name + "-cluster-" + i)
 
                     $scope.map.addLayer({
                         "id": name + "-cluster-shadow-" + i,
@@ -130,6 +137,42 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(){
                 $scope.addPointsFromGeojson("earthquakes1", "../../fake-data/earthquakes1.geojson", ['#78909c','#90a4ae','#b0bec5','#cfd8dc'])
                 $scope.addPointsFromGeojson("earthquakes2", "../../fake-data/earthquakes2.geojson", ['#ffca28','#ffd54f','#ffe082','#ffecb3'])
             })
+
+            var popup = new mapboxgl.Popup({
+                closeButton: false,
+                closeOnClick: false,
+                continuousWorld: true
+            });
+
+            $scope.map.on('mousemove', function(e) {
+                var map = $scope.map
+
+                var features = map.queryRenderedFeatures(e.point, {
+                    layers: $scope.mapAnnotationLayers
+                });
+
+                // Change the cursor style as a UI indicator.
+                map.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
+
+                if (!features.length) {
+                    popup.remove();
+                    return;
+                }
+
+                var feature = features[0];
+
+                var html = feature.properties["Secondary ID"]
+                if (html === undefined) {
+                    var count = feature.properties.point_count
+                    html = count + " places"
+                }
+
+                // Populate the popup and set its coordinates
+                // based on the feature found.
+                popup.setLngLat(e.lngLat)
+                    .setHTML(html)
+                    .addTo(map);
+            });
         }
     };
 });
