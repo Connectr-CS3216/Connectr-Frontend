@@ -26,7 +26,6 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(){
             $scope.map.touchZoomRotate.disableRotation();
 
             $scope.map.addControl(new mapboxgl.Navigation({position: 'bottom-right'}));
-            $scope.map.addControl(new mapboxgl.Geolocate({position: 'bottom-right'}));
 
             $scope.randomFly = function(long, lat) {
                 $scope.map.flyTo({
