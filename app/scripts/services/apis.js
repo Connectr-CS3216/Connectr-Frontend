@@ -70,4 +70,12 @@ angular.module('connectrFrontendApp')
       }
     };
 
+    this.checkins = {
+      get: function(parameters) {
+        return $http.get(buildUrl(apiHost + '/checkins', parameters), {
+          skipAuthorization: true
+        });
+      }
+    };
+
   });
