@@ -175,7 +175,7 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
             });
 
             apis.checkins.get({
-              'token': session.token,
+              'token': session.serverToken(),
               'format': 'geojson'
             }).success(function(data) {
                 session.checkins = data

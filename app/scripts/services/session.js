@@ -33,7 +33,7 @@ angular.module('connectrFrontendApp')
 
     var _session = loadFromDisk(); 
     
-    // Data contains access token, userid, username
+    // Data contains fbtoken, serverToken, userid, username,
     // Can be null to clear session
     this.save = function(data) {
       _session = data;
@@ -42,7 +42,8 @@ angular.module('connectrFrontendApp')
 
     // Read-only getters
     this.isEmpty = function () { return !_session; };
-    this.accessToken = function () { return _session && _session.accessToken || ''; };
+    this.fbToken = function () { return _session && _session.fbToken || ''; };
+    this.serverToken = function () { return _session && _session.serverToken || ''; };
     this.userid = function() { return _session && _session.userid || ''; };
     this.username = function() { return _session && _session.username || ''; };
 
