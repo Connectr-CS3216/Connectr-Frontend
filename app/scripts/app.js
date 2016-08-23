@@ -15,10 +15,9 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch',
-    'satellizer'
+    'ngTouch'
   ])
-  .config(function ($routeProvider, $authProvider, fbid) {
+  .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/home.html',
@@ -33,32 +32,40 @@ angular
       .otherwise({
         redirectTo: '/'
       });
-
-    $authProvider.httpInterceptor = function() { return true; };
-    $authProvider.withCredentials = false;
-    $authProvider.tokenRoot = null;
-    $authProvider.baseUrl = '/';
-    $authProvider.tokenName = 'token';
-    $authProvider.tokenPrefix = 'satellizer';
-    $authProvider.tokenHeader = 'Authorization';
-    $authProvider.tokenType = 'Bearer';
-    $authProvider.storageType = 'localStorage';
-
-    // Facebook
-    $authProvider.facebook({
-      name: 'facebook',
-      authorizationEndpoint: 'https://www.facebook.com/v2.5/dialog/oauth',
-      requiredUrlParams: ['display', 'scope'],
-      scope: ['email', 'user_tagged_places'],
-      scopeDelimiter: ',',
-      display: 'popup',
-      oauthType: '2.0',
-      popupOptions: { width: 580, height: 400 },
-      clientId: fbid,
-      responseType: 'token'
-    });
   })
-  .run(function ($rootScope, $location, $auth, session) {
+  .run(function ($rootScope, $location, session, srvAuth, $window) {
+
+      $window.fbAsyncInit = function() {
+          FB.init({ 
+            appId: '631439630344992',
+            channelUrl: 'app/channel.html',
+            status: true, 
+            cookie: true, 
+            xfbml: true,
+            version: 'v2.4'
+          });
+
+          srvAuth.watchAuthenticationStatusChange();
+      };
+
+      (function(d){
+        // load the Facebook javascript SDK
+        var js,
+        id = 'facebook-jssdk',
+        ref = d.getElementsByTagName('script')[0];
+
+        if (d.getElementById(id)) {
+          return;
+        }
+
+        js = d.createElement('script');
+        js.id = id;
+        js.async = true;
+        js.src = "//connect.facebook.net/en_US/all.js";
+
+        ref.parentNode.insertBefore(js, ref);
+      }(document));
+
       $rootScope.$on('$routeChangeStart', function(e, next){
         if (session.isEmpty() && !next.isLogin) {
           // reload the login route

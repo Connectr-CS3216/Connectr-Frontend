@@ -8,13 +8,10 @@
  * Controller of the connectrFrontendApp
  */
 
-angular.module('connectrFrontendApp').controller('MapCtrl', function ($scope, $location, session, $auth) {
+angular.module('connectrFrontendApp').controller('MapCtrl', function ($scope, $location, session, srvAuth) {
 
   $scope.logout = function() {
-    $auth.logout();
-    // clear session
-    session.save();
-    $location.url('/');
+    srvAuth.logout();
   };
 
   $scope.collapseClassBinding = {
