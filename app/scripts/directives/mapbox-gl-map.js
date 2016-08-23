@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('connectrFrontendApp').directive('mapboxGlMap', function(){
+angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session, apis){
     return {
         scope: true,
         replace: true,
@@ -21,6 +21,7 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(){
                 attributionControl: false
             });
 
+            session.map = $scope.map
             // disable map rotation
             $scope.map.dragRotate.disable();
             $scope.map.touchZoomRotate.disableRotation();
@@ -132,11 +133,7 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(){
                 });
             }
 
-            $scope.map.on('load', function(e) {
-                //faked data points
-                $scope.addPointsFromGeojson("earthquakes-dataset-1", "../../fake-data/earthquakes1.geojson", ['#78909c','#90a4ae','#b0bec5','#cfd8dc'])
-                $scope.addPointsFromGeojson("earthquakes-dataset-2", "../../fake-data/earthquakes2.geojson", ['#ffca28','#ffd54f','#ffe082','#ffecb3'])
-            })
+            
 
             var popup = new mapboxgl.Popup({
                 closeButton: false,
@@ -163,8 +160,11 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(){
 
                 var html = feature.properties["Secondary ID"]
                 if (html === undefined) {
-                    var count = feature.properties.point_count
-                    html = count + " places<br>" + "source: " + feature.layer.source
+                    html = feature.properties["place_name"]
+                    if (html === undefined) {
+                        var count = feature.properties.point_count
+                        html = count + " places<br>" + "source: " + feature.layer.source
+                    }
                 }
 
                 // Populate the popup and set its coordinates
@@ -173,6 +173,32 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(){
                     .setHTML(html)
                     .addTo(map);
             });
+
+            apis.checkins.get({
+              'token': "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbiI6IkVBQUlaQlNuN2RJeUFCQUl2YzV3Nk1yVTBTMmFNN1dwdHVaQkExSXM5WkNVV0xjWkI1ZmliZWVwMThEOGl3RHNlcERieGhseXRnUmlWazJFZGRjcDlQUlVnSjVvb2FncURyWkFXa3JOVmY2WXU1djYxcTRoUFR1M2p2U3RoYkJYVjVaQ1FWNVpDb1lmZ1hIRUh6WkM5UE0xd2lLTkl3bExmUk1ZOWNNWWhNUzZOamdaRFpEIiwidXNlcmlkIjoiM2Q4ZDI5MjAtODVhOS00YWMxLTlkZjItZDZiZTAzM2I0NjM5IiwiaXNzIjoiaHR0cDpcL1wvY29ubmVjdHIudGtcL3ZlcmlmeS1mYWNlYm9vay10b2tlbiIsImlhdCI6MTQ3MTk3MDUwOSwiZXhwIjoxNDcxOTc0MTA5LCJuYmYiOjE0NzE5NzA1MDksImp0aSI6IjkwMDU4ZTRhNDYzOWRkZmQyMTVjYTQzYzBhYzA0NDM3In0.KXqkJPh-6PSqbsiJvwl5ozrC1IxtMVhr12aThC5ViBs",
+              'format': 'geojson'
+            }).success(function(data) {
+                session.checkins = data
+                $scope.checkInDataIsReady = true
+
+                if ($scope.map.loaded()) {
+                    loadCheckinDataForSelf()
+                }
+
+                console.log(data)
+            });
+
+            $scope.map.on('load', function(e) {
+                //faked data points
+                $scope.addPointsFromGeojson("earthquakes-dataset-2", "../../fake-data/earthquakes2.geojson", ['#ffca28','#ffd54f','#ffe082','#ffecb3'])
+                if ($scope.checkInDataIsReady) {
+                    loadCheckinDataForSelf()
+                }
+            })
+
+            function loadCheckinDataForSelf() {
+                 $scope.addPointsFromGeojson("self-checkins", session.checkins, ['#78909c','#90a4ae','#b0bec5','#cfd8dc'])    
+            }
         }
     };
 });
