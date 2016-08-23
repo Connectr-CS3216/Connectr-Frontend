@@ -64,11 +64,6 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($scope, $l
       lastPlaceID = locations[index].properties["place_fb_id"]
     }
 
-    // title.textContent = locations[index].title;
-    // description.textContent = locations[index].description;
-
-    // highlightBorough(locations[index].id ? locations[index].id : '');
-
     // Animate the map position based on camera properties
     map.flyTo({
       center: locations[index].geometry.coordinates,
