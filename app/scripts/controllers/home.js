@@ -20,7 +20,7 @@ angular.module('connectrFrontendApp').controller('HomeCtrl', function ($scope, $
           }
         ).success(function(data) {
           console.log('success', data);
-
+          session.token = data
           apis.checkins.get({
             'token': data,
             'format': 'geojson'

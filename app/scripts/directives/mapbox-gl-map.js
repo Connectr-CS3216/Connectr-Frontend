@@ -175,7 +175,7 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
             });
 
             apis.checkins.get({
-              'token': "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbiI6IkVBQUlaQlNuN2RJeUFCQUl2YzV3Nk1yVTBTMmFNN1dwdHVaQkExSXM5WkNVV0xjWkI1ZmliZWVwMThEOGl3RHNlcERieGhseXRnUmlWazJFZGRjcDlQUlVnSjVvb2FncURyWkFXa3JOVmY2WXU1djYxcTRoUFR1M2p2U3RoYkJYVjVaQ1FWNVpDb1lmZ1hIRUh6WkM5UE0xd2lLTkl3bExmUk1ZOWNNWWhNUzZOamdaRFpEIiwidXNlcmlkIjoiM2Q4ZDI5MjAtODVhOS00YWMxLTlkZjItZDZiZTAzM2I0NjM5IiwiaXNzIjoiaHR0cDpcL1wvY29ubmVjdHIudGtcL3ZlcmlmeS1mYWNlYm9vay10b2tlbiIsImlhdCI6MTQ3MTk3MDUwOSwiZXhwIjoxNDcxOTc0MTA5LCJuYmYiOjE0NzE5NzA1MDksImp0aSI6IjkwMDU4ZTRhNDYzOWRkZmQyMTVjYTQzYzBhYzA0NDM3In0.KXqkJPh-6PSqbsiJvwl5ozrC1IxtMVhr12aThC5ViBs",
+              'token': session.token,
               'format': 'geojson'
             }).success(function(data) {
                 session.checkins = data
