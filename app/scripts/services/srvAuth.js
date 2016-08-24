@@ -30,6 +30,7 @@ angular.module('connectrFrontendApp')
     };
 
     this.startSession = function(accessToken) {
+      // TODO: show some spinner while waiting for login.
       FB.api('/me', function(res) {
         $rootScope.$apply(function() {
 
