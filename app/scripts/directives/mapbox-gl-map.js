@@ -172,20 +172,6 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                     .addTo(map);
             });
 
-            apis.checkins.get({
-              'token': session.serverToken(),
-              'format': 'geojson'
-            }).success(function(data) {
-                session.checkins = data
-                $scope.checkInDataIsReady = true
-
-                if ($scope.map.loaded()) {
-                    loadCheckinDataForSelf()
-                }
-
-                console.log(data)
-            });
-
             $scope.map.on('load', function(e) {
                 //faked data points
                 // $scope.addPointsFromGeojson("earthquakes-dataset-2", "../../fake-data/earthquakes2.geojson", ['#ffca28','#ffd54f','#ffe082','#ffecb3'])
@@ -194,8 +180,12 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                 // }
             })
 
-            function loadCheckinDataForSelf() {
-                 $scope.addPointsFromGeojson("self-checkins", session.checkins, ['#78909c','#90a4ae','#b0bec5','#cfd8dc'])
+            $scope.$on("api.selfCheckinsLoaded", function (event, data) {
+                loadCheckinData("My checkins", data);
+            })
+
+            function loadCheckinData(source, data) {
+                 $scope.addPointsFromGeojson(source, data, ['#78909c','#90a4ae','#b0bec5','#cfd8dc'])
             }
         }
     };

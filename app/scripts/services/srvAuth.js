@@ -15,7 +15,7 @@ angular.module('connectrFrontendApp')
       var _self = this;
 
       FB.Event.subscribe('auth.authResponseChange', function(res) {
-        
+
         if (res.status === 'connected') {
           _self.startSession(res.authResponse.accessToken);
 
@@ -48,21 +48,10 @@ angular.module('connectrFrontendApp')
             username: res.name
           });
 
-          // retrieve user checkins
-          apis.checkins.get({
-            'token': data,
-            'format': 'geojson'
-          })
-          
-          .success(function(data) {
-            console.log('checkins', data);
-          });
-
+          $location.url('/map');
         }).error(function(err) {
           console.log('failed', err);
         });
-
-          $location.url('/map');
         });
       });
     };

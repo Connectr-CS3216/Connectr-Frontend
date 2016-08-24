@@ -9,7 +9,7 @@
  */
 
 
-angular.module('connectrFrontendApp').controller('MapCtrl', function ($scope, $location, session, srvAuth) {
+angular.module('connectrFrontendApp').controller('MapCtrl', function ($scope, $location, session, srvAuth, apis) {
 
   $scope.logout = function() {
     srvAuth.logout();
@@ -82,6 +82,21 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($scope, $l
     $scope.user = {
       name: session.username()
     };
+
+    // retrieve user checkins
+    apis.checkins.get({
+      'token': session.serverToken(),
+      'format': 'geojson'
+    })
+    .success(function(data) {
+      // Notify map to read data
+      $scope.$broadcast("api.selfCheckinsLoaded", data);
+    }).error(function() {
+      // TODO: Handle error here
+      // redirect to login
+      console.log('Token expired. Please re-login.');
+      $location.redirect('/');
+    });
   }
 
   initialise();
