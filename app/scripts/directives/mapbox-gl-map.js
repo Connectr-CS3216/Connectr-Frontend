@@ -133,8 +133,6 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                 });
             }
 
-            
-
             var popup = new mapboxgl.Popup({
                 closeButton: false,
                 closeOnClick: false,
@@ -190,14 +188,14 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
 
             $scope.map.on('load', function(e) {
                 //faked data points
-                $scope.addPointsFromGeojson("earthquakes-dataset-2", "../../fake-data/earthquakes2.geojson", ['#ffca28','#ffd54f','#ffe082','#ffecb3'])
-                if ($scope.checkInDataIsReady) {
-                    loadCheckinDataForSelf()
-                }
+                // $scope.addPointsFromGeojson("earthquakes-dataset-2", "../../fake-data/earthquakes2.geojson", ['#ffca28','#ffd54f','#ffe082','#ffecb3'])
+                // if ($scope.checkInDataIsReady) {
+                //     loadCheckinDataForSelf()
+                // }
             })
 
             function loadCheckinDataForSelf() {
-                 $scope.addPointsFromGeojson("self-checkins", session.checkins, ['#78909c','#90a4ae','#b0bec5','#cfd8dc'])    
+                 $scope.addPointsFromGeojson("self-checkins", session.checkins, ['#78909c','#90a4ae','#b0bec5','#cfd8dc'])
             }
         }
     };
