@@ -95,7 +95,10 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($scope, $l
       // TODO: Handle error here
       // redirect to login
       console.log('Token expired. Please re-login.');
-      $location.redirect('/');
+      session.save();
+
+      // Force reload of login page to avoid buggy facebook logout
+      $location.url('/');
     });
   }
 
