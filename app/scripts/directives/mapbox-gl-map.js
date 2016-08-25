@@ -173,17 +173,16 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
             });
 
             $scope.map.on('load', function(e) {
-                $scope.mapDidLoad = true
                 if ($scope.checkInSources.length != 0) {
                     for (var i = 0; i < $scope.checkInSources.length; i++) {
                         var entry = $scope.checkInSources[i]
-                        self.loadCheckinData(entry[0], entry[1])
+                        loadCheckinData(entry[0], entry[1])
                     }
                 }
             })
 
             $scope.$on("api.selfCheckinsLoaded", function (event, data) {
-                if ($scope.mapDidLoad) {
+                if ($scope.map.loaded()) {
                     loadCheckinData("My Checkins", data)
                 } else {
                     $scope.checkInSources.push(["My checkins", data])
