@@ -42,6 +42,19 @@ body {
   text-align: center;
 }
 
+.static-footer {
+  padding: 5px;
+  color: #eeeeee;
+  text-align: center;
+  width: 100%;
+  position:fixed;
+  bottom:0;
+}
+
+.static-footer.dark {
+  color: black;
+}
+
 .container-narrow > hr {
   margin: 30px 0;
 }

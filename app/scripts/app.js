@@ -34,6 +34,11 @@ angular
         controller: 'PrivacyPolicyCtrl',
         isPublic: true
       })
+      .when('/terms-of-service', {
+        templateUrl: 'views/terms-of-service.html',
+        controller: 'TermsOfServiceCtrl',
+        isPublic: true
+      })
       .otherwise({
         redirectTo: '/'
       });
@@ -41,11 +46,11 @@ angular
   .run(function ($rootScope, $location, session, srvAuth, $window) {
 
       $window.fbAsyncInit = function() {
-          FB.init({ 
+          FB.init({
             appId: '631439630344992',
             channelUrl: 'app/channel.html',
-            status: true, 
-            cookie: true, 
+            status: true,
+            cookie: true,
             xfbml: true,
             version: 'v2.4'
           });
@@ -53,23 +58,13 @@ angular
           srvAuth.watchAuthenticationStatusChange();
       };
 
-      (function(d){
-        // load the Facebook javascript SDK
-        var js,
-        id = 'facebook-jssdk',
-        ref = d.getElementsByTagName('script')[0];
-
-        if (d.getElementById(id)) {
-          return;
-        }
-
-        js = d.createElement('script');
-        js.id = id;
-        js.async = true;
-        js.src = "//connect.facebook.net/en_US/all.js";
-
-        ref.parentNode.insertBefore(js, ref);
-      }(document));
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.7&appId=631439630344992";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
 
       $rootScope.$on('$routeChangeStart', function(e, next){
         if (session.isEmpty() && !next.isPublic) {
