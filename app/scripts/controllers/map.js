@@ -89,6 +89,7 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($scope, $l
       'format': 'geojson'
     })
     .success(function(data) {
+      session.checkins = data;
       // Notify map to read data
       $scope.$broadcast("api.selfCheckinsLoaded", data);
     }).error(function() {
