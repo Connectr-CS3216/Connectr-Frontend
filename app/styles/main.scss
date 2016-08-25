@@ -219,6 +219,17 @@ body {
   }  
 }
 
+#facebook-share {
+  display: block;
+  position:absolute;
+  top: 50px;
+  right: 13px;
+  width: 30px;
+  height: 30px;
+  color: #000;
+  cursor: pointer;
+}
+
 #map-control-play:hover {
   background: #f0f0f0;
 }
@@ -364,4 +375,40 @@ body {
 
 .row {
   margin-top: 25px;
+}
+
+.affix {
+    margin: 80px 10px;
+    z-index: 1020;
+}
+
+.share-button-banner{
+    display: table;
+    text-align: center;
+    border: 2px solid #fff;
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+    margin-bottom: 20px;
+    text-decoration: none;
+    cursor: pointer;
+    color: #fff;
+    font-size: 19px;
+}
+
+.share-button-banner .share-container{
+    display: table-cell;
+}
+
+.share-container .share-content{
+    vertical-align: middle;
+}
+
+.share-button-banner:hover{
+    color: #fff !important;
+}
+
+#facebook-button.share-button-banner:hover{
+    border-color: #255C95;
+    background-color: #255C95;
 }
