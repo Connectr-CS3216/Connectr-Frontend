@@ -141,13 +141,21 @@ body {
   right: 10px;
   width: 30px;
   height: 30px;
-  padding-left: 8px;
-  padding-top: 6px;
   border-radius: 5px;
   color: #000;
   background: #fff;
   cursor: pointer;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+
+  .glyphicon-play {
+    padding-left: 8px;
+    padding-top: 6px;
+  }
+
+  .glyphicon-stop {
+    padding-left: 7px;
+    padding-top: 6px;
+  }  
 }
 
 #map-control-play:hover {
