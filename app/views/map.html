@@ -1,12 +1,12 @@
 <div id="map-wrapper">
     <mapbox-gl-map></mapbox-gl-map>
+    <div id="map-control-play" ng-click="walkThrough()"><i class="glyphicon glyphicon-play"></i></div>
     <div id="map-left-panel" ng-class="collapseClassBinding.collapse">
         <div class="brand">Connectr</div>
         <div class="drawer-handle">
         	<div ng-click="toggleLeftPanel()">
         	</div>
         </div>
-        <button class="btn" ng-click="walkThrough()">Walk me through</button>
         <div class="logout-box">
             <span class="logout-button glyphicon glyphicon-eject" ng-click="logout()"></span>
             <span class="name pull-right"><b>{{user.name}}</b></span>
