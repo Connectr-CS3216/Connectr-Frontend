@@ -55,6 +55,7 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($scope, $l
     var lastPlaceID, timer
     function stopPlaying() {
         var map = session.map
+        map.stop()
         map.flyTo({
             center: previousCenter,
             pitch: 0,
@@ -127,7 +128,6 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($scope, $l
         }) .success(function(data) {
             session.checkins = data;
             session.checkins.features.sort(function (a, b) {return a.properties.checkin_time < b.properties.checkin_time ? -1 : 1})
-            console.log(data)
             // Notify map to read data
             $scope.$broadcast("api.selfCheckinsLoaded", data);
         }).error(function() {
