@@ -22,12 +22,17 @@ angular
       .when('/', {
         templateUrl: 'views/home.html',
         controller: 'HomeCtrl',
-        isLogin: true
+        isPublic: true
       })
       .when('/map', {
         templateUrl: 'views/map.html',
         controller: 'MapCtrl',
         controllerAs: 'map'
+      })
+      .when('/privacy-policy', {
+        templateUrl: 'views/privacy-policy.html',
+        controller: 'PrivacyPolicyCtrl',
+        isPublic: true
       })
       .otherwise({
         redirectTo: '/'
@@ -67,7 +72,7 @@ angular
       }(document));
 
       $rootScope.$on('$routeChangeStart', function(e, next){
-        if (session.isEmpty() && !next.isLogin) {
+        if (session.isEmpty() && !next.isPublic) {
           // reload the login route
           $location.url('/');
         }
