@@ -70,9 +70,22 @@ angular.module('connectrFrontendApp')
       }
     };
 
+    this.friends = {
+      get: function(parameters) {
+        return $http.get(buildUrl(apiHost + '/friends', parameters), {
+          skipAuthorization: true
+        });
+      }
+    };
+
     this.checkins = {
       get: function(parameters) {
         return $http.get(buildUrl(apiHost + '/checkins', parameters), {
+          skipAuthorization: true
+        });
+      },
+      getFriendsCheckins: function(friendId, parameters) {
+        return $http.get(buildUrl(apiHost + '/checkins/' + friendId, parameters), {
           skipAuthorization: true
         });
       }

@@ -78,6 +78,20 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($scope, $l
     });
   }
 
+  $scope.loadFriendsCheckins = function(friendId) {
+    apis.checkins.getFriendsCheckins(
+      friendId,
+      {
+        'token': session.serverToken(),
+        'format': 'geojson'
+      }
+    ).success(function(data) {
+      console.log(data);
+    }).error(function() {
+      console.log('failed to load friend\'s data');
+    });
+  }
+
   function initialise() {
     $scope.user = {
       name: session.username()
@@ -101,6 +115,21 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($scope, $l
       // Force reload of login page to avoid buggy facebook logout
       $location.url('/');
     });
+
+    // retrieve friend list
+    /*
+      apis.friends.get({
+        'token': session.serverToken()
+      })
+      .success(function(data) {
+        console.log(data);
+        data.forEach(function(friend) {
+          $scope.loadFriendsCheckins(friend.id);
+        })
+      }).error(function() {
+        console.log('failed to get friend list');
+      });
+    */
   }
 
   initialise();
