@@ -19,8 +19,9 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($scope, $l
         'collapse': 'panel-expanded'
     }
 
-    $scope.playButtonClassBinding = {
-        'play': 'glyphicon glyphicon-play' 
+    $scope.playClassBinding = {
+        'play': 'glyphicon glyphicon-play',
+        'display': 'display-none'
     }
 
     $scope.toggleLeftPanel = function() {
@@ -31,28 +32,33 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($scope, $l
         }
     }
 
-    var previousCenter, previousZoom
     $scope.walkThrough = function() {
-        if ($scope.playButtonClassBinding.play === "glyphicon glyphicon-stop") {
+        if ($scope.playClassBinding.play === "glyphicon glyphicon-stop") {
             stopPlaying();
         } else {
-            previousCenter = session.map.getCenter();
-            previousZoom = session.map.getZoom();
-
-            if (session.checkins) {
-                $scope.$broadcast("map.needsRemoveControl");
-                $scope.playButtonClassBinding.play = "glyphicon glyphicon-stop"
-                if ($scope.collapseClassBinding.collapse === 'panel-expanded') {
-                    $scope.collapseClassBinding.collapse = 'panel-collapse'
-                }
-                playback(0)
-            } else {
-                alert("data not ready")
-            }
+            startPlaying();
         }
     }
 
-    var lastPlaceID, timer
+    var lastPlaceID, timer, previousCenter, previousZoom
+
+    function startPlaying() {
+        previousCenter = session.map.getCenter();
+        previousZoom = session.map.getZoom();
+
+        if (session.checkins) {
+            $scope.$broadcast("map.needsRemoveControl");
+            $scope.playClassBinding.play = "glyphicon glyphicon-stop"
+            $scope.playClassBinding.display = "display-normal"
+            if ($scope.collapseClassBinding.collapse === 'panel-expanded') {
+                $scope.collapseClassBinding.collapse = 'panel-collapse'
+            }
+            playback(0)
+        } else {
+            alert("data not ready")
+        }
+    }
+
     function stopPlaying() {
         var map = session.map
         map.stop()
@@ -65,7 +71,8 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($scope, $l
         window.clearTimeout(timer)
         map.once('moveend', function(){})
         $scope.$broadcast("map.needsDisplayControl");
-        $scope.playButtonClassBinding.play = "glyphicon glyphicon-play"
+        $scope.playClassBinding.play = "glyphicon glyphicon-play"
+        $scope.playClassBinding.display = "display-none"
     }
 
     function playback(index) {
@@ -85,7 +92,8 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($scope, $l
             lastPlaceID = locations[index].properties["place_fb_id"]
         }
 
-        // Animate the map position based on camera properties
+        updateDisplayContentForFeature(locations[index])
+        
         map.flyTo({
             center: locations[index].geometry.coordinates,
             pitch: 45,
@@ -93,12 +101,15 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($scope, $l
         })
 
         map.once('moveend', function() {
-            // Duration the slide is on screen after interaction
             timer = window.setTimeout(function() {
-                // Increment index
                 playback(++index);
-            }, 3000); // After callback, show the location for 3 seconds.
+                $scope.$apply();
+            }, 3000);
         });
+    }
+
+    function updateDisplayContentForFeature(feature) {
+        $scope.displayPlaceName = feature.properties.place_name
     }
 
     $scope.loadFriendsCheckins = function(friendId) {
