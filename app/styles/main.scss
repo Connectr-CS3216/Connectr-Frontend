@@ -103,13 +103,13 @@ body {
 }
 
 #home-bg-video {
-	position: fixed;
+	position: relative;
 	top: 50%;
 	left: 50%;
 	min-width: 100%;
 	min-height: 100%;
 	width: auto;
-	height: auto;
+	height: initial;
 	z-index: -100;
 	transform: translateX(-50%) translateY(-50%);
 	background: url(../video/Snapshots/Airtaxi.jpg) no-repeat;
@@ -317,8 +317,6 @@ body {
 }
 
 .title-container {
-  margin: 200px 0px 100px 0px;
-  z-index: 1000;
   position: initial;
   top: 35%;
   width: 100%;
@@ -340,4 +338,30 @@ body {
   color: #ffffff;
   font-weight: 100;
   font-size: -webkit-xxx-large;
+  text-align: center;
+}
+
+.section-title {
+  color: #ffffff;
+  font-weight: 80;
+  font-size: -webkit-xxx-large;
+  text-align: center;
+}
+
+.section-words {
+  color: #ffffff;
+  font-weight: 100;
+  font-size: -webkit-xxx-large;
+  text-align: center;
+  position: relative;
+  opacity: 0.9;
+}
+
+.vertical-align {
+  position: relative;
+  top: 30%;
+}
+
+.row {
+  margin-top: 25px;
 }
