@@ -23,14 +23,13 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($scope, $l
         if ($scope.collapseClassBinding.collapse === 'panel-expanded') {
             $scope.collapseClassBinding.collapse = 'panel-collapse'
         } else {
-        $scope.collapseClassBinding.collapse = 'panel-expanded'
+            $scope.collapseClassBinding.collapse = 'panel-expanded'
         }
-
-        //console.log($scope.collapseClassBinding)
     }
 
     $scope.walkThrough = function() {
         if (session.checkins) {
+            $scope.$broadcast("map.needsRemoveControl");
             if ($scope.collapseClassBinding.collapse === 'panel-expanded') {
                 $scope.collapseClassBinding.collapse = 'panel-collapse'
             }
@@ -43,6 +42,7 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($scope, $l
     var lastPlaceID
     function playback(index) {
         var map = session.map
+
         var locations = session.checkins.features
 
         if (index === locations.length) {
@@ -51,6 +51,8 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($scope, $l
                 pitch: 0,
                 zoom: 9
             })
+
+            $scope.$broadcast("map.needsRemoveControl");
             return
         }
 

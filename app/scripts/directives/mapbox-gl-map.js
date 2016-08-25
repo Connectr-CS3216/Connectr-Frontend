@@ -26,7 +26,24 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
             $scope.map.dragRotate.disable();
             $scope.map.touchZoomRotate.disableRotation();
 
-            $scope.map.addControl(new mapboxgl.Navigation({position: 'bottom-right'}));
+
+            var controls = [new mapboxgl.Navigation({position: 'bottom-right'})];
+            controls.forEach(function(c) {
+                c.addTo($scope.map)
+            })
+
+            $scope.$on("map.needsRemoveControl", function(event) {
+                controls.forEach(function(c) {
+                    c.remove()
+                })
+            })
+
+            $scope.$on("map.needsDisplayControl", function(event) {
+                controls.forEach(function(c) {
+                    c.addTo($scope.map)
+                })
+            })
+
 
             $scope.randomFly = function(long, lat) {
                 $scope.map.flyTo({
@@ -57,7 +74,7 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                     "source": name,
                     "paint": {
                         "circle-color": colors[3],
-                        "circle-radius": 5,
+                        "circle-radius": 10,
                         "circle-opacity": 0.9
                     }
                 });
@@ -70,7 +87,7 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                     "source": name,
                     "paint": {
                         "circle-color": "#ffffff",
-                        "circle-radius": 7,
+                        "circle-radius": 14,
                         "circle-opacity": 0.3
                     }
                 });
@@ -89,7 +106,7 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                         "source": name,
                         "paint": {
                             "circle-color": layer[1],
-                            "circle-radius": 10,
+                            "circle-radius": 20,
                             "circle-opacity": 0.9
                         },
                         "filter": i === 0 ?
@@ -107,7 +124,7 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                         "source": name,
                         "paint": {
                             "circle-color": layer[1],
-                            "circle-radius": 13,
+                            "circle-radius": 26,
                             "circle-opacity": 0.3
                         },
                         "filter": i === 0 ?
@@ -128,7 +145,7 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                             "DIN Offc Pro Medium",
                             "Arial Unicode MS Bold"
                         ],
-                        "text-size": 8,
+                        "text-size": 12,
                     }
                 });
             }
