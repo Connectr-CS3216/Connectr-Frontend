@@ -7,7 +7,7 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
         template: '<div id="map"></div>',
         link: function($scope) {
             mapboxgl.accessToken = "pk.eyJ1IjoibnVsbDA5MjY0IiwiYSI6ImNpcnlrcTZmYzAwMGYyeXBkaGF1c2JxZ2EifQ.pEmdeamPVAasYgavpT629g";
-
+            $scope.checkInSources = []
             $scope.map = new mapboxgl.Map({
                 container: 'map',
                 style: 'mapbox://styles/mapbox/dark-v9',
@@ -173,15 +173,21 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
             });
 
             $scope.map.on('load', function(e) {
-                //faked data points
-                // $scope.addPointsFromGeojson("earthquakes-dataset-2", "../../fake-data/earthquakes2.geojson", ['#ffca28','#ffd54f','#ffe082','#ffecb3'])
-                // if ($scope.checkInDataIsReady) {
-                //     loadCheckinDataForSelf()
-                // }
+                $scope.mapDidLoad = true
+                if ($scope.checkInSources.length != 0) {
+                    for (var i = 0; i < $scope.checkInSources.length; i++) {
+                        var entry = $scope.checkInSources[i]
+                        self.loadCheckinData(entry[0], entry[1])
+                    }
+                }
             })
 
             $scope.$on("api.selfCheckinsLoaded", function (event, data) {
-                loadCheckinData("My checkins", data);
+                if ($scope.mapDidLoad) {
+                    loadCheckinData("My Checkins", data)
+                } else {
+                    $scope.checkInSources.push(["My checkins", data])
+                }
             })
 
             function loadCheckinData(source, data) {
