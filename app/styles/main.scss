@@ -412,3 +412,15 @@ body {
     border-color: #255C95;
     background-color: #255C95;
 }
+
+.loading-dialog {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba( 0, 0, 0, .5 ) url('../images/spinner.gif') 50% 50% no-repeat;
+    background-size: 25px 25px;
+}
