@@ -72,4 +72,8 @@ angular
           $location.url('/');
         }
       });
+
+      $rootScope.$on('$routeChangeSuccess', function(){
+        ga('send', 'pageview', $location.path());
+      });
   });
