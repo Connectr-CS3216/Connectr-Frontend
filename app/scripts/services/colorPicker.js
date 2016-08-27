@@ -32,10 +32,16 @@ angular.module('connectrFrontendApp').service('colorPicker', function colorPicke
 
     var colorKeys = [4, 3, 2, 1]
     var selfColorIndex = 18
+    var maxAllowFriends = 15
 
-    this.getColorMatrix = function(n) {
-        if (n === undefined) {
-            n = selfColorIndex
+    var hashCode = function(s) {
+        return s.split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a},0);              
+    }
+
+    this.getColorMatrix = function(s) {
+        var n = selfColorIndex
+        if (s !== undefined) {
+            n = hashCode(s) % maxAllowFriends
         }
 
         var result = []

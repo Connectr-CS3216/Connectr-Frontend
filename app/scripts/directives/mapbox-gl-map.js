@@ -239,9 +239,8 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
 
             $scope.$on("map.needsAddCheckinsForFriend", function(event, friend) {
                 if (!$scope.displayedFriendIDs.includes(friend.id)) {
-                    var index = $scope.displayedFriendIDs.length
                     $scope.displayedFriendIDs.push(friend.id)
-                    var colors = colorPicker.getColorMatrix(index)
+                    var colors = colorPicker.getColorMatrix(friend.id)
                     $scope.addPointsFromGeojson(friend.id, friend.checkins, colors)
                 }
             })
