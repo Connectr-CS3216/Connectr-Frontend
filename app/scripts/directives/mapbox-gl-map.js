@@ -18,7 +18,8 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                 zoom: 0,
                 // pitch: 60,
                 interactive: true,
-                attributionControl: false
+                attributionControl: false,
+                preserveDrawingBuffer: true
             });
 
             session.map = $scope.map

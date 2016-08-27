@@ -145,6 +145,10 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($scope, $l
         }
     }
 
+    $scope.snapshotURL = function() {
+        return session.map.getCanvas().toDataURL()
+    }
+
     function initialise() {
         $scope.user = {
             name: session.username()
