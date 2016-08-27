@@ -17,6 +17,7 @@
 
     <div id="map-left-panel" ng-class="collapseClassBinding.collapse">
         <div class="brand">Connectr</div>
+        <hr>
         <div id="friend-list">
             <input type="text" class="form-control" id="search-bar" placeholder="Friend Name or Place" ng-model="searchContent">
             <div ng-repeat="friend in friends | filter: searchContent" class="row friend-entry">
