@@ -18,7 +18,7 @@
     <div id="map-left-panel" ng-class="collapseClassBinding.collapse">
         <div class="brand">Connectr</div>
         <hr>
-        <input type="text" class="form-control" id="search-bar" placeholder="Friend Name or Place" ng-model="searchContent.name">
+        <input type="text" class="form-control" id="search-bar" placeholder="type your friend's name here" ng-model="searchContent.name">
         <div id="friend-list">
             <div ng-repeat="friend in friends | filter: searchContent" class="row friend-entry">
                 <div class="col-xs-3 firend-avatar" style="background-image: url('{{ friend.avatar }}')"></div>
