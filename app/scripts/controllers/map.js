@@ -152,18 +152,17 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($scope, $l
         });
 
         // retrieve friend list
-        /*
         apis.friends.get({
             'token': session.serverToken()
         }) .success(function(data) {
-            console.log(data);
+            $scope.friends = data
+            console.log(data)
             data.forEach(function(friend) {
                 $scope.loadFriendsCheckins(friend.id);
             })
         }).error(function() {
             console.log('failed to get friend list');
         });
-        */
     }
 
     initialise();

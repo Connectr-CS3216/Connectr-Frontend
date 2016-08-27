@@ -195,6 +195,20 @@ body {
   }
 }
 
+#friend-list {
+  padding: 10px;
+  .friend-entry {
+    margin-left: 0;
+    margin-right: 0;
+
+    .firend-avatar {
+      height: 52px;
+      background-size: cover;
+      background-position: 50%;
+    }
+  }
+}
+
 #map-control-play {
   display: block;
   position:absolute;
