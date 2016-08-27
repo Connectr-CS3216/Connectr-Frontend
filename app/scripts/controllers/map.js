@@ -112,16 +112,15 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($scope, $l
         $scope.displayPlaceName = feature.properties.place_name
     }
 
-    $scope.loadFriendsCheckins = function(friendId) {
+    $scope.loadFriendsCheckins = function(friend) {
         apis.checkins.getFriendsCheckins(
-            friendId, {
+            friend.id, {
                 'token': session.serverToken(),
                 'format': 'geojson'
             }
         ).success(function(data) {
-        
-        console.log(data);
-        
+            friend.checkins = data;
+            $scope.$broadcast("map.needsAddCheckinsForFriend", friend);
         }).error(function() {
             console.log('failed to load friend\'s data');
         });
@@ -160,7 +159,7 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($scope, $l
 
             console.log(data)
             data.forEach(function(friend) {
-                $scope.loadFriendsCheckins(friend.id);
+                $scope.loadFriendsCheckins(friend);
             })
         }).error(function() {
             console.log('failed to get friend list');

@@ -209,6 +209,18 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
             function loadCheckinData(source, data) {
                 $scope.addPointsFromGeojson(source, data, colorPicker.getColorMatrix())
             }
+
+            $scope.displayedFriendIDs = []
+
+            $scope.$on("map.needsAddCheckinsForFriend", function(event, friend) {
+                console.log(friend)
+                if (!$scope.displayedFriendIDs.includes(friend.id)) {
+                    var index = $scope.displayedFriendIDs.length
+                    $scope.displayedFriendIDs.push(friend.id)
+                    var colors = colorPicker.getColorMatrix(index)
+                    $scope.addPointsFromGeojson(friend.id, friend.checkins, colors)
+                }
+            })
         }
     };
 });
