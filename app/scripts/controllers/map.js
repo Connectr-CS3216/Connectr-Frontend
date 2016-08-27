@@ -155,49 +155,8 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($scope, $l
         apis.friends.get({
             'token': session.serverToken()
         }) .success(function(data) {
-            
-            // var fakeData = [
-            //     {
-            //         name: "Name Hahah 1",
-            //         avatar: "https://graph.facebook.com/131676020614117/picture?type=large",
-            //     },
-            //     {
-            //         name: "Name Hahah 2",
-            //         avatar: "https://graph.facebook.com/131676020614117/picture?type=large",
-            //     },
-            //     {
-            //         name: "Name Hahah 3",
-            //         avatar: "https://graph.facebook.com/131676020614117/picture?type=large",
-            //     },
-            //     {
-            //         name: "Name Hahah 4",
-            //         avatar: "https://graph.facebook.com/131676020614117/picture?type=large",
-            //     },
-            //     {
-            //         name: "Name Hahah 5",
-            //         avatar: "https://graph.facebook.com/131676020614117/picture?type=large",
-            //     },
-            //     {
-            //         name: "Name Hahah 6",
-            //         avatar: "https://graph.facebook.com/131676020614117/picture?type=large",
-            //     },
-            //     {
-            //         name: "Name Hahah 7",
-            //         avatar: "https://graph.facebook.com/131676020614117/picture?type=large",
-            //     },
-            //     {
-            //         name: "Name Hahah 8",
-            //         avatar: "https://graph.facebook.com/131676020614117/picture?type=large",
-            //     },
-            //     {
-            //         name: "Name Hahah 9",
-            //         avatar: "https://graph.facebook.com/131676020614117/picture?type=large",
-            //     },
-            // ]
 
             $scope.friends = data
-
-
 
             console.log(data)
             data.forEach(function(friend) {

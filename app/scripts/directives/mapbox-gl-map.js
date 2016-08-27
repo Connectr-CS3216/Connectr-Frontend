@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session, apis){
+angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session, apis, colorPicker){
     return {
         scope: true,
         replace: true,
@@ -207,7 +207,7 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
             })
 
             function loadCheckinData(source, data) {
-                 $scope.addPointsFromGeojson(source, data, ['#78909c','#90a4ae','#b0bec5','#cfd8dc'])
+                $scope.addPointsFromGeojson(source, data, colorPicker.getColorMatrix())
             }
         }
     };
