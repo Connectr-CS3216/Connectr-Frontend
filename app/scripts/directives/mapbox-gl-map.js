@@ -178,7 +178,7 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                 var feature = features[0];
 
                 
-                html = feature.properties["place_name"]
+                var html = feature.properties["place_name"]
                 if (html === undefined) {
                     var count = feature.properties.point_count
                     html = count + " places<br>" + "source: " + feature.layer.source
