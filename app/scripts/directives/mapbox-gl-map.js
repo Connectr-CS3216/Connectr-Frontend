@@ -60,6 +60,9 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
 
             $scope.addPointsFromGeojson = function(name, data, colors) {
 
+                var mainOpacity = 0.2
+                var shadowOpacity = 0.2
+
                 $scope.map.addSource(name, {
                     type: "geojson",
                     data: data,
@@ -75,11 +78,10 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                     "paint": {
                         "circle-color": colors[3],
                         "circle-radius": 10,
-                        "circle-opacity": 0.9
+                        "circle-opacity": mainOpacity
                     }
                 });
 
-                $scope.mapAnnotationLayers.push(name + "-unclustered-points")
 
                 $scope.map.addLayer({
                     "id": name + "-unclustered-points-shadow",
@@ -88,9 +90,11 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                     "paint": {
                         "circle-color": "#ffffff",
                         "circle-radius": 14,
-                        "circle-opacity": 0.3
+                        "circle-opacity": shadowOpacity
                     }
                 });
+
+                $scope.mapAnnotationLayers.push(name + "-unclustered-points-shadow")
 
                 var layers = [
                     [500, colors[0]],
@@ -107,7 +111,7 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                         "paint": {
                             "circle-color": layer[1],
                             "circle-radius": 20,
-                            "circle-opacity": 0.9
+                            "circle-opacity": mainOpacity
                         },
                         "filter": i === 0 ?
                             [">=", "point_count", layer[0]] :
@@ -115,8 +119,6 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                                 [">=", "point_count", layer[0]],
                                 ["<", "point_count", layers[i - 1][0]]]
                     });
-
-                    $scope.mapAnnotationLayers.push(name + "-cluster-" + i)
 
                     $scope.map.addLayer({
                         "id": name + "-cluster-shadow-" + i,
@@ -125,7 +127,7 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                         "paint": {
                             "circle-color": layer[1],
                             "circle-radius": 26,
-                            "circle-opacity": 0.3
+                            "circle-opacity": shadowOpacity
                         },
                         "filter": i === 0 ?
                             [">=", "point_count", layer[0]] :
@@ -133,21 +135,23 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                                 [">=", "point_count", layer[0]],
                                 ["<", "point_count", layers[i - 1][0]]]
                     });
+
+                    $scope.mapAnnotationLayers.push(name + "-cluster-shadow-" + i)
                 });
 
-                $scope.map.addLayer({
-                    "id": name + "-cluster-count",
-                    "type": "symbol",
-                    "source": name,
-                    "layout": {
-                        "text-field": "{point_count}",
-                        "text-font": [
-                            "DIN Offc Pro Medium",
-                            "Arial Unicode MS Bold"
-                        ],
-                        "text-size": 12,
-                    }
-                });
+                // $scope.map.addLayer({
+                //     "id": name + "-cluster-count",
+                //     "type": "symbol",
+                //     "source": name,
+                //     "layout": {
+                //         "text-field": "{point_count}",
+                //         "text-font": [
+                //             "DIN Offc Pro Medium",
+                //             "Arial Unicode MS Bold"
+                //         ],
+                //         "text-size": 12,
+                //     }
+                // });
             }
 
             var popup = new mapboxgl.Popup({
@@ -173,13 +177,11 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
 
                 var feature = features[0];
 
-                var html = feature.properties["Secondary ID"]
+                
+                html = feature.properties["place_name"]
                 if (html === undefined) {
-                    html = feature.properties["place_name"]
-                    if (html === undefined) {
-                        var count = feature.properties.point_count
-                        html = count + " places<br>" + "source: " + feature.layer.source
-                    }
+                    var count = feature.properties.point_count
+                    html = count + " places<br>" + "source: " + feature.layer.source
                 }
 
                 // Populate the popup and set its coordinates
