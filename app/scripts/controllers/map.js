@@ -113,17 +113,36 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($scope, $l
     }
 
     $scope.loadFriendsCheckins = function(friend) {
-        apis.checkins.getFriendsCheckins(
-            friend.id, {
-                'token': session.serverToken(),
-                'format': 'geojson'
-            }
-        ).success(function(data) {
-            friend.checkins = data;
+        if (friend.checkins !== undefined) {
+            friend.shown = true
             $scope.$broadcast("map.needsAddCheckinsForFriend", friend);
-        }).error(function() {
-            console.log('failed to load friend\'s data');
-        });
+        } else {
+            apis.checkins.getFriendsCheckins(
+                friend.id, {
+                    'token': session.serverToken(),
+                    'format': 'geojson'
+                }
+            ).success(function(data) {
+                friend.checkins = data;
+                friend.shown = true
+                $scope.$broadcast("map.needsAddCheckinsForFriend", friend);
+            }).error(function() {
+                console.log('failed to load friend\'s data');
+            });
+        }
+    }
+
+    $scope.removeFriendsCheckins = function(friend) {
+        friend.shown = false
+        $scope.$broadcast("map.needsRemoveCheckinsForFriend", friend);
+    }
+
+    $scope.toggleFriend = function(friend) {
+        if (!friend.shown) {
+            $scope.loadFriendsCheckins(friend)
+        } else {
+            $scope.removeFriendsCheckins(friend)
+        }
     }
 
     function initialise() {
@@ -158,9 +177,10 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($scope, $l
             $scope.friends = data
 
             console.log(data)
-            data.forEach(function(friend) {
-                $scope.loadFriendsCheckins(friend);
-            })
+
+            for (var i = 0; i < Math.min(data.length, 16); i++) {
+                $scope.toggleFriend(data[i])
+            }
         }).error(function() {
             console.log('failed to get friend list');
         });

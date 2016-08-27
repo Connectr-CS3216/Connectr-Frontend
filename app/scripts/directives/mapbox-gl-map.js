@@ -58,6 +58,29 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
 
             $scope.mapAnnotationLayers = []
 
+            function remove(arr, item) {
+                for(var i = arr.length; i--;) {
+                    if(arr[i] === item) {
+                        arr.splice(i, 1);
+                    }
+                }
+            }
+
+            $scope.removeSourceFromMap = function(name) {
+                var map = $scope.map
+                map.removeSource(name)
+                map.removeLayer(name + "-unclustered-points")
+                map.removeLayer(name + "-unclustered-points-shadow")
+                remove($scope.mapAnnotationLayers, name + "-unclustered-points-shadow")
+                var layers = [500, 150, 20, 0];
+                layers.forEach(function (layer, i) {
+                    $scope.map.removeLayer(name + "-cluster-" + i);
+                    $scope.map.removeLayer(name + "-cluster-shadow-" + i);
+                    remove($scope.mapAnnotationLayers, name + "-cluster-shadow-" + i);
+                });
+                remove($scope.displayedFriendIDs, name)
+            }
+
             $scope.addPointsFromGeojson = function(name, data, colors) {
 
                 var mainOpacity = 0.2
@@ -215,12 +238,17 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
             $scope.displayedFriendIDs = []
 
             $scope.$on("map.needsAddCheckinsForFriend", function(event, friend) {
-                console.log(friend)
                 if (!$scope.displayedFriendIDs.includes(friend.id)) {
                     var index = $scope.displayedFriendIDs.length
                     $scope.displayedFriendIDs.push(friend.id)
                     var colors = colorPicker.getColorMatrix(index)
                     $scope.addPointsFromGeojson(friend.id, friend.checkins, colors)
+                }
+            })
+
+            $scope.$on("map.needsRemoveCheckinsForFriend", function(event, friend) {
+                if ($scope.displayedFriendIDs.includes(friend.id)) {
+                    $scope.removeSourceFromMap(friend.id)
                 }
             })
         }
