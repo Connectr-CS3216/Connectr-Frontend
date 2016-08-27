@@ -20,7 +20,7 @@
         <hr>
         <input type="text" class="form-control" id="search-bar" placeholder="type your friend's name here" ng-model="searchContent.name">
         <div id="friend-list">
-            <div ng-repeat="friend in friends | filter: searchContent" class="row friend-entry" ng-class="friend.display" ng-click="toggleFriend(friend)">
+            <div ng-repeat="friend in friends | filter: searchContent" class="row friend-entry" ng-class="friend.display" ng-click="toggleFriend(friend)" style="color: {{ friend.primaryColor  }}">
                 <div class="col-xs-3 firend-avatar" style="background-image: url('{{ friend.avatar }}')"></div>
                 <div class="col-xs-9 friend-name">{{ friend.name }}</div>
             </div>

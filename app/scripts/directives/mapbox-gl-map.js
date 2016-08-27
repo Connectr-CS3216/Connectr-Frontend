@@ -241,6 +241,7 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                 if (!$scope.displayedFriendIDs.includes(friend.id)) {
                     $scope.displayedFriendIDs.push(friend.id)
                     var colors = colorPicker.getColorMatrix(friend.id)
+                    friend.primaryColor = colors[3]
                     $scope.addPointsFromGeojson(friend.id, friend.checkins, colors)
                 }
             })
@@ -248,6 +249,7 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
             $scope.$on("map.needsRemoveCheckinsForFriend", function(event, friend) {
                 if ($scope.displayedFriendIDs.includes(friend.id)) {
                     $scope.removeSourceFromMap(friend.id)
+                    friend.primaryColor = "#ffffff"
                 }
             })
         }
