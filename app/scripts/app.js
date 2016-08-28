@@ -74,6 +74,8 @@ angular
       });
 
       $rootScope.$on('$routeChangeSuccess', function(){
-        ga('send', 'pageview', $location.path());
+        // https://developers.google.com/analytics/devguides/collection/analyticsjs/single-page-applications
+        ga('set', 'page', $location.path());
+        ga('send', 'pageview');
       });
   });
