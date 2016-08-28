@@ -15,4 +15,13 @@ angular.module('connectrFrontendApp').controller('HomeCtrl', function ($scope, $
     $location.hash('');
   };
 
+  $scope.login = function() {
+    FB.login(function(response) {
+      if (response.status === 'connected') {
+        // Logged into your app and Facebook.
+        $location.url('/map');
+      } 
+    }, {scope: 'public_profile,email,user_tagged_places,user_friends'});
+  };
+
 });
