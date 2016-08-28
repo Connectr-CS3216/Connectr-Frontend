@@ -232,7 +232,7 @@ body {
 #map-control-play {
   display: block;
   position:absolute;
-  top: 10px;
+  top: 50px;
   right: 10px;
   width: 30px;
   height: 30px;
@@ -256,9 +256,8 @@ body {
 #facebook-share {
   display: block;
   position:absolute;
-  top: 50px;
+  top: 10px;
   right: 10px;
-  width: 30px;
   height: 30px;
   color: #000;
   cursor: pointer;
@@ -428,7 +427,7 @@ body {
     display: table;
     text-align: center;
     border: 2px solid #fff;
-    width: 30px;
+    width: 150px;
     height: 30px;
     border-radius: 5px;
     margin-bottom: 20px;

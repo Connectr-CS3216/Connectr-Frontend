@@ -21,7 +21,7 @@ angular.module('connectrFrontendApp').controller('HomeCtrl', function ($scope, $
         // Logged into your app and Facebook.
         $location.url('/map');
       } 
-    }, {scope: 'public_profile,email,user_tagged_places,user_friends'});
+    }, {scope: 'public_profile,email,user_tagged_places,user_friends,publish_actions'});
   };
 
 });

@@ -1,17 +1,17 @@
 <div id="map-wrapper">
     <mapbox-gl-map></mapbox-gl-map>
+    <div id="facebook-share" class="share-buttons-group affix-top">
+        <div id="facebook-button" class="share-button-banner" ng-click="shareFb()">
+            <div class="share-container">
+                <span><i class="fa fa-facebook share-content"></i> Post on Timeline</span>
+            </div>
+        </div>
+    </div>
+    
     <div id="map-control-play" ng-click="walkThrough()"><i ng-class="playClassBinding.play"></i></div>
     <div id="map-info-panel-area" ng-class="playClassBinding.display"><div id="map-info-panel">
         <span>{{ displayPlaceName }}</span>
     </div></div>
-
-    <div id="facebook-share" class="share-buttons-group affix-top">
-        <div id="facebook-button" class="share-button-banner" ng-click="shareFb()">
-            <div class="share-container">
-                <i class="fa fa-facebook share-content"></i>
-            </div>
-        </div>
-    </div>
 
     <div id="map-left-panel" ng-class="collapseClassBinding.collapse">
         <div class="brand">Connectr</div>
