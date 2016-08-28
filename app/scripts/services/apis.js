@@ -55,6 +55,13 @@ angular.module('connectrFrontendApp')
       }
     };
 
+    this.shareFb = {
+      post: function(parameters, data) {
+          return $http.post(apiHost + '/publish', data, {
+          });
+      }
+    };
+
     this.verifyFacebookToken = {
       // data: facebook access token
       post: function(data) {

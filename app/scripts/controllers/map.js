@@ -145,7 +145,20 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($scope, $l
         }
     }
 
-    $scope.snapshotURL = function() {
+    $scope.shareFb = function() {
+        apis.shareFb.post({
+            'token': session.serverToken(),
+            'data': snapshotURL()
+        })
+        .success(function() {
+            console.log('success fb open graph');
+        })
+        .error(function() {
+            console.log('failed fb open graph');
+        })
+    }
+
+    function snapshotURL() {
         return session.map.getCanvas().toDataURL()
     }
 
