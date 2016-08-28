@@ -398,6 +398,7 @@ body {
   font-weight: 80;
   font-size: -webkit-xxx-large;
   text-align: center;
+  padding: 20px;
 }
 
 .section-words {
@@ -464,4 +465,52 @@ body {
     width: 100%;
     background: rgba( 0, 0, 0, .5 ) url('../images/spinner.gif') 50% 50% no-repeat;
     background-size: 25px 25px;
+}
+
+.footer-black {
+  background-color: #000000; 
+  color: #ffffff;
+}
+
+.container-up-btn {
+  padding-top: 150px; 
+  width: 100%; 
+  text-align: center;
+}
+
+.container-down-btn {
+  position: absolute; 
+  bottom: 30px; 
+  width: 100%;
+  text-align: center;
+}
+
+.move-to-btn {
+  color: #ffffff; 
+  font-size: 60px; 
+  opacity:0.5;
+}
+
+.product-bg {
+  background: 
+    linear-gradient(
+      rgba(68, 101, 121, 0.9),
+      rgba(0, 0, 0, 0.7)
+    ),
+    url(/images/map1.png); 
+  background-size: cover; 
+  padding: 10%;
+}
+
+.container-product {
+  background-color: #7C9EB2;
+  position: relative;
+}
+
+.container-fb-login-btn {
+  padding: 15px;
+}
+
+.container-home {
+  height: 690px;
 }

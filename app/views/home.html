@@ -1,21 +1,5 @@
-<!-- <div class="header">
-  <div class="navbar-default" role="navigation">
-    <div class="container">
-      <div class="collapse navbar-collapse" id="js-navbar-collapse">
-        <div class="collapse navbar-collapse" ng-controller="HomeCtrl">
-          <ul class="nav navbar-nav">
-              <li ng-class="{ active: isActive('/')}"><a href="#/" target="_self">Home</a></li>
-              <li ng-class="{ active: isActive('/product')}"><a href="#product" target="_self">Product</a></li>
-              <li ng-class="{ active: isActive('/team')}"><a href="#team" target="_self">Team</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
-<div height=100% style="overflow:auto">
-  <div id="home" style="height:690px;">
-    <div style="padding:15px">
+<div id="home" class="container-home">
+    <div class="container-fb-login-btn">
       <div class="fb-like btn-block" data-href="http://connectr.tk" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
     </div>
     <div class="title-container vertical-align">
@@ -23,42 +7,31 @@
       <h3 class="text-slogan">Your map to find your next travel advisor</h3>
       <fb:login-button scope="public_profile,email,user_tagged_places,publish_actions" size="xlarge">Login with Facebook</fb:login-button>
     </div>
-    <div style="position:absolute; bottom:30px; width: 100%; text-align:center; opacity:0.5">
-      <span ng-click="scrollTo('product')"><i class=" fa fa-chevron-circle-down fa-6" style="color:#ffffff; font-size:60px"></i></span>
+    <div class="container-down-btn">
+      <span ng-click="scrollTo('product')"><i class=" fa fa-chevron-circle-down fa-6 move-to-btn"></i></span>
     </div>
     
 
-    <video autoplay muted loop id="home-bg-video" poster="video/Snapshots/Airtaxi.jpg" style="z-index:-1">
+    <video autoplay muted loop id="home-bg-video" poster="video/Snapshots/Airtaxi.jpg">
         <source src="video/Webm/Airtaxi.webm" type="video/webm">
         <source src="video/Mp4/Airtaxi.mp4" type="video/mp4">
     </video>
   </div>
 
-  <div id="product" style="background-color: #7C9EB2;" style="position:relative">
-    <h3 class="section-title" style="padding:20px">Unsure of how to plan your next travel?</h3>
+  <div id="product" class="container-product">
+    <h3 class="section-title">Unsure of how to plan your next travel?</h3>
 
-    <div style="background: 
-      linear-gradient(
-        rgba(68, 101, 121, 0.9),
-        rgba(0, 0, 0, 0.7)
-      ),
-      url(/images/map1.png); background-size:cover; padding:10%;" >
-
+    <div class="product-bg">
       <h3 class="section-words">Connectr lets you view the places your friends had visited so you can consult them on your travel plans.</h3>
       <br>
       <h3 class="section-words">Nothing beats first-hand experience from people you know.</h3>
 
-      <div style="padding-top:150px; width: 100%; text-align:center; opacity:0.5">
-        <span ng-click="scrollTo('home')"><i class=" fa fa-chevron-circle-up fa-6" style="color:#ffffff; font-size:60px"></i></span>
+      <div class="container-up-btn">
+        <span ng-click="scrollTo('home')"><i class=" fa fa-chevron-circle-up fa-6 move-to-btn"></i></span>
       </div>
     </div>
   </div>
-  <div class="footer" style="background-color:#000000; color:#ffffff">
+  <div class="footer footer-black">
     ©2016 Connectr · <span><a href="#/privacy-policy"> Privacy Policy </a></span> · <span> <a href="#/terms-of-service">Terms of Service </a></span>
   </div>
-
-  <!-- <div id="team" style="height:723px">
-  </div> -->
-</div>
-
 
