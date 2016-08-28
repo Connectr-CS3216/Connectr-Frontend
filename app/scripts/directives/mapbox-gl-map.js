@@ -121,10 +121,10 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                 $scope.mapAnnotationLayers.push(name + "-unclustered-points-shadow")
 
                 var layers = [
-                    [500, colors[0]],
-                    [150, colors[1]],
-                    [20, colors[2]],
-                    [0, colors[3]]
+                    [50, colors[3], 35],
+                    [20, colors[2], 30],
+                    [10, colors[1], 25],
+                    [0, colors[0], 20]
                 ];
 
                 layers.forEach(function (layer, i) {
@@ -134,7 +134,7 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                         "source": name,
                         "paint": {
                             "circle-color": layer[1],
-                            "circle-radius": 20,
+                            "circle-radius": layer[2],
                             "circle-opacity": mainOpacity
                         },
                         "filter": i === 0 ?
@@ -150,7 +150,7 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                         "source": name,
                         "paint": {
                             "circle-color": layer[1],
-                            "circle-radius": 26,
+                            "circle-radius": layer[2] * 1.3,
                             "circle-opacity": shadowOpacity
                         },
                         "filter": i === 0 ?
@@ -228,7 +228,7 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                 if ($scope.map.loaded()) {
                     loadCheckinData("My Checkins", data)
                 } else {
-                    $scope.checkInSources.push(["My checkins", data])
+                    $scope.checkInSources.push(["My Checkins", data])
                 }
             })
 
@@ -242,7 +242,7 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                 if (!$scope.displayedFriendIDs.includes(friend.id)) {
                     $scope.displayedFriendIDs.push(friend.id)
                     var colors = colorPicker.getColorMatrix(friend.id)
-                    friend.primaryColor = colors[3]
+                    friend.primaryColor = colors[colors.length - 1]
                     $scope.addPointsFromGeojson(friend.id, friend.checkins, colors)
                 }
             })

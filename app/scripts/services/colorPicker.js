@@ -30,7 +30,7 @@ angular.module('connectrFrontendApp').service('colorPicker', function colorPicke
                     ["#FAFAFA","#F5F5F5","#EEEEEE","#E0E0E0","#BDBDBD","#9E9E9E","#757575","#616161","#424242","#212121"],
                     ["#ECEFF1","#CFD8DC","#B0BEC5","#90A4AE","#78909C","#607D8B","#546E7A","#455A64","#37474F","#263238"]];
 
-    var colorKeys = [4, 3, 2, 1]
+    var colorKeys = [6, 5, 4, 3, 2]
     var selfColorIndex = 18
     var maxAllowFriends = 15
 
