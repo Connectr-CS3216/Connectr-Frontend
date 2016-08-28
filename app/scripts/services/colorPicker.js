@@ -42,6 +42,9 @@ angular.module('connectrFrontendApp').service('colorPicker', function colorPicke
         var n = selfColorIndex
         if (s !== undefined) {
             n = hashCode(s) % maxAllowFriends
+            if (n < 0) {
+                n += maxAllowFriends
+            }
         }
 
         var result = []
