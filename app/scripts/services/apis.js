@@ -56,7 +56,7 @@ angular.module('connectrFrontendApp')
     };
 
     this.shareFb = {
-      post: function(parameters, data) {
+      post: function(data) {
           return $http.post(apiHost + '/publish', data, {
           });
       }
