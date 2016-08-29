@@ -1,33 +1,40 @@
 <div id="home" class="container-home home-bg">
     <div class="container-fb-like-btn">
-      <div class="fb-like btn-block" data-href="https://connectr.tk" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
+      <div class="fb-like btn-block" data-href="https://connectr.tk" data-layout="standard" data-width="320" data-action="like" data-size="small" data-share="true"></div>
     </div>
     <div class="title-container vertical-align">
       <div><img src="images/connectr-logo.png" height="300px" alt=""></div>
       <div><img src="images/connectr.png" height="70px" alt=""></div>
       <h3 class="text-slogan">Your map to find your next travel advisor</h3>
       <br>
-      <div ng-click="login()"><img src="images/facebook-login.png" alt=""></div>
+      <!-- <div ng-click="login()"><img src="images/facebook-login.png" alt=""></div> -->
+      <div class="login-button" ng-click="login()">
+        <div class="fb-icon"><i class="fa fa-facebook" aria-hidden="true"></i></div>
+        <div class="login-text">
+          <div class="">
+            Connect with Facebook
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="container-down-btn">
+    <!-- <div class="container-down-btn">
       <span ng-click="scrollTo('product')"><i class=" fa fa-chevron-circle-down fa-6 move-to-btn"></i></span>
-    </div>
+    </div> -->
   </div>
 
   <div id="product" class="container-product product-bg">
     <h3 class="section-title">Unsure of how to plan your next travel?</h3>
 
-    <div style="margin-top:10%">
-      <h3 class="section-words">Connectr lets you view the places your friends had visited so you can consult them on your travel plans.</h3>
+    <div style="margin-top:10%; padding: 0 15px">
+      <p class="section-words">Connectr lets you view the places your friends had visited so you can consult them on your travel plans.</p>
       <br>
-      <h3 class="section-words">Nothing beats first-hand experience from people you know.</h3>
+      <p class="section-words">Nothing beats first-hand experience from people you know.</p>
 
-      <div class="container-up-btn">
+      <!-- <div class="container-up-btn">
         <span ng-click="scrollTo('home')"><i class=" fa fa-chevron-circle-up fa-6 move-to-btn"></i></span>
-      </div>
+      </div> -->
     </div>
   </div>
   <div class="footer footer-black">
     ©2016 Connectr · <span><a href="#/privacy-policy"> Privacy Policy </a></span> · <span> <a href="#/terms-of-service">Terms of Service </a></span>
   </div>
-
