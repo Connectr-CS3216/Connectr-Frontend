@@ -472,12 +472,15 @@ body {
     border: 2px solid #fff;
     width: 150px;
     height: 30px;
-    border-radius: 5px;
+    border-radius: 8px;
     margin-bottom: 20px;
     text-decoration: none;
     cursor: pointer;
     color: #fff;
     font-size: 17px;
+    border-color: #255C95;
+    background-color: #255C95;
+    padding: 0 2px;
 }
 
 .share-button-banner .share-container{
@@ -493,8 +496,8 @@ body {
 }
 
 #facebook-button.share-button-banner:hover{
-    border-color: #255C95;
-    background-color: #255C95;
+    border-color: #718396;
+    background-color: #718396;
 }
 
 .loading-dialog {

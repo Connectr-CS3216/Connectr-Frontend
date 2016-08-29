@@ -63,8 +63,8 @@ angular
             xfbml: true,
             version: 'v2.4'
           });
-
-          srvAuth.watchAuthenticationStatusChange();
+          // Do not login by default.
+          // srvAuth.watchAuthenticationStatusChange();
       };
 
       (function(d, s, id) {

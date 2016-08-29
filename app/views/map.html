@@ -3,11 +3,11 @@
     <div id="facebook-share" class="share-buttons-group affix-top">
         <div id="facebook-button" class="share-button-banner" ng-click="shareFb()">
             <div class="share-container">
-                <span><i class="fa fa-facebook share-content"></i> Post on Timeline</span>
+                <span><i class="fa fa-facebook-official"></i> Share your map</span>
             </div>
         </div>
     </div>
-    
+
     <div id="map-control-play" ng-click="walkThrough()"><i ng-class="playClassBinding.play"></i></div>
     <div id="map-info-panel-area" ng-class="playClassBinding.display"><div id="map-info-panel">
         <span>{{ displayPlaceName }}</span>
@@ -32,6 +32,21 @@
             <span class="name pull-right"><b>{{user.name}}</b></span>
         </div>
     </div>
+
+    <script type="text/ng-template" id="sharing.html">
+        <div class="modal-header">
+            <h3 class="modal-title" id="modal-title">Sharing your map to Facebook.</h3>
+        </div>
+        <div class="modal-body" id="modal-body">
+            <p>Congraduation! You have successfully created your travel map. Why not share it with your friends? ;)</p>
+            <p>Click "Share Now" below to share your awesome map to your facebook.</p>
+            <img ng-src="{{$ctrl.snapshotUrl}}" width="100%">
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="$ctrl.shareNow()">Share Now</button>
+            <button class="btn btn-warning" type="button" ng-click="$ctrl.shareCancel()">Cancel</button>
+        </div>
+    </script>
+
+    <toast></toast>
 </div>
-
-

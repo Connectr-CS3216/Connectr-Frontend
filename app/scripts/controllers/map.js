@@ -9,7 +9,7 @@
  */
 
 
-angular.module('connectrFrontendApp').controller('MapCtrl', function ($scope, $location, session, srvAuth, apis) {
+angular.module('connectrFrontendApp').controller('MapCtrl', function ($rootScope, $scope, $location, session, srvAuth, apis, $uibModal, ngToast) {
 
     $scope.logout = function() {
         srvAuth.logout();
@@ -93,7 +93,7 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($scope, $l
         }
 
         updateDisplayContentForFeature(locations[index])
-        
+
         map.flyTo({
             center: locations[index].geometry.coordinates,
             pitch: 45,
@@ -146,17 +146,40 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($scope, $l
     }
 
     $scope.shareFb = function() {
+      var shareModal = $uibModal.open({
+        animation: true,
+        templateUrl: 'sharing.html',
+        controller: 'ShareModalCtrl',
+        controllerAs: '$ctrl',
+        size: 'lg',
+        resolve: {
+          snapshot: function () {
+            return snapshotURL();
+          }
+        }
+      });
+
+      shareModal.result.then(function (res) {
+        ngToast.info({
+          content: 'Sharing... :o'
+        });
         apis.shareFb.post({
             'token': session.serverToken(),
             'data': snapshotURL()
         })
         .success(function() {
-            console.log('success fb open graph');
+          ngToast.success({
+            content: 'Sharing succeeded :)'
+          });
         })
         .error(function() {
-            console.log('failed fb open graph');
-        })
-    }
+          ngToast.danger({
+            content: 'Sharing failed :('
+          });
+        });
+      }, function () {
+      });
+    };
 
     function snapshotURL() {
         return session.map.getCanvas().toDataURL()
