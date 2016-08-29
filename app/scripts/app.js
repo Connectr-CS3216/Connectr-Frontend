@@ -15,7 +15,9 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'ui.bootstrap',
+    'ngToast'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -43,6 +45,13 @@ angular
         redirectTo: '/'
       });
   })
+  .config(['ngToastProvider', function(ngToast) {
+    ngToast.configure({
+      verticalPosition: 'bottom',
+      horizontalPosition: 'center',
+      maxNumber: 1
+    });
+  }])
   .run(function ($rootScope, $location, session, srvAuth, $window) {
 
       $window.fbAsyncInit = function() {
