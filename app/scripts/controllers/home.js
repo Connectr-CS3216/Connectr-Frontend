@@ -1,9 +1,10 @@
 'use strict';
 
-angular.module('connectrFrontendApp').controller('HomeCtrl', function ($scope, $location, $window, anchorSmoothScroll) {
+angular.module('connectrFrontendApp').controller('HomeCtrl', function(srvAuth, $scope, $location, $window,
+  anchorSmoothScroll) {
   var height = $(window).height() + 5;
   var unitHeight = parseInt(height) + 'px';
-  $('.homepage').css('height',unitHeight);
+  $('.homepage').css('height', unitHeight);
 
   if ($window.FB) {
     FB.XFBML.parse(); // re-render the facebook login button
@@ -16,12 +17,17 @@ angular.module('connectrFrontendApp').controller('HomeCtrl', function ($scope, $
   };
 
   $scope.login = function() {
+    srvAuth.watchAuthenticationStatusChange();
     FB.login(function(response) {
       if (response.status === 'connected') {
+        console.log(response);
         // Logged into your app and Facebook.
         $location.url('/map');
-      } 
-    }, {scope: 'public_profile,email,user_tagged_places,user_friends,publish_actions'});
+      }
+    }, {
+      scope: 'public_profile,email,user_tagged_places,user_friends,publish_actions',
+      auth_type: 'rerequest'
+    });
   };
 
 });

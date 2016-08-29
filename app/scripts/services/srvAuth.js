@@ -15,10 +15,8 @@ angular.module('connectrFrontendApp')
       var _self = this;
 
       FB.Event.subscribe('auth.authResponseChange', function(res) {
-
         if (res.status === 'connected') {
           _self.startSession(res.authResponse.accessToken);
-
         } else {
           /*
            The user is not logged to the app, or into Facebook:
@@ -31,6 +29,7 @@ angular.module('connectrFrontendApp')
 
     this.startSession = function(accessToken) {
       FB.api('/me', function(res) {
+        $rootScope.$broadcast("login.started");
         $rootScope.$apply(function() {
 
           apis.verifyFacebookToken.post(

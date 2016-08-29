@@ -221,6 +221,8 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($rootScope
             for (var i = 0; i < Math.min(data.length, 16); i++) {
                 $scope.toggleFriend(data[i])
             }
+
+            $rootScope.$broadcast("login.finished"); // login finished here.
         }).error(function() {
             console.log('failed to get friend list');
         });

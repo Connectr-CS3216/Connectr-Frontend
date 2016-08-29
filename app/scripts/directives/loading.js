@@ -5,15 +5,19 @@ angular.module('connectrFrontendApp')
     return {
         restrict: 'A',
         link: function (scope, elm, attrs) {
-            scope.isLoading = function () {
-                return $http.pendingRequests.length > 0;
-            };
-            scope.$watch(scope.isLoading, function (v) {
-                if (v) {
-                    elm.show();
-                } else {
-                    elm.hide();
-                }
+            scope.isLoading = false;
+            scope.loaded = false;
+            scope.$on('login.started', function() {
+              if (scope.loaded) {
+                scope.loaded = false;
+                return;
+              }
+              elm.show();
+            });
+
+            scope.$on('login.finished', function() {
+              elm.hide();
+              scope.loaded = true;
             });
         }
     };
