@@ -10,8 +10,8 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
             $scope.checkInSources = []
             $scope.map = new mapboxgl.Map({
                 container: 'map',
-                style: 'mapbox://styles/mapbox/dark-v9',
-                // style: 'mapbox://styles/mapbox/light-v9',
+                // style: 'mapbox://styles/mapbox/dark-v9',
+                style: 'mapbox://styles/mapbox/light-v9',
                 // style: 'mapbox://styles/mapbox/streets-v9',
                 // style: 'mapbox://styles/mapbox/outdoors-v9',
                 center: [103.8198, 1.3521],
@@ -84,8 +84,8 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
 
             $scope.addPointsFromGeojson = function(name, data, colors) {
 
-                var mainOpacity = 0.2
-                var shadowOpacity = 0.2
+                var mainOpacity = 0.5
+                var shadowOpacity = 0.5
 
                 $scope.map.addSource(name, {
                     type: "geojson",
