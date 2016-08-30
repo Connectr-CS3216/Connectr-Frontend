@@ -8,15 +8,33 @@
         </div>
     </div>
 
-    <div id="map-control-play" ng-click="walkThrough()"><i ng-class="playClassBinding.play"></i></div>
+    <div id="map-control-play" class="share-buttons-group affix-top">
+        <div id="map-control-play-button" class="share-button-banner" ng-click="walkThrough()">
+            <div class="share-container">
+                <span><i class="fa fa-play"></i></span>
+            </div>
+        </div>
+    </div>
+<!-- 
+    <div id="map-control-play" ng-click="walkThrough()"><i ng-class="playClassBinding.play"></i></div> -->
     <div id="map-info-panel-area" ng-class="playClassBinding.display"><div id="map-info-panel">
         <span>{{ displayPlaceName }}</span>
     </div></div>
+    
+    <div id="map-onboarding" class="share-buttons-group affix-top">
+        <div id="map-onboarding-button" class="share-button-banner" ng-click="onboard1 = true">
+            <div class="share-container">
+                <i class="fa fa-question"></i>
+            </div>
+        </div>
+    </div>
+
 
     <div id="map-left-panel" ng-class="collapseClassBinding.collapse">
         <!-- <div class="brand">Connectr</div> -->
         <!-- <hr> -->
         <input type="text" class="form-control" id="search-bar" placeholder="type your friend's name here" ng-model="searchContent.name">
+
         <div id="friend-list">
             <div ng-repeat="friend in friends | filter: searchContent" class="row friend-entry" ng-class="friend.display">
                 <div class="col-xs-3 firend-avatar" style="background-image: url('{{ friend.avatar }}')"></div>
@@ -57,4 +75,50 @@
     </script>
 
     <toast></toast>
+    
+    <!-- Walkthrough -->
+    <walkthrough
+        is-round=true
+        walkthrough-type="transparency"
+        focus-element-selector="#search-bar"
+        main-caption="Click here to search for your friends."
+        is-active="onboard1"
+        on-walkthrough-hide="onboard2 = true">
+    </walkthrough>
+
+    <walkthrough
+        is-round=true
+        walkthrough-type="transparency"
+        focus-element-selector="#friend-list"
+        main-caption="Click on the eye icon to toggle their visibility."
+        is-active="onboard2"
+        on-walkthrough-hide="onboard3 = true">
+    </walkthrough>
+
+    <walkthrough
+        is-round=true
+        walkthrough-type="transparency"
+        focus-element-selector="#facebook-button"
+        main-caption="Click here to share your map with your friends on Facebook."
+        is-active="onboard3"
+        on-walkthrough-hide="onboard4 = true">
+    </walkthrough>
+    
+    <walkthrough
+        is-round=true
+        walkthrough-type="transparency"
+        focus-element-selector="#map-control-play"
+        main-caption="Click here to recount the places you have visited in street view."
+        is-active="onboard4"
+        on-walkthrough-hide="onboard5 = true">
+    </walkthrough>
+
+    <walkthrough
+        is-round=true
+        walkthrough-type="transparency"
+        focus-element-selector="#map-onboarding-button"
+        main-caption="Click here to repeat the tutorial."
+        is-active="onboard5"
+        on-walkthrough-hide="onboard6 = true">
+    </walkthrough>
 </div>

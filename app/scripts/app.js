@@ -17,7 +17,8 @@ angular
     'ngSanitize',
     'ngTouch',
     'ui.bootstrap',
-    'ngToast'
+    'ngToast',
+    'ng-walkthrough'
   ])
   .config(function ($routeProvider) {
     $routeProvider

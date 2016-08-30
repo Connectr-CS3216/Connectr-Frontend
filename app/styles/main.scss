@@ -303,19 +303,18 @@ body {
   height: 30px;
   border-radius: 5px;
   color: #000;
-  background: #fff;
   cursor: pointer;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+}
 
-  .glyphicon-play {
-    padding-left: 8px;
-    padding-top: 6px;
-  }
-
-  .glyphicon-stop {
-    padding-left: 7px;
-    padding-top: 6px;
-  }
+#map-onboarding {
+  display: block;
+  position:absolute;
+  top: 90px;
+  right: 10px;
+  height: 30px;
+  color: #000;
+  cursor: pointer;
 }
 
 #facebook-share {
@@ -323,10 +322,12 @@ body {
   position:absolute;
   top: 10px;
   right: 10px;
+  width: 30px;
   height: 30px;
   color: #000;
   cursor: pointer;
 }
+
 
 #map-control-play:hover {
   background: #f0f0f0;
@@ -491,14 +492,14 @@ body {
 .share-button-banner{
     display: table;
     text-align: center;
-    border: 2px solid #fff;
+    border: 2px solid #000;
     height: 30px;
     width: 30px;
     border-radius: 5px;
     margin-bottom: 20px;
     text-decoration: none;
     cursor: pointer;
-    color: #fff;
+    color: #000;
     font-size: 17px;
     padding-top: 1px;
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
@@ -520,6 +521,16 @@ body {
 #facebook-button.share-button-banner:hover{
     border-color: #255C95;
     background-color: #255C95;
+}
+
+#map-control-play-button.share-button-banner:hover{
+    border-color: #c0392b;
+    background-color: #c0392b;
+}
+
+#map-onboarding-button.share-button-banner:hover{
+    border-color: #e67e22;
+    background-color: #e67e22;
 }
 
 .loading-dialog {

@@ -229,9 +229,13 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($rootScope
             }
 
             $rootScope.$broadcast("login.finished"); // login finished here.
+
+            // Set walkthrough to true
+            $scope.onboard1 = true;
         }).error(function() {
             console.log('failed to get friend list');
         });
+
     }
 
     initialise();
