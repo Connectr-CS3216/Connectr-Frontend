@@ -243,6 +243,7 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                     $scope.displayedFriendIDs.push(friend.id)
                     var colors = colorPicker.getColorMatrix(friend.id)
                     friend.primaryColor = colors[colors.length - 1]
+                    friend.toggle = "glyphicon glyphicon-eye-open"
                     $scope.addPointsFromGeojson(friend.id, friend.checkins, colors)
                 }
             })
@@ -251,6 +252,7 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                 if ($scope.displayedFriendIDs.includes(friend.id)) {
                     $scope.removeSourceFromMap(friend.id)
                     friend.primaryColor = "#ffffff"
+                    friend.toggle = "glyphicon glyphicon-eye-close"
                 }
             })
         }

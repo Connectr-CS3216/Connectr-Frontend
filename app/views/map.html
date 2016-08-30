@@ -14,13 +14,14 @@
     </div></div>
 
     <div id="map-left-panel" ng-class="collapseClassBinding.collapse">
-        <div class="brand">Connectr</div>
-        <hr>
+        <!-- <div class="brand">Connectr</div> -->
+        <!-- <hr> -->
         <input type="text" class="form-control" id="search-bar" placeholder="type your friend's name here" ng-model="searchContent.name">
         <div id="friend-list">
-            <div ng-repeat="friend in friends | filter: searchContent" class="row friend-entry" ng-class="friend.display" ng-click="toggleFriend(friend)" style="color: {{ friend.primaryColor  }}">
+            <div ng-repeat="friend in friends | filter: searchContent" class="row friend-entry" ng-class="friend.display" style="color: {{ friend.primaryColor  }}">
                 <div class="col-xs-3 firend-avatar" style="background-image: url('{{ friend.avatar }}')"></div>
-                <div class="col-xs-9 friend-name">{{ friend.name }}</div>
+                <div class="col-xs-8 friend-name">{{ friend.name }}</div>
+                <div class="col-xs-1 friend-visibility pull-right" ng-click="toggleFriend(friend)"><i ng-class="friend.toggle"></i></div>
             </div>
         </div>
         <div class="drawer-handle">
