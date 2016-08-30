@@ -20,7 +20,6 @@ angular.module('connectrFrontendApp').controller('HomeCtrl', function(srvAuth, $
     srvAuth.watchAuthenticationStatusChange();
     FB.login(function(response) {
       if (response.status === 'connected') {
-        console.log(response);
         // Logged into your app and Facebook.
         $location.url('/map');
       }

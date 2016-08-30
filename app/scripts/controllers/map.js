@@ -164,7 +164,8 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($rootScope
           content: 'Sharing... :o'
         });
         apis.shareFb.post({
-            'token': session.serverToken(),
+            'token': session.serverToken()
+        }, {
             'data': snapshotURL()
         })
         .success(function() {
