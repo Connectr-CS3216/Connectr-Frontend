@@ -48,7 +48,7 @@ angular.module('connectrFrontendApp')
         }
         return url;
     }
-    
+
     this.facebookUser = {
       get: function() {
         return $http.get('https://graph.facebook.com/v2.7/me');
@@ -56,8 +56,8 @@ angular.module('connectrFrontendApp')
     };
 
     this.shareFb = {
-      post: function(data) {
-          return $http.post(apiHost + '/publish', data, {
+      post: function(parameters, data) {
+          return $http.post(buildUrl(apiHost + '/publish', parameters), data, {
           });
       }
     };
@@ -66,13 +66,6 @@ angular.module('connectrFrontendApp')
       // data: facebook access token
       post: function(data) {
         return $http.post(apiHost + '/verify-facebook-token', data);
-      }
-    };
-
-    this.whoAmI = {
-      get: function(parameters) {
-        return $http.get(buildUrl(apiHost + '/whoami', parameters), {
-        });
       }
     };
 
