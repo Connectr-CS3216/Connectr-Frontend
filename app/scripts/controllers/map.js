@@ -214,9 +214,15 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($rootScope
             'token': session.serverToken()
         }) .success(function(data) {
 
+            session.friends = {}
+
             $scope.friends = data
+            $scope.friends.forEach(function(friend){
+                session.friends[friend.id] = friend
+            })
 
             console.log(data)
+
 
             for (var i = 0; i < Math.min(data.length, 16); i++) {
                 $scope.toggleFriend(data[i])
