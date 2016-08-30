@@ -5,9 +5,6 @@
     <title>Connectr</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-    <meta property="fb:app_id"  content="631439630344992" />
-    <meta property="og:type"    content="ogcustom:map" />
-    <meta property="og:title"   content="Cool Map" />
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
@@ -17,7 +14,8 @@
 
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lato">
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.23.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel='stylesheet' href='styles/mapbox-gl.css' rel='stylesheet' />
+    <link rel='stylesheet' href='styles/mapbox-gl-geocoder.css' rel='stylesheet' />
     <link href="https://opensource.keycdn.com/fontawesome/4.6.3/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="bower_components/ng-walkthrough/css/ng-walkthrough.css">
   </head>
@@ -44,7 +42,7 @@
 
     <!-- Mapbox GL JS -->
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.23.0/mapbox-gl.js'></script>
-
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v1.3.0/mapbox-gl-geocoder.js'></script>
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
