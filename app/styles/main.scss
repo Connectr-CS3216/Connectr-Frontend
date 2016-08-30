@@ -481,17 +481,17 @@ body {
     display: table;
     text-align: center;
     border: 2px solid #fff;
-    width: 150px;
     height: 30px;
-    border-radius: 8px;
+    width: 30px;
+    border-radius: 5px;
     margin-bottom: 20px;
     text-decoration: none;
     cursor: pointer;
     color: #fff;
     font-size: 17px;
-    border-color: #255C95;
-    background-color: #255C95;
-    padding: 0 2px;
+    padding-top: 1px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
 }
 
 .share-button-banner .share-container{
@@ -507,8 +507,8 @@ body {
 }
 
 #facebook-button.share-button-banner:hover{
-    border-color: #718396;
-    background-color: #718396;
+    border-color: #255C95;
+    background-color: #255C95;
 }
 
 .loading-dialog {
