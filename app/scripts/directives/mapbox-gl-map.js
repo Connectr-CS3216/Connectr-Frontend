@@ -181,7 +181,8 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
             var popup = new mapboxgl.Popup({
                 closeButton: false,
                 closeOnClick: false,
-                continuousWorld: true
+                // anchor: 'bottom-left',
+                offset: [0, -15]
             });
 
             $scope.map.on('mousemove', function(e) {
@@ -200,20 +201,52 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                 }
 
                 var feature = features[0];
+                var html = htmlForFeature(feature)
 
-                
-                var html = feature.properties["place_name"]
-                if (html === undefined) {
-                    var count = feature.properties.point_count
-                    html = count + " places<br>" + "source: " + feature.layer.source
+                var lngLat = e.lngLat
+                if (lngLat.lat < 89.95) {
+                    lngLat.lat += 0.05
                 }
 
-                // Populate the popup and set its coordinates
-                // based on the feature found.
-                popup.setLngLat(e.lngLat)
+                popup.setLngLat(lngLat)
                     .setHTML(html)
                     .addTo(map);
             });
+
+            var cachedFeature
+            var cachedHTML
+
+            function htmlForFeature(feature) {
+                if (feature === cachedFeature) {
+                    return cachedHTML
+                }
+
+                var userID = feature.layer.source
+                var friend = findPerson(userID)
+
+                var addressLine = feature.properties["place_name"]
+
+                if (addressLine === undefined) {
+                    addressLine = feature.properties.point_count + " places"
+                }
+
+                var html = addressLine
+
+                if (friend) {
+                    html += ("<br>" + friend.name)
+                }
+
+                cachedFeature = feature
+                cachedHTML = html
+
+                return html
+            }
+
+            function findPerson(id) {
+                var result = session.friends[id];
+                //TODO: need to compare to current user
+                return result
+            }
 
             $scope.map.on('load', function(e) {
                 if ($scope.checkInSources.length != 0) {
@@ -243,6 +276,7 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                     $scope.displayedFriendIDs.push(friend.id)
                     var colors = colorPicker.getColorMatrix(friend.id)
                     friend.primaryColor = colors[colors.length - 1]
+                    friend.toggle = "glyphicon glyphicon-eye-open"
                     $scope.addPointsFromGeojson(friend.id, friend.checkins, colors)
                 }
             })
@@ -251,6 +285,7 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                 if ($scope.displayedFriendIDs.includes(friend.id)) {
                     $scope.removeSourceFromMap(friend.id)
                     friend.primaryColor = "#ffffff"
+                    friend.toggle = "glyphicon glyphicon-eye-close"
                 }
             })
         }

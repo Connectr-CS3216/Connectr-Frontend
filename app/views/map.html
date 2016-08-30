@@ -3,7 +3,7 @@
     <div id="facebook-share" class="share-buttons-group affix-top">
         <div id="facebook-button" class="share-button-banner" ng-click="shareFb()">
             <div class="share-container">
-                <span><i class="fa fa-facebook-official"></i> Share your map</span>
+                <span><i class="fa fa-facebook"></i></span>
             </div>
         </div>
     </div>
@@ -14,13 +14,21 @@
     </div></div>
 
     <div id="map-left-panel" ng-class="collapseClassBinding.collapse">
-        <div class="brand">Connectr</div>
-        <hr>
+        <!-- <div class="brand">Connectr</div> -->
+        <!-- <hr> -->
         <input type="text" class="form-control" id="search-bar" placeholder="type your friend's name here" ng-model="searchContent.name">
         <div id="friend-list">
-            <div ng-repeat="friend in friends | filter: searchContent" class="row friend-entry" ng-class="friend.display" ng-click="toggleFriend(friend)" style="color: {{ friend.primaryColor  }}">
+            <div ng-repeat="friend in friends | filter: searchContent" class="row friend-entry" ng-class="friend.display">
                 <div class="col-xs-3 firend-avatar" style="background-image: url('{{ friend.avatar }}')"></div>
-                <div class="col-xs-9 friend-name">{{ friend.name }}</div>
+                <div class="col-xs-9">
+                    <div class="row" style="color: {{ friend.primaryColor  }}">
+                        <div class="col-xs-10 friend-name">{{ friend.name }}</div>
+                        <div class="col-xs-1 friend-visibility pull-right" ng-click="toggleFriend(friend)"><i ng-class="friend.toggle"></i></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 friend-place"> {{ friend.total_checkins }} checkins</div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="drawer-handle">
@@ -28,7 +36,7 @@
         	</div>
         </div>
         <div class="logout-box">
-            <span class="logout-button glyphicon glyphicon-eject" ng-click="logout()"></span>
+            <span class="logout-button glyphicon glyphicon-log-out" ng-click="logout()"></span>
             <span class="name pull-right"><b>{{user.name}}</b></span>
         </div>
     </div>

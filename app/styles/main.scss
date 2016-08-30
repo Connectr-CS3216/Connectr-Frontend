@@ -253,17 +253,39 @@ body {
   height: calc(100% - 145px);
 
   .friend-entry {
-    cursor: pointer;
     padding: 10px;
     margin-top: 0px;
     margin-left: 0px;
     margin-right: 0px;
+    
+
+    .row {
+      margin-top: 0;
+    }
+  
+    .friend-place {
+      display: inline-block;
+      font-size: 12px;
+    }
+
     .firend-avatar {
+      cursor: pointer;
       height: 57.5px;
       border-radius: 5px;
       background-size: cover;
       background-position: 50%;
     }
+
+    .friend-visibility {
+      cursor: pointer;
+      padding-left: 0;
+      padding-top: 2px;
+
+      .glyphicon-eye-close {
+        opacity: 0.2;
+      }
+    }
+
     transition: all 0.1s ease-in-out;
   }
 
@@ -319,19 +341,19 @@ body {
   padding: 10px;
   border: none;
   color: #fff;
-  background: #000;
-  opacity: 0.8;
+  background: rgba(0, 0, 0, 0.6);
+  opacity: 1;
   transition: all 0.5s ease-in-out;
   font-family: "Lato";
 
-  .brand {
+/*  .brand {
     font-size: 20px;
     color: #fff;
     text-decoration: none;
     margin: 10px;
     display: block;
     font-weight: 500;
-  }
+  }*/
 
   hr {
     margin-top: 10px;
@@ -343,7 +365,7 @@ body {
   .drawer-handle {
     position: absolute;
     cursor: pointer;
-    top: 50px;
+    top: 54px;
     right: -30px;
     width: 30px;
     height: 120px;
@@ -354,7 +376,7 @@ body {
     border-style: solid;
     border-bottom-right-radius: 15px;
     border-top-right-radius: 15px;
-    opacity: 0.95;
+    opacity: 0.5;
     transition: all 0.5s ease-in-out;
 
     div {
@@ -470,17 +492,17 @@ body {
     display: table;
     text-align: center;
     border: 2px solid #fff;
-    width: 150px;
     height: 30px;
-    border-radius: 8px;
+    width: 30px;
+    border-radius: 5px;
     margin-bottom: 20px;
     text-decoration: none;
     cursor: pointer;
     color: #fff;
     font-size: 17px;
-    border-color: #255C95;
-    background-color: #255C95;
-    padding: 0 2px;
+    padding-top: 1px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
 }
 
 .share-button-banner .share-container{
@@ -496,8 +518,8 @@ body {
 }
 
 #facebook-button.share-button-banner:hover{
-    border-color: #718396;
-    background-color: #718396;
+    border-color: #255C95;
+    background-color: #255C95;
 }
 
 .loading-dialog {
