@@ -57,7 +57,7 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($rootScope
         templateUrl: 'stats.html',
         controller: 'StatsModalCtrl',
         controllerAs: '$ctrl',
-        size: 'lg',
+        size: 'md',
         resolve: {
           data: $scope.statsData
         }
@@ -134,6 +134,17 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($rootScope
 
     function updateDisplayContentForFeature(feature) {
         $scope.displayPlaceName = feature.properties.place_name
+        var timeString = feature.properties["checkin_time"]
+        if (timeString) {
+            var date = new Date(timeString).toLocaleDateString('en-GB', {
+                day : 'numeric',
+                month : 'short',
+                year : 'numeric'
+            }).split(' ')
+
+            timeString = date[1] + " " + date[0] + ", " + date[2]
+        }
+        $scope.displayCheckinTime = timeString
     }
 
     $scope.toggleClassBinding = {
