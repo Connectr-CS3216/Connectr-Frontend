@@ -259,9 +259,11 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
             }
 
             function findPerson(id) {
-                var result = session.friends[id];
-                //TODO: need to compare to current user
-                return result
+                if (id === session.currentUser.id) {
+                    return session.currentUser
+                }
+
+                return session.friends[id];
             }
 
             $scope.map.on('load', function(e) {
@@ -273,11 +275,11 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                 }
             })
 
-            $scope.$on("api.selfCheckinsLoaded", function (event, data) {
+            $scope.$on("api.selfCheckinsLoaded", function (event) {
                 if ($scope.map.loaded()) {
-                    loadCheckinData("My Checkins", data)
+                    loadCheckinData(session.currentUser.id, session.currentUser.checkins)
                 } else {
-                    $scope.checkInSources.push(["My Checkins", data])
+                    $scope.checkInSources.push([session.currentUser.id, session.currentUser.checkins])
                 }
             })
 

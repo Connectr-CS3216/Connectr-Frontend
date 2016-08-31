@@ -76,6 +76,13 @@ angular.module('connectrFrontendApp')
       }
     };
 
+    this.currentUser = {
+      get: function(parameters) {
+        return $http.get(buildUrl(apiHost + '/user/me', parameters), {
+        }); 
+      }
+    }
+
     this.checkins = {
       get: function(parameters) {
         return $http.get(buildUrl(apiHost + '/checkins', parameters), {

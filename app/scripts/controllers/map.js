@@ -196,10 +196,12 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($rootScope
             'token': session.serverToken(),
             'format': 'geojson'
         }) .success(function(data) {
-            session.checkins = data;
-            session.checkins.features.sort(function (a, b) {return a.properties.checkin_time < b.properties.checkin_time ? -1 : 1})
-            // Notify map to read data
-            $scope.$broadcast("api.selfCheckinsLoaded", data);
+            data.features.sort(function (a, b) {return a.properties.checkin_time < b.properties.checkin_time ? -1 : 1})
+            if (session.currentUser) {
+                session.currentUser.checkins = data
+                $scope.$broadcast("api.selfCheckinsLoaded");
+            }
+            session.checkins = data
         }).error(function() {
             // TODO: Handle error here
             // redirect to login
@@ -209,6 +211,16 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($rootScope
             // Force reload of login page to avoid buggy facebook logout
             $location.url('/');
         });
+
+        apis.currentUser.get({
+            'token': session.serverToken()
+        }) .success(function(data){
+            session.currentUser = data
+            if (session.checkins) {
+                session.currentUser.checkins = session.checkins
+                $scope.$broadcast("api.selfCheckinsLoaded");
+            }
+        })
 
         // retrieve friend list
         apis.friends.get({
