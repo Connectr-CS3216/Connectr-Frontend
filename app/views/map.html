@@ -83,7 +83,7 @@
     </script>
 
     <toast></toast>
-    
+
     <!-- Walkthrough -->
     <walkthrough
         is-round=true
@@ -128,7 +128,7 @@
         has-glow=true
         on-walkthrough-hide="onboard5 = true">
     </walkthrough>
-    
+
     <walkthrough
         is-round=true
         walkthrough-type="transparency"
@@ -143,11 +143,22 @@
     <walkthrough
         is-round=true
         walkthrough-type="transparency"
-        focus-element-selector="#map-onboarding"
-        main-caption="Click here to repeat the tutorial."
+        focus-element-selector="#stats-section"
+        main-caption="Click here to see some site statistics."
         is-active="onboard6"
         force-caption-location="BOTTOM"
         has-glow=true
         on-walkthrough-hide="onboard7 = true">
+    </walkthrough>
+
+    <walkthrough
+        is-round=true
+        walkthrough-type="transparency"
+        focus-element-selector="#map-onboarding"
+        main-caption="Click here to repeat the tutorial."
+        is-active="onboard7"
+        force-caption-location="BOTTOM"
+        has-glow=true
+        on-walkthrough-hide="onboardingDone()">
     </walkthrough>
 </div>
