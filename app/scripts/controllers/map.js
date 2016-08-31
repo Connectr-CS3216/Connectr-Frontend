@@ -57,7 +57,7 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($rootScope
         templateUrl: 'stats.html',
         controller: 'StatsModalCtrl',
         controllerAs: '$ctrl',
-        size: 'lg',
+        size: 'md',
         resolve: {
           data: $scope.statsData
         }
