@@ -76,7 +76,7 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                 map.removeLayer(name + "-unclustered-points")
                 map.removeLayer(name + "-unclustered-points-shadow")
                 remove($scope.mapAnnotationLayers, name + "-unclustered-points-shadow")
-                var layers = [500, 150, 20, 0];
+                var layers = [50, 20, 10, 0];
                 layers.forEach(function (layer, i) {
                     $scope.map.removeLayer(name + "-cluster-" + i);
                     $scope.map.removeLayer(name + "-cluster-shadow-" + i);
@@ -186,6 +186,35 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                 closeOnClick: false,
                 // anchor: 'bottom-left',
                 offset: [0, -15]
+            });
+
+            $scope.map.on('click', function (e) {
+                var features = $scope.map.queryRenderedFeatures(e.point, { 
+                    layers: $scope.mapAnnotationLayers 
+                });
+
+                if (!features.length) {
+                    return;
+                }
+
+                var feature = features[0];
+                var placeFacebookID = feature.properties["place_fb_id"]
+                if (placeFacebookID) {
+                    var url = "https://www.facebook.com/" + placeFacebookID
+                    window.open(url,'_blank');
+                } else {
+                    console.log(feature)
+                    var zoomMap = [3, 4, 5, 6];
+                    var level = zoomMap[parseInt(feature.layer.id.split("-").pop())]
+                    var coordinate = feature.geometry.coordinates
+                    if (!level) {
+                        level = $scope.map.getZoom()
+                    }
+                    $scope.map.flyTo({
+                        center: coordinate,
+                        zoom: level
+                    })
+                }
             });
 
             $scope.map.on('mousemove', function(e) {
