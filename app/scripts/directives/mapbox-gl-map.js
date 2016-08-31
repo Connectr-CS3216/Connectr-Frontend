@@ -237,12 +237,23 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                 // cachedFeature = feature
                 // cachedHTML = html
 
-                var html = htmlTemplate(friend.avatar, friend.name, friend.primaryColor, feature.properties.point_count, feature.properties["place_name"])
+                var timeString = feature.properties["checkin_time"]
+                if (timeString) {
+                    var date = new Date(timeString).toLocaleDateString('en-GB', {  
+                        day : 'numeric',
+                        month : 'short',
+                        year : 'numeric'
+                    }).split(' ')
+
+                    timeString = date[1] + " " + date[0] + ", " + date[2]
+                }
+
+                var html = htmlTemplate(friend.avatar, friend.name, friend.primaryColor, feature.properties.point_count, feature.properties["place_name"], timeString)
 
                 return html
             }
 
-            function htmlTemplate(imageURL, name, primaryColor, placeCount, placeName) {
+            function htmlTemplate(imageURL, name, primaryColor, placeCount, placeName, time) {
                 var html =
                 "<div class='popup'>" +
                     "<div class='avatar' style=\"background-image: url('" + imageURL + "')\">" +
@@ -252,6 +263,7 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                             name +
                         "</div>" +
                         "<div class='place'>" +
+                            (!time ? "" :  time + ", ") +  
                             (placeCount ? placeCount + " places" : placeName) +
                         "</div>" +
                     "</div>" +
