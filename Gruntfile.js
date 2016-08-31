@@ -427,6 +427,11 @@ module.exports = function (grunt) {
           src: '{,*/}*.css'
         }, {
           expand: true,
+          cwd: '<%= yeoman.app %>',
+          src: ['ng-walkthrough/**'],
+          dest: '<%= yeoman.dist %>'
+        }, {
+          expand: true,
           cwd: '.',
           src: 'bower_components/bootstrap-sass-official/assets/fonts/bootstrap/*',
           dest: '<%= yeoman.dist %>'
