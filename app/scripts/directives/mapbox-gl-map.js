@@ -205,12 +205,8 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                     window.open(url,'_blank');
                 } else {
                     console.log(feature)
-                    var zoomMap = [3, 4, 5, 6];
-                    var level = zoomMap[parseInt(feature.layer.id.split("-").pop())]
+                    var level = $scope.map.getZoom() + 2
                     var coordinate = feature.geometry.coordinates
-                    if (!level) {
-                        level = $scope.map.getZoom()
-                    }
                     $scope.map.flyTo({
                         center: coordinate,
                         zoom: level

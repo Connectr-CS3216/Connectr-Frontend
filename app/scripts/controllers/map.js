@@ -116,6 +116,37 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($rootScope
         $scope.displayPlaceName = feature.properties.place_name
     }
 
+    $scope.toggleClassBinding = {
+        "all" : "glyphicon glyphicon-eye-open"
+    }
+
+    $scope.toggleAllCheckins = function() {
+        var toggleClassBinding = $scope.toggleClassBinding
+        if (toggleClassBinding.all === "glyphicon glyphicon-eye-open") {
+            toggleClassBinding.all = "glyphicon glyphicon-eye-close"
+            $scope.removeAllCheckins()
+        } else {
+            toggleClassBinding.all = "glyphicon glyphicon-eye-open"
+            $scope.loadAllCheckins()
+        }
+    }
+
+    $scope.loadAllCheckins = function() {
+        $scope.friends.forEach(function(friend){
+            $scope.loadFriendsCheckins(friend)
+        })
+
+        $scope.loadFriendsCheckins($scope.currentUser)
+    }
+
+    $scope.removeAllCheckins = function() {
+        $scope.friends.forEach(function(friend){
+            $scope.removeFriendsCheckins(friend)
+        })
+
+        $scope.removeFriendsCheckins($scope.currentUser)
+    }
+
     $scope.loadFriendsCheckins = function(friend) {
         if (friend.checkins !== undefined) {
             friend.shown = true
