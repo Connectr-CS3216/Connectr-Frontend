@@ -63,8 +63,8 @@
             </div>
         </div>
         <div id="friend-list">
-            <div ng-repeat="friend in friends | filter: searchContent" class="row friend-entry" ng-class="friend.display" ng-click="openFriendModal(friend)">
-                <div class="col-xs-3 friend-avatar" ng-style="{'background-image': 'url({{ friend.avatar }})' }"></div>
+            <div ng-repeat="friend in friends | filter: searchContent" class="row friend-entry" ng-class="friend.display">
+                <div class="col-xs-3 friend-avatar" ng-style="{'background-image': 'url({{ friend.avatar }})' }" ng-click="openFriendModal(friend)"></div>
                 <div class="col-xs-9">
                     <div class="row" style="color: {{ friend.primaryColor }}">
                         <div class="col-xs-10 friend-name">{{ friend.name }}</div>
