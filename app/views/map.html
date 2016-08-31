@@ -46,7 +46,12 @@
                 </div>
             </div>
         </div>
-        <!-- <hr> -->
+        <hr>
+        <div class="row input-box">
+            <div class="col-xs-12 search-box">
+                <input type="text" class="form-control search-bar" placeholder="Friend Name Filter" ng-model="searchContent.name">
+            </div>
+        </div>
         <div id="friend-list">
             <div ng-repeat="friend in friends | filter: searchContent" class="row friend-entry" ng-class="friend.display">
                 <div class="col-xs-3 friend-avatar" style="background-image: url('{{ friend.avatar }}')"></div>
@@ -61,7 +66,13 @@
                 </div>
             </div>
         </div>
-        <input type="text" class="form-control" id="search-bar" placeholder="type your friend's name here" ng-model="searchContent.name">
+
+        <div class="row input-box">
+            <div class="col-xs-12 toggle-overall">
+                <div class="btn btn-primary"><i class="glyphicon glyphicon-eye-open"></i></div>
+            </div>
+        </div>
+
         <div class="drawer-handle">
         	<div ng-click="toggleLeftPanel()">
         	</div>
