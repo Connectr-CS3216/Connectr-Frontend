@@ -37,7 +37,7 @@
 
         <div id="friend-list">
             <div ng-repeat="friend in friends | filter: searchContent" class="row friend-entry" ng-class="friend.display">
-                <div class="col-xs-3 firend-avatar" style="background-image: url('{{ friend.avatar }}')"></div>
+                <div class="col-xs-3 friend-avatar" style="background-image: url('{{ friend.avatar }}')"></div>
                 <div class="col-xs-9">
                     <div class="row" style="color: {{ friend.primaryColor  }}">
                         <div class="col-xs-10 friend-name">{{ friend.name }}</div>

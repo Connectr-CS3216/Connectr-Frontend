@@ -204,12 +204,7 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                 var feature = features[0];
                 var html = htmlForFeature(feature)
 
-                var lngLat = e.lngLat
-                if (lngLat.lat < 89.95) {
-                    lngLat.lat += 0.05
-                }
-
-                popup.setLngLat(lngLat)
+                popup.setLngLat(e.lngLat)
                     .setHTML(html)
                     .addTo(map);
             });
@@ -225,20 +220,40 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                 var userID = feature.layer.source
                 var friend = findPerson(userID)
 
-                var addressLine = feature.properties["place_name"]
+                // var addressLine = feature.properties["place_name"]
 
-                if (addressLine === undefined) {
-                    addressLine = feature.properties.point_count + " places"
-                }
+                // if (addressLine === undefined) {
+                //     addressLine = feature.properties.point_count + " places"
+                // }
 
-                var html = addressLine
+                // var html = addressLine
 
-                if (friend) {
-                    html += ("<br>" + friend.name)
-                }
+                // if (friend) {
+                //     html += ("<br>" + friend.name)
+                // }
 
-                cachedFeature = feature
-                cachedHTML = html
+                // cachedFeature = feature
+                // cachedHTML = html
+
+                var html = htmlTemplate(friend.avatar, friend.name, friend.primaryColor, feature.properties.point_count, feature.properties["place_name"])
+
+                return html
+            }
+
+            function htmlTemplate(imageURL, name, primaryColor, placeCount, placeName) {
+                var html =
+                "<div class='popup'>" +
+                    "<div class='avatar' style=\"background-image: url('" + imageURL + "')\">" +
+                    "</div>" +
+                    "<div class='info'>" +
+                        "<div class='name' style='color: "+ primaryColor +"'>" +
+                            name +
+                        "</div>" +
+                        "<div class='place'>" +
+                            (placeCount ? placeCount + " places" : placeName) +
+                        "</div>" +
+                    "</div>" +
+                "</div>"
 
                 return html
             }
