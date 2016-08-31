@@ -68,7 +68,7 @@
                 <div class="col-xs-9">
                     <div class="row" style="color: {{ friend.primaryColor }}">
                         <div class="col-xs-10 friend-name">{{ friend.name }}</div>
-                        <div class="col-xs-1 friend-visibility pull-right" ng-click="toggleFriend(friend)"><i ng-class="friend.toggle"></i></div>
+                        <div class="col-xs-1 friend-visibility pull-right" ng-click="toggleFriend(friend); $event.stopPropagation();"><i ng-class="friend.toggle"></i></div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12 friend-place"> {{ friend.total_checkins }} checkins</div>
