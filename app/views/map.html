@@ -1,5 +1,5 @@
 <div id="map-wrapper">
-    <mapbox-gl-map></mapbox-gl-map>
+    <mapbox-gl-map id="map"></mapbox-gl-map>
     <div id="facebook-share" class="share-buttons-group affix-top">
         <div id="facebook-button" class="share-button-banner" ng-click="shareFb()">
             <div class="share-container">
@@ -98,10 +98,19 @@
     <walkthrough
         is-round=true
         walkthrough-type="transparency"
-        focus-element-selector="#facebook-button"
-        main-caption="Click here to share your map with your friends on Facebook."
+        focus-element-selector="#map"
+        main-caption="Press `Shift` and drag your mouse to zoom into a region. Point your cursor at a spot in the map and scroll to zoom in and out. "
         is-active="onboard3"
         on-walkthrough-hide="onboard4 = true">
+    </walkthrough>
+
+    <walkthrough
+        is-round=true
+        walkthrough-type="transparency"
+        focus-element-selector="#facebook-button"
+        main-caption="Click here to share your map with your friends on Facebook."
+        is-active="onboard4"
+        on-walkthrough-hide="onboard5 = true">
     </walkthrough>
     
     <walkthrough
@@ -109,8 +118,8 @@
         walkthrough-type="transparency"
         focus-element-selector="#map-control-play"
         main-caption="Click here to recount the places you have visited in street view."
-        is-active="onboard4"
-        on-walkthrough-hide="onboard5 = true">
+        is-active="onboard5"
+        on-walkthrough-hide="onboard6 = true">
     </walkthrough>
 
     <walkthrough
@@ -118,7 +127,7 @@
         walkthrough-type="transparency"
         focus-element-selector="#map-onboarding-button"
         main-caption="Click here to repeat the tutorial."
-        is-active="onboard5"
-        on-walkthrough-hide="onboard6 = true">
+        is-active="onboard6"
+        on-walkthrough-hide="onboard7 = true">
     </walkthrough>
 </div>
