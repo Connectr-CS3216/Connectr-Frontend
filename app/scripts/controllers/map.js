@@ -9,7 +9,7 @@
  */
 
 
-angular.module('connectrFrontendApp').controller('MapCtrl', function ($rootScope, $scope, $location, session, srvAuth, apis, $uibModal, ngToast) {
+angular.module('connectrFrontendApp').controller('MapCtrl', function ($rootScope, $scope, $location, session, srvAuth, apis, $uibModal, ngToast, onboadingPreference) {
 
     $scope.logout = function() {
         srvAuth.logout();
@@ -38,6 +38,10 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($rootScope
         } else {
             startPlaying();
         }
+    }
+
+    $scope.onboardingDone = function() {
+      onboadingPreference.setViewed();
     }
 
     var lastPlaceID, timer, previousCenter, previousZoom
@@ -249,7 +253,7 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($rootScope
             $rootScope.$broadcast("login.finished"); // login finished here.
 
             // Set walkthrough to true
-            $scope.onboard1 = true;
+            $scope.onboard1 = onboadingPreference.hasViewed();
         }).error(function() {
             console.log('failed to get friend list');
         });

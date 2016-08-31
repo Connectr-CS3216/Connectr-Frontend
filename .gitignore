@@ -6,3 +6,4 @@
 /app/scripts/services/keys.js
 
 *.css
+!/app/ng-walkthrough/css/ng-walkthrough.css

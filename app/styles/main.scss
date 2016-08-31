@@ -309,12 +309,12 @@ body {
     margin-top: 0px;
     margin-left: 0px;
     margin-right: 0px;
-    
+
 
     .row {
       margin-top: 0;
     }
-  
+
     .friend-place {
       display: inline-block;
       font-size: 11px;
@@ -366,7 +366,7 @@ body {
 #map-onboarding {
   display: block;
   position:absolute;
-  top: 90px;
+  top: 130px;
   right: 10px;
   height: 30px;
   color: #000;
@@ -384,6 +384,16 @@ body {
   cursor: pointer;
 }
 
+#stats-section {
+  display: block;
+  position:absolute;
+  top: 90px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  color: #000;
+  cursor: pointer;
+}
 
 #map-control-play:hover {
   background: #f0f0f0;
@@ -652,6 +662,11 @@ body {
 #map-onboarding-button.share-button-banner:hover{
     border-color: #e67e22;
     background-color: #e67e22;
+}
+
+#stats-section-button.share-button-banner:hover{
+    border-color: #2ecc71;
+    background-color: #2ecc71;
 }
 
 .loading-dialog {

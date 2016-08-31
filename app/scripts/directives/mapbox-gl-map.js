@@ -26,6 +26,8 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
             // disable map rotation
             $scope.map.dragRotate.disable();
             $scope.map.touchZoomRotate.disableRotation();
+            // disable box zoom
+            $scope.map.boxZoom.disable();
 
             var controls = [
                 new mapboxgl.Navigation({position: 'bottom-right'}), 
@@ -87,8 +89,8 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
 
             $scope.addPointsFromGeojson = function(name, data, colors) {
 
-                var mainOpacity = 0.5
-                var shadowOpacity = 0.5
+                var mainOpacity = 0.75
+                var shadowOpacity = 0.65
 
                 $scope.map.addSource(name, {
                     type: "geojson",
@@ -99,46 +101,45 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                 });
 
                 $scope.map.addLayer({
-                    "id": name + "-unclustered-points",
-                    "type": "circle",
-                    "source": name,
-                    "paint": {
-                        "circle-color": colors[3],
-                        "circle-radius": 10,
-                        "circle-opacity": mainOpacity
-                    }
-                });
-
-
-                $scope.map.addLayer({
                     "id": name + "-unclustered-points-shadow",
                     "type": "circle",
                     "source": name,
                     "paint": {
                         "circle-color": "#ffffff",
-                        "circle-radius": 14,
+                        "circle-radius": 13,
                         "circle-opacity": shadowOpacity
+                    }
+                });
+
+                $scope.map.addLayer({
+                    "id": name + "-unclustered-points",
+                    "type": "circle",
+                    "source": name,
+                    "paint": {
+                        "circle-color": colors[4],
+                        "circle-radius": 10,
+                        "circle-opacity": mainOpacity
                     }
                 });
 
                 $scope.mapAnnotationLayers.push(name + "-unclustered-points-shadow")
 
                 var layers = [
-                    [50, colors[3], 35],
-                    [20, colors[2], 30],
-                    [10, colors[1], 25],
-                    [0, colors[0], 20]
+                    [50, colors[0], 32, 36],
+                    [20, colors[1], 26, 30],
+                    [10, colors[2], 20, 24],
+                    [0, colors[3], 16, 20]
                 ];
 
                 layers.forEach(function (layer, i) {
                     $scope.map.addLayer({
-                        "id": name + "-cluster-" + i,
+                        "id": name + "-cluster-shadow-" + i,
                         "type": "circle",
                         "source": name,
                         "paint": {
-                            "circle-color": layer[1],
-                            "circle-radius": layer[2],
-                            "circle-opacity": mainOpacity
+                            "circle-color": "#ffffff",
+                            "circle-radius": layer[3],
+                            "circle-opacity": shadowOpacity
                         },
                         "filter": i === 0 ?
                             [">=", "point_count", layer[0]] :
@@ -148,13 +149,13 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                     });
 
                     $scope.map.addLayer({
-                        "id": name + "-cluster-shadow-" + i,
+                        "id": name + "-cluster-" + i,
                         "type": "circle",
                         "source": name,
                         "paint": {
                             "circle-color": layer[1],
-                            "circle-radius": layer[2] * 1.3,
-                            "circle-opacity": shadowOpacity
+                            "circle-radius": layer[2],
+                            "circle-opacity": mainOpacity
                         },
                         "filter": i === 0 ?
                             [">=", "point_count", layer[0]] :
@@ -336,7 +337,7 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                 if (!$scope.displayedFriendIDs.includes(friend.id)) {
                     $scope.displayedFriendIDs.push(friend.id)
                     var colors = friend.id === session.currentUser.id ? colorPicker.getColorMatrix() : colorPicker.getColorMatrix(friend.id)
-                    friend.primaryColor = colors[colors.length - 1]
+                    friend.primaryColor = colors[0]
                     friend.toggle = "glyphicon glyphicon-eye-open"
                     $scope.addPointsFromGeojson(friend.id, friend.checkins, colors)
                 }

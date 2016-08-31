@@ -16,11 +16,21 @@
         </div>
     </div>
 
+
+    <div id="stats-section" class="share-buttons-group affix-top">
+        <div id="stats-section-button" class="share-button-banner">
+            <div class="share-container">
+                <span><i class="fa fa-bar-chart"></i></span>
+            </div>
+        </div>
+    </div>
+<!--
+    <div id="map-control-play" ng-click="walkThrough()"><i ng-class="playClassBinding.play"></i></div> -->
     <div id="map-info-panel-area" ng-class="playClassBinding.display"><div id="map-info-panel">
         <span>{{ displayPlaceName }}</span>
     </div></div>
-    
-<!--     <div id="map-onboarding" class="share-buttons-group affix-top">
+
+    <div id="map-onboarding" class="share-buttons-group affix-top">
         <div id="map-onboarding-button" class="share-button-banner" ng-click="onboard1 = true">
             <div class="share-container">
                 <i class="fa fa-question"></i>
@@ -54,7 +64,7 @@
         </div>
         <div id="friend-list">
             <div ng-repeat="friend in friends | filter: searchContent" class="row friend-entry" ng-class="friend.display">
-                <div class="col-xs-3 friend-avatar" style="background-image: url('{{ friend.avatar }}')"></div>
+                <div class="col-xs-3 friend-avatar" ng-style="{'background-image': 'url({{ friend.avatar }})' }"></div>
                 <div class="col-xs-9">
                     <div class="row" style="color: {{ friend.primaryColor }}">
                         <div class="col-xs-10 friend-name">{{ friend.name }}</div>
@@ -95,7 +105,7 @@
     </script>
 
     <toast></toast>
-    
+
     <!-- Walkthrough -->
     <walkthrough
         is-round=true
@@ -122,8 +132,8 @@
     <walkthrough
         is-round=true
         walkthrough-type="transparency"
-        focus-element-selector=""
-        main-caption="Press `Shift` and drag your mouse on the map to zoom into a region."
+        focus-element-selector="#facebook-share"
+        main-caption="Click here to share your map with your friends on Facebook."
         is-active="onboard3"
         force-caption-location="BOTTOM"
         has-glow=true
@@ -133,19 +143,20 @@
     <walkthrough
         is-round=true
         walkthrough-type="transparency"
-        focus-element-selector="#facebook-button"
-        main-caption="Click here to share your map with your friends on Facebook."
+        focus-element-selector="#map-control-play"
+        main-caption="Click here to recount the places you have visited in street view."
         is-active="onboard4"
         force-caption-location="BOTTOM"
         has-glow=true
         on-walkthrough-hide="onboard5 = true">
     </walkthrough>
-    
+
+
     <walkthrough
         is-round=true
         walkthrough-type="transparency"
-        focus-element-selector="#map-control-play"
-        main-caption="Click here to recount the places you have visited in street view."
+        focus-element-selector="#stats-section"
+        main-caption="Click here to see some site statistics."
         is-active="onboard5"
         force-caption-location="BOTTOM"
         has-glow=true
@@ -155,11 +166,11 @@
     <walkthrough
         is-round=true
         walkthrough-type="transparency"
-        focus-element-selector=".tutorial-repeat"
+        focus-element-selector="#map-onboarding"
         main-caption="Click here to repeat the tutorial."
         is-active="onboard6"
         force-caption-location="BOTTOM"
         has-glow=true
-        on-walkthrough-hide="onboard7 = true">
+        on-walkthrough-hide="onboardingDone()">
     </walkthrough>
 </div>
