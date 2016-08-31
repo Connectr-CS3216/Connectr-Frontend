@@ -98,7 +98,7 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                     cluster: true,
                     clusterMaxZoom: 14,
                     clusterRadius: 50
-                });
+                }, 'waterway-label');
 
                 $scope.map.addLayer({
                     "id": name + "-unclustered-points-shadow",
@@ -109,7 +109,7 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                         "circle-radius": 13,
                         "circle-opacity": shadowOpacity
                     }
-                });
+                }, 'waterway-label');
 
                 $scope.map.addLayer({
                     "id": name + "-unclustered-points",
@@ -120,7 +120,7 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                         "circle-radius": 10,
                         "circle-opacity": mainOpacity
                     }
-                });
+                }, 'waterway-label');
 
                 $scope.mapAnnotationLayers.push(name + "-unclustered-points-shadow")
 
@@ -146,7 +146,7 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                             ["all",
                                 [">=", "point_count", layer[0]],
                                 ["<", "point_count", layers[i - 1][0]]]
-                    });
+                    }, 'waterway-label');
 
                     $scope.map.addLayer({
                         "id": name + "-cluster-" + i,
@@ -162,7 +162,7 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                             ["all",
                                 [">=", "point_count", layer[0]],
                                 ["<", "point_count", layers[i - 1][0]]]
-                    });
+                    }, 'waterway-label');
 
                     $scope.mapAnnotationLayers.push(name + "-cluster-shadow-" + i)
                 });
@@ -205,12 +205,8 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                     window.open(url,'_blank');
                 } else {
                     console.log(feature)
-                    var zoomMap = [3, 4, 5, 6];
-                    var level = zoomMap[parseInt(feature.layer.id.split("-").pop())]
+                    var level = $scope.map.getZoom() + 2
                     var coordinate = feature.geometry.coordinates
-                    if (!level) {
-                        level = $scope.map.getZoom()
-                    }
                     $scope.map.flyTo({
                         center: coordinate,
                         zoom: level
@@ -336,7 +332,7 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
             $scope.$on("map.needsAddCheckinsForFriend", function(event, friend) {
                 if (!$scope.displayedFriendIDs.includes(friend.id)) {
                     $scope.displayedFriendIDs.push(friend.id)
-                    var colors = colorPicker.getColorMatrix(friend.id)
+                    var colors = friend.id === session.currentUser.id ? colorPicker.getColorMatrix() : colorPicker.getColorMatrix(friend.id)
                     friend.primaryColor = colors[0]
                     friend.toggle = "glyphicon glyphicon-eye-open"
                     $scope.addPointsFromGeojson(friend.id, friend.checkins, colors)

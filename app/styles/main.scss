@@ -242,7 +242,58 @@ body {
     display: none;
 }
 
+#user-profile {
+
+  margin-top: 10px;
+  text-align: center;
+
+  .row {
+    margin-top: 0px;
+  }
+
+  .user-info {
+    padding-top: 70px; 
+
+    .user-name {
+      /*font-weight: 800;*/
+      /*font-size: 16px;*/
+    }
+
+    .user-place {
+      font-size: 11px;
+      line-height: 15px;
+    }
+  }
+
+  .user-avatar {
+    cursor: pointer;
+    position: absolute;
+    left: calc(50% - 30px);
+    height: 60px;
+    width: 60px;
+    border-radius: 5px;
+    background-size: cover;
+    background-position: 50%;
+    margin-bottom: 20px;
+    border: solid 2px rgba(255, 255, 255, 0.7);
+  }
+
+  .icon-box {
+    display: block;
+    span {
+      cursor: pointer;
+      transition: all 0.1s ease-in-out;
+    }
+
+    span:hover {
+      opacity: 0.5;
+    }
+  }
+}
+
 #friend-list {
+  border-top: solid 2px rgba(255, 255, 255, 0.5);
+  border-bottom: solid 2px rgba(255, 255, 255, 0.5);
   margin-top: 10px;
   margin-left: -10px;
   margin-right: -10px;
@@ -250,7 +301,8 @@ body {
   overflow-y: scroll;
   overflow-x: hidden;
   background-color: rgba(255, 255, 255, 0.1);
-  height: calc(100% - 145px);
+  height: calc(100% - 252px);
+  width: 250px;
 
   .friend-entry {
     padding: 10px;
@@ -265,15 +317,19 @@ body {
 
     .friend-place {
       display: inline-block;
-      font-size: 12px;
+      font-size: 11px;
+      opacity: 0.7;
+      font-weight: 100;
     }
 
     .friend-avatar {
       cursor: pointer;
-      height: 57.5px;
+      height: 50px;
+      width: 50px;
       border-radius: 5px;
       background-size: cover;
       background-position: 50%;
+      border: solid 2px rgba(255, 255, 255, 0.7);
     }
 
     .friend-visibility {
@@ -352,7 +408,7 @@ body {
   padding: 10px;
   border: none;
   color: #fff;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.8);
   opacity: 1;
   transition: all 0.5s ease-in-out;
   font-family: "Lato";
@@ -400,17 +456,27 @@ body {
     background: #fff;
   }
 
-  .logout-box {
-    display: block;
-    position: absolute;
-    left: 0px;
-    bottom: 0px;
-    width: 100%;
-    padding: 15px;
+  .input-box {
+    margin-top: 10px;
 
-    .logout-button {
-      color: yellow;
-      cursor: pointer;
+    .toggle-overall {
+      /*padding-left: 0px;*/
+      .btn {
+        width: 100%;
+      }
+    }
+
+    .search-box {
+      .search-bar {
+        /*position: absolute;*/
+        /*margin-top: 10px;*/
+        /*bottom: 10px;*/
+        width: 100% !important;
+        background: rgba(255, 255, 255, 0.7);
+        color: white;
+        outline: none;
+        width: calc(100% - 20px)
+      }
     }
   }
 }
