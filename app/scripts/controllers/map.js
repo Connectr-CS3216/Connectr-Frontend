@@ -44,6 +44,26 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($rootScope
       onboadingPreference.setViewed();
     }
 
+    // Get Stats data
+    apis.stats.get({
+        'token': session.serverToken()
+    }).success(function(data) {
+      $scope.statsData = data;
+    });
+
+    $scope.showStats = function() {
+      var statsModal = $uibModal.open({
+        animation: true,
+        templateUrl: 'stats.html',
+        controller: 'StatsModalCtrl',
+        controllerAs: '$ctrl',
+        size: 'lg',
+        resolve: {
+          data: $scope.statsData
+        }
+      });
+    }
+
     var lastPlaceID, timer, previousCenter, previousZoom
 
     function startPlaying() {

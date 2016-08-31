@@ -8,18 +8,18 @@
         </div>
     </div>
 
-    <div id="map-control-play" class="share-buttons-group affix-top">
-        <div id="map-control-play-button" class="share-button-banner" ng-click="walkThrough()">
+    <div id="stats-section" class="share-buttons-group affix-top">
+        <div id="stats-section-button" class="share-button-banner" ng-click="showStats()">
             <div class="share-container">
-                <span><i ng-class="playClassBinding.play"></i></span>
+                <span><i class="fa fa-bar-chart"></i></span>
             </div>
         </div>
     </div>
 
-    <div id="stats-section" class="share-buttons-group affix-top">
-        <div id="stats-section-button" class="share-button-banner">
+    <div id="map-control-play" class="share-buttons-group affix-top">
+        <div id="map-control-play-button" class="share-button-banner" ng-click="walkThrough()">
             <div class="share-container">
-                <span><i class="fa fa-bar-chart"></i></span>
+                <span><i ng-class="playClassBinding.play"></i></span>
             </div>
         </div>
     </div>
@@ -79,6 +79,91 @@
         <div class="modal-footer">
             <button class="btn btn-primary" type="button" ng-click="$ctrl.shareNow()">Share Now</button>
             <button class="btn btn-warning" type="button" ng-click="$ctrl.shareCancel()">Cancel</button>
+        </div>
+    </script>
+
+    <script type="text/ng-template" id="stats.html">
+        <div class="modal-header">
+          <h3 class="modal-title" id="modal-title">Statstics</h3>
+        </div>
+        <div class="modal-body" id="modal-body">
+          <uib-tabset active="activeRange" justified="true">
+            <uib-tab index="$index" ng-repeat="tab in $ctrl.tabs" heading="{{tab.title}}">
+              <uib-tabset active="activeFriend" vertical="true" type="pills">
+                <uib-tab index="0" heading="Country">
+                  <h3>Most Visited</h3>
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>#Visit</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="country in tab.data.country.most">
+                        <td>{{country.country}}</td>
+                        <td>{{country.visits_count}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <h3>Least Visited</h3>
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>#Visit</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="country in tab.data.country.least">
+                        <td>{{country.country}}</td>
+                        <td>{{country.visits_count}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </uib-tab>
+                <uib-tab index="1" heading="Places">
+                  <h3>Most Visited</h3>
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Country</th>
+                        <th>#Visit</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="place in tab.data.place.most">
+                        <td>{{place.name}}</td>
+                        <td>{{place.country}}</td>
+                        <td>{{place.visits_count}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <h3>Least Visited</h3>
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Country</th>
+                        <th>#Visit</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="place in tab.data.place.least">
+                        <td>{{place.name}}</td>
+                        <td>{{place.country}}</td>
+                        <td>{{place.visits_count}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </uib-tab>
+              </uib-tabset>
+            </uib-tab>
+          </uib-tabset>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-warning" type="button" ng-click="$ctrl.done()">Done</button>
         </div>
     </script>
 
