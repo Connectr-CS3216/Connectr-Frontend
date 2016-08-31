@@ -427,16 +427,6 @@ module.exports = function (grunt) {
           src: '{,*/}*.css'
         }, {
           expand: true,
-          cwd: '<%= yeoman.app %>/fake-data',
-          dest: '<%= yeoman.dist %>/fake-data',
-          src: '{,*/}*.geojson'
-        }, {
-          expand: true,
-          cwd: '<%= yeoman.app %>/video',
-          dest: '<%= yeoman.dist %>/video',
-          src: ['{,*/}*.mp4', '{,*/}*.jpg', '{,*/}*.webm']
-        }, {
-          expand: true,
           cwd: '.',
           src: 'bower_components/bootstrap-sass-official/assets/fonts/bootstrap/*',
           dest: '<%= yeoman.dist %>'
