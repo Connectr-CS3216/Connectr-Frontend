@@ -199,7 +199,8 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($rootScope
             data.features.sort(function (a, b) {return a.properties.checkin_time < b.properties.checkin_time ? -1 : 1})
             if (session.currentUser) {
                 session.currentUser.checkins = data
-                $scope.$broadcast("api.selfCheckinsLoaded");
+                $scope.toggleFriend(session.currentUser)
+                // $scope.$broadcast("api.selfCheckinsLoaded");
             }
             session.checkins = data
         }).error(function() {
@@ -216,9 +217,12 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($rootScope
             'token': session.serverToken()
         }) .success(function(data){
             session.currentUser = data
+            $scope.currentUser = session.currentUser
+            $scope.currentUser.toggle = "glyphicon glyphicon-eye-close"
             if (session.checkins) {
                 session.currentUser.checkins = session.checkins
-                $scope.$broadcast("api.selfCheckinsLoaded");
+                // $scope.$broadcast("api.selfCheckinsLoaded");
+                $scope.toggleFriend(session.currentUser)
             }
         })
 
@@ -231,13 +235,14 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($rootScope
 
             $scope.friends = data
             $scope.friends.forEach(function(friend){
+                friend.toggle = "glyphicon glyphicon-eye-close"
                 session.friends[friend.id] = friend
             })
 
             console.log(data)
 
 
-            for (var i = 0; i < Math.min(data.length, 16); i++) {
+            for (var i = 0; i < data.length; i++) {
                 $scope.toggleFriend(data[i])
             }
 

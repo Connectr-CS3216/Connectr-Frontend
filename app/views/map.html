@@ -15,31 +15,43 @@
             </div>
         </div>
     </div>
-<!-- 
-    <div id="map-control-play" ng-click="walkThrough()"><i ng-class="playClassBinding.play"></i></div> -->
+
     <div id="map-info-panel-area" ng-class="playClassBinding.display"><div id="map-info-panel">
         <span>{{ displayPlaceName }}</span>
     </div></div>
     
-    <div id="map-onboarding" class="share-buttons-group affix-top">
+<!--     <div id="map-onboarding" class="share-buttons-group affix-top">
         <div id="map-onboarding-button" class="share-button-banner" ng-click="onboard1 = true">
             <div class="share-container">
                 <i class="fa fa-question"></i>
             </div>
         </div>
     </div>
-
+ -->
 
     <div id="map-left-panel" ng-class="collapseClassBinding.collapse">
-        <!-- <div class="brand">Connectr</div> -->
+        <div id="user-profile">
+            <div class="user-avatar" style="background-image: url('{{ currentUser.avatar }}')"></div>
+            <div class="user-info">
+                <div class="user-name">{{ currentUser.name }}</div>
+                <!-- <div class="user-place pull-right"> {{ currentUser.total_checkins }} checkins</div> -->
+                <hr>
+                <div class="row icon-box">
+                    <span class="col-xs-3 tutorial-repeat glyphicon glyphicon-question-sign" ng-click="onboard1 = true"></span>
+                    <span class="col-xs-3 user-visibility" ng-click="toggleFriend(currentUser)">
+                        <i ng-class="currentUser.toggle"></i>
+                    </span>
+                    <span class="col-xs-3 profile-button glyphicon glyphicon-user"></span>
+                    <span class="col-xs-3 logout-button glyphicon glyphicon-log-out" ng-click="logout()"></span>
+                </div>
+            </div>
+        </div>
         <!-- <hr> -->
-        <input type="text" class="form-control" id="search-bar" placeholder="type your friend's name here" ng-model="searchContent.name">
-
         <div id="friend-list">
             <div ng-repeat="friend in friends | filter: searchContent" class="row friend-entry" ng-class="friend.display">
                 <div class="col-xs-3 friend-avatar" style="background-image: url('{{ friend.avatar }}')"></div>
                 <div class="col-xs-9">
-                    <div class="row" style="color: {{ friend.primaryColor  }}">
+                    <div class="row" style="color: {{ friend.primaryColor }}">
                         <div class="col-xs-10 friend-name">{{ friend.name }}</div>
                         <div class="col-xs-1 friend-visibility pull-right" ng-click="toggleFriend(friend)"><i ng-class="friend.toggle"></i></div>
                     </div>
@@ -49,13 +61,10 @@
                 </div>
             </div>
         </div>
+        <input type="text" class="form-control" id="search-bar" placeholder="type your friend's name here" ng-model="searchContent.name">
         <div class="drawer-handle">
         	<div ng-click="toggleLeftPanel()">
         	</div>
-        </div>
-        <div class="logout-box">
-            <span class="logout-button glyphicon glyphicon-log-out" ng-click="logout()"></span>
-            <span class="name pull-right"><b>{{user.name}}</b></span>
         </div>
     </div>
 
@@ -91,7 +100,7 @@
     <walkthrough
         is-round=true
         walkthrough-type="transparency"
-        focus-element-selector="#friend-list .friend-entry:nth-child(4) i"
+        focus-element-selector=".user-visibility"
         main-caption="Click on the eye icon to toggle their visibility."
         is-active="onboard2"
         force-caption-location="BOTTOM"
@@ -135,7 +144,7 @@
     <walkthrough
         is-round=true
         walkthrough-type="transparency"
-        focus-element-selector="#map-onboarding-button"
+        focus-element-selector=".tutorial-repeat"
         main-caption="Click here to repeat the tutorial."
         is-active="onboard6"
         force-caption-location="BOTTOM"

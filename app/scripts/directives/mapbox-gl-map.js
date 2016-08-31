@@ -335,7 +335,7 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
             $scope.$on("map.needsAddCheckinsForFriend", function(event, friend) {
                 if (!$scope.displayedFriendIDs.includes(friend.id)) {
                     $scope.displayedFriendIDs.push(friend.id)
-                    var colors = colorPicker.getColorMatrix(friend.id)
+                    var colors = friend.id === session.currentUser.id ? colorPicker.getColorMatrix() : colorPicker.getColorMatrix(friend.id)
                     friend.primaryColor = colors[colors.length - 1]
                     friend.toggle = "glyphicon glyphicon-eye-open"
                     $scope.addPointsFromGeojson(friend.id, friend.checkins, colors)
