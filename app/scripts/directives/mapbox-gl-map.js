@@ -98,7 +98,7 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                     cluster: true,
                     clusterMaxZoom: 14,
                     clusterRadius: 50
-                });
+                }, 'waterway-label');
 
                 $scope.map.addLayer({
                     "id": name + "-unclustered-points-shadow",
@@ -109,7 +109,7 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                         "circle-radius": 13,
                         "circle-opacity": shadowOpacity
                     }
-                });
+                }, 'waterway-label');
 
                 $scope.map.addLayer({
                     "id": name + "-unclustered-points",
@@ -120,7 +120,7 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                         "circle-radius": 10,
                         "circle-opacity": mainOpacity
                     }
-                });
+                }, 'waterway-label');
 
                 $scope.mapAnnotationLayers.push(name + "-unclustered-points-shadow")
 
@@ -146,7 +146,7 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                             ["all",
                                 [">=", "point_count", layer[0]],
                                 ["<", "point_count", layers[i - 1][0]]]
-                    });
+                    }, 'waterway-label');
 
                     $scope.map.addLayer({
                         "id": name + "-cluster-" + i,
@@ -162,7 +162,7 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                             ["all",
                                 [">=", "point_count", layer[0]],
                                 ["<", "point_count", layers[i - 1][0]]]
-                    });
+                    }, 'waterway-label');
 
                     $scope.mapAnnotationLayers.push(name + "-cluster-shadow-" + i)
                 });
