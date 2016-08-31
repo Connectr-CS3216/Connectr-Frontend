@@ -263,7 +263,7 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                             name +
                         "</div>" +
                         "<div class='place'>" +
-                            (!time ? "" :  time + ", ") +  
+                            (!time ? "" :  time + ". ") +  
                             (placeCount ? placeCount + " places" : placeName) +
                         "</div>" +
                     "</div>" +
