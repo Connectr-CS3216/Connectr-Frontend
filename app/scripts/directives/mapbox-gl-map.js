@@ -27,7 +27,11 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
             $scope.map.dragRotate.disable();
             $scope.map.touchZoomRotate.disableRotation();
 
-            var controls = [new mapboxgl.Navigation({position: 'bottom-right'}), new mapboxgl.Geocoder({position: 'top-right'})];
+            var controls = [
+                new mapboxgl.Navigation({position: 'bottom-right'}), 
+                new mapboxgl.Geocoder({position: 'top-right'})
+            ];
+            
             controls.forEach(function(c) {
                 c.addTo($scope.map)
             })

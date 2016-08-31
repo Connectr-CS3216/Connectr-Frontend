@@ -83,24 +83,30 @@
         focus-element-selector="#search-bar"
         main-caption="Click here to search for your friends."
         is-active="onboard1"
+        force-caption-location="BOTTOM"
+        has-glow=true
         on-walkthrough-hide="onboard2 = true">
     </walkthrough>
 
     <walkthrough
         is-round=true
         walkthrough-type="transparency"
-        focus-element-selector="#friend-list"
+        focus-element-selector="#friend-list .friend-entry:nth-child(4) i"
         main-caption="Click on the eye icon to toggle their visibility."
         is-active="onboard2"
+        force-caption-location="BOTTOM"
+        has-glow=true
         on-walkthrough-hide="onboard3 = true">
     </walkthrough>
 
     <walkthrough
         is-round=true
         walkthrough-type="transparency"
-        focus-element-selector="#map"
-        main-caption="Press `Shift` and drag your mouse to zoom into a region. Point your cursor at a spot in the map and scroll to zoom in and out. "
+        focus-element-selector=""
+        main-caption="Press `Shift` and drag your mouse on the map to zoom into a region."
         is-active="onboard3"
+        force-caption-location="BOTTOM"
+        has-glow=true
         on-walkthrough-hide="onboard4 = true">
     </walkthrough>
 
@@ -110,6 +116,8 @@
         focus-element-selector="#facebook-button"
         main-caption="Click here to share your map with your friends on Facebook."
         is-active="onboard4"
+        force-caption-location="BOTTOM"
+        has-glow=true
         on-walkthrough-hide="onboard5 = true">
     </walkthrough>
     
@@ -119,6 +127,8 @@
         focus-element-selector="#map-control-play"
         main-caption="Click here to recount the places you have visited in street view."
         is-active="onboard5"
+        force-caption-location="BOTTOM"
+        has-glow=true
         on-walkthrough-hide="onboard6 = true">
     </walkthrough>
 
@@ -128,6 +138,8 @@
         focus-element-selector="#map-onboarding-button"
         main-caption="Click here to repeat the tutorial."
         is-active="onboard6"
+        force-caption-location="BOTTOM"
+        has-glow=true
         on-walkthrough-hide="onboard7 = true">
     </walkthrough>
 </div>
