@@ -106,6 +106,7 @@
 
     <script type="text/ng-template" id="stats.html">
         <div class="modal-header">
+         <button class="close" ng-click="$close()"><i class="fa fa-times"></i></button>
           <h3 class="modal-title" id="modal-title">Connectr Statstics</h3>
         </div>
         <div class="modal-body" id="modal-body">
@@ -183,9 +184,6 @@
               </uib-tabset>
             </uib-tab>
           </uib-tabset>
-        </div>
-        <div class="modal-footer">
-            <button class="btn btn-warning" type="button" ng-click="$ctrl.done()">Done</button>
         </div>
     </script>
 
