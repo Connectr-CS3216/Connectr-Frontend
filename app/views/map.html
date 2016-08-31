@@ -38,7 +38,7 @@
 
     <div id="map-left-panel" ng-class="collapseClassBinding.collapse">
         <div id="user-profile">
-            <div class="user-avatar" style="background-image: url('{{ currentUser.avatar }}')"></div>
+            <div class="user-avatar" ng-style="{'background-image': 'url(' + currentUser.avatar + ')' }"></div>
             <div class="user-info">
                 <div class="user-name">{{ currentUser.name }}</div>
                 <!-- <div class="user-place pull-right"> {{ currentUser.total_checkins }} checkins</div> -->
