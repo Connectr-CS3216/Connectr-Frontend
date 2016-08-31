@@ -18,7 +18,8 @@ angular
     'ngTouch',
     'ui.bootstrap',
     'ngToast',
-    'ng-walkthrough'
+    'ng-walkthrough',
+    'ngFlag'
   ])
   .config(function ($routeProvider) {
     $routeProvider

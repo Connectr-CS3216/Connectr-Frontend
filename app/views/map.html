@@ -63,7 +63,7 @@
             </div>
         </div>
         <div id="friend-list">
-            <div ng-repeat="friend in friends | filter: searchContent" class="row friend-entry" ng-class="friend.display">
+            <div ng-repeat="friend in friends | filter: searchContent" class="row friend-entry" ng-class="friend.display" ng-click="openFriendModal(friend)">
                 <div class="col-xs-3 friend-avatar" ng-style="{'background-image': 'url({{ friend.avatar }})' }"></div>
                 <div class="col-xs-9">
                     <div class="row" style="color: {{ friend.primaryColor }}">
@@ -186,6 +186,24 @@
         </div>
         <div class="modal-footer">
             <button class="btn btn-warning" type="button" ng-click="$ctrl.done()">Done</button>
+        </div>
+    </script>
+
+    <script type="text/ng-template" id="friend-modal.html">
+        <div class="modal-header">
+            <button class="close" ng-click="$close()"><i class="fa fa-times"></i></button>
+            <h3 class="modal-title" id="modal-title">{{ friend.name }}</h3>
+        </div>
+        <div class="modal-body" id="modal-friends-body">
+            <div>
+                <img class="img-circle" ng-src="http://graph.facebook.com/{{ friend.fb_id }}/picture?height=128&width=128">
+            </div>
+            <div>
+                <h4> Countries Visited </h4>
+                <span ng-repeat="country in countries">
+                    <flag country="{{country}}"" size=32></flag>
+                </span>
+            </div>
         </div>
     </script>
 

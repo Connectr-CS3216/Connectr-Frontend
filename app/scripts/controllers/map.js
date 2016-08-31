@@ -248,6 +248,21 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($rootScope
       });
     };
 
+    $scope.openFriendModal = function(friend) {
+        console.log(friend);
+        var friendModal = $uibModal.open({
+            animation: true,
+            templateUrl: 'friend-modal.html',
+            controller: 'FriendModalCtrl',
+            size: 'sm',
+            resolve: {
+              friend: function () {
+                return friend;
+              }
+            }
+        });
+    }
+
     function snapshotURL() {
         return session.map.getCanvas().toDataURL()
     }
