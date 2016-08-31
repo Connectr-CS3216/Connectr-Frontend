@@ -26,10 +26,12 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
             // disable map rotation
             $scope.map.dragRotate.disable();
             $scope.map.touchZoomRotate.disableRotation();
-            // add map search bar
-            $scope.map.addControl(new mapboxgl.Geocoder({position: 'top-right'}));
 
-            var controls = [new mapboxgl.Navigation({position: 'bottom-right'})];
+            var controls = [
+                new mapboxgl.Navigation({position: 'bottom-right'}), 
+                new mapboxgl.Geocoder({position: 'top-right'})
+            ];
+            
             controls.forEach(function(c) {
                 c.addTo($scope.map)
             })
@@ -74,7 +76,7 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                 map.removeLayer(name + "-unclustered-points")
                 map.removeLayer(name + "-unclustered-points-shadow")
                 remove($scope.mapAnnotationLayers, name + "-unclustered-points-shadow")
-                var layers = [500, 150, 20, 0];
+                var layers = [50, 20, 10, 0];
                 layers.forEach(function (layer, i) {
                     $scope.map.removeLayer(name + "-cluster-" + i);
                     $scope.map.removeLayer(name + "-cluster-shadow-" + i);
@@ -186,6 +188,35 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                 offset: [0, -15]
             });
 
+            $scope.map.on('click', function (e) {
+                var features = $scope.map.queryRenderedFeatures(e.point, { 
+                    layers: $scope.mapAnnotationLayers 
+                });
+
+                if (!features.length) {
+                    return;
+                }
+
+                var feature = features[0];
+                var placeFacebookID = feature.properties["place_fb_id"]
+                if (placeFacebookID) {
+                    var url = "https://www.facebook.com/" + placeFacebookID
+                    window.open(url,'_blank');
+                } else {
+                    console.log(feature)
+                    var zoomMap = [3, 4, 5, 6];
+                    var level = zoomMap[parseInt(feature.layer.id.split("-").pop())]
+                    var coordinate = feature.geometry.coordinates
+                    if (!level) {
+                        level = $scope.map.getZoom()
+                    }
+                    $scope.map.flyTo({
+                        center: coordinate,
+                        zoom: level
+                    })
+                }
+            });
+
             $scope.map.on('mousemove', function(e) {
                 var map = $scope.map
 
@@ -235,12 +266,23 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                 // cachedFeature = feature
                 // cachedHTML = html
 
-                var html = htmlTemplate(friend.avatar, friend.name, friend.primaryColor, feature.properties.point_count, feature.properties["place_name"])
+                var timeString = feature.properties["checkin_time"]
+                if (timeString) {
+                    var date = new Date(timeString).toLocaleDateString('en-GB', {  
+                        day : 'numeric',
+                        month : 'short',
+                        year : 'numeric'
+                    }).split(' ')
+
+                    timeString = date[1] + " " + date[0] + ", " + date[2]
+                }
+
+                var html = htmlTemplate(friend.avatar, friend.name, friend.primaryColor, feature.properties.point_count, feature.properties["place_name"], timeString)
 
                 return html
             }
 
-            function htmlTemplate(imageURL, name, primaryColor, placeCount, placeName) {
+            function htmlTemplate(imageURL, name, primaryColor, placeCount, placeName, time) {
                 var html =
                 "<div class='popup'>" +
                     "<div class='avatar' style=\"background-image: url('" + imageURL + "')\">" +
@@ -250,6 +292,7 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
                             name +
                         "</div>" +
                         "<div class='place'>" +
+                            (!time ? "" :  time + ". ") +  
                             (placeCount ? placeCount + " places" : placeName) +
                         "</div>" +
                     "</div>" +

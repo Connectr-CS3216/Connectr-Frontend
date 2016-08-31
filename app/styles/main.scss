@@ -465,10 +465,6 @@ body {
 
     padding-left: 55px;
 
-    .name {
-
-    }
-
     .place {
       font-size: 10px;
     }
@@ -478,7 +474,6 @@ body {
 .btn {
   font-weight: bold;
   border-radius: 2px;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .26);
 }
 
 .btn-login {
@@ -677,4 +672,46 @@ body {
 
 .container-home {
   height: 660px;
+}
+
+.walkthrough-element.walkthrough-text {
+  text-align: center;
+  /*font-family: 'Lato' !important;*/
+  color: black !important;
+}
+
+.walkthrough-hole-glow {
+    border: 2px solid #ffffff !important;
+    box-shadow: 0 0 36px #ffffff !important;
+}
+
+.walkthrough-hole-round{
+    border-radius: 8px !important;
+}
+
+.btn-primary {
+  background-color: #34495e;
+  border: 2px solid #34495e;
+  border-radius: 5px;
+}
+
+.btn-primary:hover,
+.btn.btn-primary:active {
+  background-color: #2c3e50;
+  border: 2px solid #2c3e50;
+  border-radius: 5px;
+}
+
+.btn-warning {
+  background-color: transparent;
+  border: 2px solid #34495e;
+  border-radius: 5px;
+  color: #34495e;
+}
+
+.btn-warning:hover,
+.btn.btn-warning:active {
+  background-color: #ecf0f1;
+  border: 2px solid #2c3e50;
+  color: #2c3e50;
 }

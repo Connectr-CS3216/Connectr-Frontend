@@ -20,7 +20,7 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($rootScope
     }
 
     $scope.playClassBinding = {
-        'play': 'glyphicon glyphicon-play',
+        'play': 'fa fa-play',
         'display': 'display-none'
     }
 
@@ -33,7 +33,7 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($rootScope
     }
 
     $scope.walkThrough = function() {
-        if ($scope.playClassBinding.play === "glyphicon glyphicon-stop") {
+        if ($scope.playClassBinding.play === "fa fa-stop") {
             stopPlaying();
         } else {
             startPlaying();
@@ -48,7 +48,7 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($rootScope
 
         if (session.checkins) {
             $scope.$broadcast("map.needsRemoveControl");
-            $scope.playClassBinding.play = "glyphicon glyphicon-stop"
+            $scope.playClassBinding.play = "fa fa-stop"
             $scope.playClassBinding.display = "display-normal"
             if ($scope.collapseClassBinding.collapse === 'panel-expanded') {
                 $scope.collapseClassBinding.collapse = 'panel-collapse'
@@ -71,7 +71,7 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($rootScope
         window.clearTimeout(timer)
         map.once('moveend', function(){})
         $scope.$broadcast("map.needsDisplayControl");
-        $scope.playClassBinding.play = "glyphicon glyphicon-play"
+        $scope.playClassBinding.play = "fa fa-play"
         $scope.playClassBinding.display = "display-none"
     }
 
