@@ -248,7 +248,7 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function ($rootScope
       });
     };
 
-    $scope.openFriendModal = function(friend, self) {
+    $scope.openFriendModal = function(friend) {
         var friendModal = $uibModal.open({
             animation: true,
             templateUrl: 'friend-modal.html',
