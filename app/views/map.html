@@ -24,14 +24,6 @@
         </div>
     </div>
 
-    <div id="map-onboarding" class="share-buttons-group affix-top">
-        <div id="map-onboarding-button" class="share-button-banner" ng-click="onboard1 = true" tooltip-placement="left" uib-tooltip="Feeling lost?">
-            <div class="share-container">
-                <i class="fa fa-question"></i>
-            </div>
-        </div>
-    </div>
-
     <div id="map-info-panel-area" ng-class="playClassBinding.display"><div id="map-info-panel">
         <span>
             <p><b>{{ displayPlaceName }}</b></p>
@@ -47,7 +39,7 @@
                 <!-- <div class="user-place pull-right"> {{ currentUser.total_checkins }} checkins</div> -->
                 <hr>
                 <div class="row icon-box">
-                    <span class="col-xs-3 tutorial-repeat glyphicon glyphicon-question-sign" ng-click="onboard1 = true" uib-tooltip="Help me"></span>
+                    <span id="map-onboarding" class="col-xs-3 tutorial-repeat glyphicon glyphicon-question-sign" ng-click="onboard1 = true" uib-tooltip="Help me"></span>
                     <span class="col-xs-3 user-visibility" ng-click="toggleFriend(currentUser)" uib-tooltip="Show/hide my points">
                         <i ng-class="currentUser.toggle"></i>
                     </span>
@@ -80,7 +72,7 @@
 
         <div class="row input-box">
             <div class="col-xs-12 toggle-overall">
-                <div class="btn btn-primary" ng-class="toggleClassBinding.all" ng-click="toggleAllCheckins()" uib-tooltip="Show/hide all points"></div>
+                <div id="toggleAll" class="btn btn-primary" ng-class="toggleClassBinding.all" ng-click="toggleAllCheckins()" uib-tooltip="Show/hide all points"></div>
             </div>
         </div>
 
@@ -252,19 +244,20 @@
     <walkthrough
         is-round=true
         walkthrough-type="transparency"
-        focus-element-selector=".user-visibility"
-        main-caption="Click on the eye icon to toggle their visibility."
+        focus-element-selector=".user-avatar"
+        main-caption="Click on the display picture to see the profile."
         is-active="onboard2"
         force-caption-location="BOTTOM"
         has-glow=true
         on-walkthrough-hide="onboard3 = true">
     </walkthrough>
 
+
     <walkthrough
         is-round=true
         walkthrough-type="transparency"
-        focus-element-selector="#facebook-share"
-        main-caption="Click here to share your map with your friends on Facebook."
+        focus-element-selector=".user-visibility"
+        main-caption="Click on the eye icon to toggle their visibility."
         is-active="onboard3"
         force-caption-location="BOTTOM"
         has-glow=true
@@ -274,20 +267,19 @@
     <walkthrough
         is-round=true
         walkthrough-type="transparency"
-        focus-element-selector="#map-control-play"
-        main-caption="Click here to recount the places you have visited in street view."
+        focus-element-selector=".profile-button"
+        main-caption="Click on the profile icon to view your profile."
         is-active="onboard4"
         force-caption-location="BOTTOM"
         has-glow=true
         on-walkthrough-hide="onboard5 = true">
     </walkthrough>
 
-
     <walkthrough
         is-round=true
         walkthrough-type="transparency"
-        focus-element-selector="#stats-section"
-        main-caption="Click here to see some site statistics."
+        focus-element-selector=".logout-button"
+        main-caption="Click here to logout."
         is-active="onboard5"
         force-caption-location="BOTTOM"
         has-glow=true
@@ -297,9 +289,53 @@
     <walkthrough
         is-round=true
         walkthrough-type="transparency"
+        focus-element-selector="#toggleAll"
+        main-caption="Click here to select/deselect all points."
+        is-active="onboard6"
+        force-caption-location="BOTTOM"
+        has-glow=true
+        on-walkthrough-hide="onboard7 = true">
+    </walkthrough>
+
+    <walkthrough
+        is-round=true
+        walkthrough-type="transparency"
+        focus-element-selector="#facebook-share"
+        main-caption="Click here to share your map with your friends on Facebook."
+        is-active="onboard7"
+        force-caption-location="BOTTOM"
+        has-glow=true
+        on-walkthrough-hide="onboard8 = true">
+    </walkthrough>
+
+    <walkthrough
+        is-round=true
+        walkthrough-type="transparency"
+        focus-element-selector="#map-control-play"
+        main-caption="Click here to recount the places you have visited in street view."
+        is-active="onboard8"
+        force-caption-location="BOTTOM"
+        has-glow=true
+        on-walkthrough-hide="onboard9 = true">
+    </walkthrough>
+
+    <walkthrough
+        is-round=true
+        walkthrough-type="transparency"
+        focus-element-selector="#stats-section"
+        main-caption="Click here to see some site statistics."
+        is-active="onboard9"
+        force-caption-location="BOTTOM"
+        has-glow=true
+        on-walkthrough-hide="onboard10 = true">
+    </walkthrough>
+
+    <walkthrough
+        is-round=true
+        walkthrough-type="transparency"
         focus-element-selector="#map-onboarding"
         main-caption="Click here to repeat the tutorial."
-        is-active="onboard6"
+        is-active="onboard10"
         force-caption-location="BOTTOM"
         has-glow=true
         on-walkthrough-hide="onboardingDone()">
