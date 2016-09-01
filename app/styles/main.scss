@@ -135,51 +135,6 @@ body {
   transition: all 0.3s ease-in-out;
 }
 
-.login-button {
-  width: 300px;
-  margin: 0 auto;
-  border: 2px solid #eeeeee;
-  height: 50px;
-  border-radius: 10px;
-
-  .fb-icon {
-    float: left;
-    display: inline-block;
-    height: 48px;
-    width: 50px;
-    padding-top: 10px;
-    display: inline-block;
-    border-right: 2px solid #eeeeee;
-  }
-
-  .fb-icon i {
-    font-size: 30px;
-  }
-
-  .login-text {
-    font-size: 20px;
-    float: left;
-    height: 48px;
-    line-height: 48px;
-    width: 240px;
-    display: inline-block;
-  }
-
-  &:after {
-    content: ".";
-    display: block;
-    clear: both;
-    visibility: hidden;
-    line-height: 0;
-    height: 0;
-  }
-
-  &:hover {
-    cursor: pointer;
-    background: #aaaaaa;
-  }
-}
-
 @media screen and (max-width: 767px) {
   #map-info-panel-area {
     height: 110px;
@@ -731,6 +686,53 @@ body {
 
 .container-home {
   height: 660px;
+
+  .login-button {
+    width: 300px;
+    margin: 0px auto;
+    border: 2px solid #eeeeee;
+    height: 50px;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+
+    .fb-icon {
+      float: left;
+      display: inline-block;
+      height: 48px;
+      width: 50px;
+      padding-top: 10px;
+      display: inline-block;
+      border-right: 2px solid #eeeeee;
+    }
+
+    .fb-icon i {
+      font-size: 30px;
+    }
+
+    .login-text {
+      font-size: 20px;
+      float: left;
+      height: 48px;
+      line-height: 44px;
+      width: 240px;
+      display: inline-block;
+    }
+
+    &:after {
+      content: ".";
+      display: block;
+      clear: both;
+      visibility: hidden;
+      line-height: 0;
+      height: 0;
+    }
+
+    &:hover {
+      cursor: pointer;
+      background: #aaaaaa;
+    }
+  }
+
 }
 
 .walkthrough-element.walkthrough-text {
