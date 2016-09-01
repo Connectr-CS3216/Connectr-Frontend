@@ -529,13 +529,6 @@ body {
     height: 155px; /* .push must be the same height as .footer */
 }
 
-.text-slogan {
-  color: #ffffff;
-  font-weight: 100;
-  font-size: xx-large;
-  text-align: center;
-}
-
 .section-title {
   background-color: rgba(124, 158, 178, 0.7);
   color: #ffffff;
@@ -656,8 +649,8 @@ body {
 .home-bg {
   background:
     linear-gradient(
-      rgba(255, 255, 255, 0.95),
-      rgba(92, 92, 92, 0.8)
+      rgba(92, 92, 92, 0.3),
+      rgba(0, 0, 0, 0.8)
     ),
     url(/images/map1.png);
   background-size: cover;
@@ -686,6 +679,23 @@ body {
 
 .container-home {
   height: 660px;
+
+  .logo-image {
+    height: 250px;
+    margin-bottom: 30px;
+    -webkit-filter: drop-shadow(12px 12px 25px rgba(0,0,0,0.8));
+  }
+
+  .logo-text-image {
+    height: 70px;
+  }
+  
+  .text-slogan {
+    color: #ffffff;
+    font-weight: 100;
+    font-size: xx-large;
+    text-align: center;
+  }
 
   .login-button {
     width: 300px;
