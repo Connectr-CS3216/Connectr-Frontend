@@ -201,8 +201,8 @@
             </div>
             <div>
                 <h4> Countries Visited </h4>
-                <span ng-repeat="country in countries">
-                    <flag country="{{country}}"" size=32></flag>
+                <span ng-repeat="country in countries" tooltip-placement="bottom" uib-tooltip="{{country.split('/')[1]}}">
+                    <flag country="{{country.split('/')[0]}}" size=32></flag>
                 </span>
             </div>
         </div>
@@ -220,8 +220,8 @@
             <div>
                 <h5> {{friend.total_checkins}} checkins</h5>
                 <h4> Countries Visited </h4>
-                <span ng-repeat="country in countries">
-                    <flag country="{{country}}"" size=32></flag>
+                <span ng-repeat="country in countries" tooltip-placement="bottom" uib-tooltip="{{country.split('/')[1]}}">
+                    <flag country="{{country.split('/')[0]}}" size=32></flag>
                 </span>
             </div>
         </div>
