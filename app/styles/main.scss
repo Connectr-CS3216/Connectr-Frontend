@@ -778,3 +778,22 @@ body {
 #modal-friends-body {
   text-align: center;
 }
+
+.img-circle {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  height: 100px;
+  width: 100px;
+  border: solid 2px white;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.7); 
+}
+
+.visitied-coutry-title {
+  margin-bottom: 15px;
+}
+
+.modal-flag{
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3); 
+  height: 70px;
+  margin: 5px 3px;
+}

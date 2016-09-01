@@ -191,37 +191,38 @@
     </script>
 
     <script type="text/ng-template" id="friend-modal.html">
-        <div class="modal-header">
-            <button class="close" ng-click="$close()"><i class="fa fa-times"></i></button>
-            <h3 class="modal-title" id="modal-title">{{ friend.name }}</h3>
-        </div>
         <div class="modal-body" id="modal-friends-body">
             <div>
-                <img class="img-circle" ng-src="http://graph.facebook.com/{{ friend.fb_id }}/picture?height=128&width=128">
+                <img class="img-circle" ng-src="http://graph.facebook.com/{{ friend.fb_id }}/picture?height=256&width=256" style="background: {{friend.primaryColor}}">
             </div>
             <div>
-                <h4> Countries Visited </h4>
+                <h3 class="modal-title" id="modal-title">{{ friend.name }}</h3>
+                <hr>
+                <h5> {{ friend.total_checkins }} Checkins</h5>
+                <hr>
+                <h5 class="visitied-coutry-title"> {{ countries.length }} Countries or Regions </h5>
                 <span ng-repeat="country in countries" tooltip-placement="bottom" uib-tooltip="{{country.split('/')[1]}}">
-                    <flag country="{{country.split('/')[0]}}" size=32></flag>
+                    <img class="modal-flag" src="../images/flags/{{country.split('/')[0]}}.svg">
+                    <!-- <flag country="{{country.split('/')[0]}}" size=32></flag> -->
                 </span>
             </div>
         </div>
     </script>
 
     <script type="text/ng-template" id="self-modal.html">
-        <div class="modal-header">
-            <button class="close" ng-click="$close()"><i class="fa fa-times"></i></button>
-            <h3 class="modal-title" id="modal-title">{{ friend.name }}</h3>
-        </div>
         <div class="modal-body" id="modal-friends-body">
             <div>
-                <img class="img-circle" ng-src="http://graph.facebook.com/{{ friend.fb_id }}/picture?height=128&width=128">
+                <img class="img-circle" ng-src="http://graph.facebook.com/{{ friend.fb_id }}/picture?height=256&width=256" style="background: {{friend.primaryColor}}">
             </div>
             <div>
-                <h5> {{friend.total_checkins}} checkins</h5>
-                <h4> Countries Visited </h4>
-                <span ng-repeat="country in countries" tooltip-placement="bottom" uib-tooltip="{{country.split('/')[1]}}">
-                    <flag country="{{country.split('/')[0]}}" size=32></flag>
+                <h3 class="modal-title" id="modal-title">{{ friend.name }}</h3>
+                <hr>
+                <h5> {{ friend.total_checkins }} Checkins</h5>
+                <hr>
+                <h5 class="visitied-coutry-title"> {{ countries.length }} Countries or Regions </h5>
+                <span ng-repeat="country in countries" tooltip-placement="bottom" uib-tooltip="{{country.split('/')[1]}}" style="text-align: left">
+                    <img class="modal-flag" src="../images/flags/{{country.split('/')[0]}}.svg">
+                    <!-- <flag country="{{country.split('/')[0]}}" size=32></flag> -->
                 </span>
             </div>
         </div>
