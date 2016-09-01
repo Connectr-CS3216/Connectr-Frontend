@@ -19,6 +19,7 @@ body {
 .header,
 .marketing,
 .footer {
+  height: 100px;
   padding-left: 15px;
   padding-right: 15px;
 }
@@ -523,10 +524,10 @@ body {
     min-height: 100%;
     height: auto !important;
     height: 100%;
-    margin: 0 auto -155px; /* the bottom margin is the negative value of the footer's height */
+    margin: 0 auto -100px; /* the bottom margin is the negative value of the footer's height */
 }
 .footer, .push {
-    height: 155px; /* .push must be the same height as .footer */
+    height: 100px; /* .push must be the same height as .footer */
 }
 
 .section-title {
@@ -633,13 +634,6 @@ body {
   text-align: center;
 }
 
-.container-down-btn {
-  position: absolute;
-  bottom: 30px;
-  width: 100%;
-  text-align: center;
-}
-
 .move-to-btn {
   color: #ffffff;
   font-size: 60px;
@@ -671,75 +665,173 @@ body {
 
 .container-product {
   position: relative;
-}
-
-.container-fb-like-btn {
-  padding: 15px;
+  height: calc(100vh - 100px);
 }
 
 .container-home {
-  height: 660px;
+  height:100vh;
 
-  .logo-image {
-    height: 250px;
-    margin-bottom: 30px;
-    -webkit-filter: drop-shadow(12px 12px 25px rgba(0,0,0,0.8));
+  align-items:center;
+  display:flex;
+  min-height:100%;
+
+  .container-fb-like-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
   }
 
-  .logo-text-image {
-    height: 70px;
-  }
-  
-  .text-slogan {
-    color: #ffffff;
-    font-weight: 100;
-    font-size: xx-large;
-    text-align: center;
-  }
+  .home-wrapper {
 
-  .login-button {
-    width: 300px;
-    margin: 0px auto;
-    border: 2px solid #eeeeee;
-    height: 50px;
-    border-radius: 10px;
-    transition: all 0.3s ease-in-out;
+    margin:0 auto;
+    padding:10px;
+    text-align:center;
 
-    .fb-icon {
-      float: left;
-      display: inline-block;
-      height: 48px;
-      width: 50px;
-      padding-top: 10px;
-      display: inline-block;
-      border-right: 2px solid #eeeeee;
+    .logo-image {
+      width: 40vh;
+      margin-bottom: 30px;
+      -webkit-filter: drop-shadow(0 0 25px rgba(0,0,0,0.8));
     }
 
-    .fb-icon i {
-      font-size: 30px;
+    .logo-text-image {
+      height: 9vh;
+      -webkit-filter: drop-shadow(0 0 5px rgba(0,0,0,0.4));
     }
 
-    .login-text {
-      font-size: 20px;
-      float: left;
-      height: 48px;
-      line-height: 44px;
-      width: 240px;
-      display: inline-block;
+    .text-slogan {
+      color: #ffffff;
+      font-weight: 100;
+      font-size: 3vh;
+      text-align: center;
+      margin-top: 1vh;
+      margin-bottom: 12vh;
+      text-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     }
 
-    &:after {
-      content: ".";
-      display: block;
-      clear: both;
-      visibility: hidden;
-      line-height: 0;
-      height: 0;
-    }
 
-    &:hover {
+
+    [data-wipe] {
+      box-shadow: 0 0 10px rgba(0,0,0,0.4);
       cursor: pointer;
-      background: #aaaaaa;
+      display: inline-block;
+      padding: 12px 18px;
+      text-decoration: none;
+      position: relative;
+      border: 2px solid #fff;
+      border-radius: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      text-align: left;
+      color: #fff;
+      overflow: hidden;
+      
+      &:before, &:after {
+        content: attr(data-wipe);
+        padding-top: inherit;
+        padding-bottom: inherit;
+        white-space: nowrap;
+        position: absolute;
+        top: 0;
+        overflow: hidden;
+        color: #3E4040;
+        background: #fff;
+      }
+      
+      &:before {
+        left: 0;
+        text-indent: 18px;
+        width: 0;
+      }
+      
+      &:after {
+        padding-left: inherit;
+        padding-right: inherit;
+        left: 100%;
+        text-indent: calc(-100% - 36px);
+        transition: 0.2 + s ease-in-out;
+      }
+      
+      &:hover {
+
+        &:before {
+          width: 100%;
+          transition: width 0.2 + s ease-in-out;
+        }
+        
+        &:after {
+          left: 0;
+          text-indent: 0;
+          transition: 0s 0.2 + s ease-in-out;
+        }
+      }
+    }
+
+
+
+
+
+    .login-button {
+      width: 300px;
+      margin: 0px auto;
+      border: 2px solid #eeeeee;
+      height: 50px;
+      border-radius: 10px;
+      transition: all 0.3s ease-in-out;
+
+      .fb-icon {
+        float: left;
+        display: inline-block;
+        height: 48px;
+        width: 50px;
+        padding-top: 9px;
+        display: inline-block;
+        border-right: 2px solid #eeeeee;
+      }
+
+      .fb-icon i {
+        font-size: 30px;
+      }
+
+      .login-text {
+        font-size: 20px;
+        font-weight: 100px;
+        float: left;
+        height: 48px;
+        line-height: 44px;
+        width: 240px;
+        display: inline-block;
+      }
+
+      &:after {
+        content: ".";
+        display: block;
+        clear: both;
+        visibility: hidden;
+        line-height: 0;
+        height: 0;
+      }
+
+      &:hover {
+        cursor: pointer;
+        background: #aaaaaa;
+      }
+    }
+  }
+
+  .container-down-btn{
+    position: absolute;
+    font-size: 50px;
+    bottom: 30px;
+    width: 100%;
+    text-align: center;
+
+    i {
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+
+      &:hover {
+        opacity: 0.3;
+      }
     }
   }
 
