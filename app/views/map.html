@@ -77,7 +77,7 @@
         </div>
 
         <div class="drawer-handle">
-        	<div ng-click="toggleLeftPanel()">
+        	<div id="left-panel" ng-click="toggleLeftPanel()">
         	</div>
         </div>
     </div>
@@ -333,9 +333,20 @@
     <walkthrough
         is-round=true
         walkthrough-type="transparency"
+        focus-element-selector="#left-panel"
+        main-caption="Click here to close the panel."
+        is-active="onboard10"
+        force-caption-location="BOTTOM"
+        has-glow=true
+        on-walkthrough-hide="onboard11 = true">
+    </walkthrough>
+
+    <walkthrough
+        is-round=true
+        walkthrough-type="transparency"
         focus-element-selector="#map-onboarding"
         main-caption="Click here to repeat the tutorial."
-        is-active="onboard10"
+        is-active="onboard11"
         force-caption-location="BOTTOM"
         has-glow=true
         on-walkthrough-hide="onboardingDone()">
