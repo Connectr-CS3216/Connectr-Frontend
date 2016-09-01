@@ -1,25 +1,33 @@
 <div id="map-wrapper">
     <mapbox-gl-map id="map"></mapbox-gl-map>
     <div id="facebook-share" class="share-buttons-group affix-top">
-        <div id="facebook-button" class="share-button-banner" ng-click="shareFb()">
+        <div id="facebook-button" class="share-button-banner" ng-click="shareFb()" tooltip-placement="left" uib-tooltip="Share on Facebook!">
             <div class="share-container">
                 <span><i class="fa fa-facebook"></i></span>
             </div>
         </div>
     </div>
 
+    <div id="map-control-play" class="share-buttons-group affix-top">
+        <div id="map-control-play-button" class="share-button-banner" ng-click="walkThrough()" tooltip-placement="left" uib-tooltip="Take a trip back in time!">
+            <div class="share-container">
+                <span><i ng-class="playClassBinding.play"></i></span>
+            </div>
+        </div>
+    </div>
+
     <div id="stats-section" class="share-buttons-group affix-top">
-        <div id="stats-section-button" class="share-button-banner" ng-click="showStats()">
+        <div id="stats-section-button" class="share-button-banner" ng-click="showStats()" tooltip-placement="left" uib-tooltip="Cool statistics!">
             <div class="share-container">
                 <span><i class="fa fa-bar-chart"></i></span>
             </div>
         </div>
     </div>
 
-    <div id="map-control-play" class="share-buttons-group affix-top">
-        <div id="map-control-play-button" class="share-button-banner" ng-click="walkThrough()">
+    <div id="map-onboarding" class="share-buttons-group affix-top">
+        <div id="map-onboarding-button" class="share-button-banner" ng-click="onboard1 = true" tooltip-placement="left" uib-tooltip="Feeling lost?">
             <div class="share-container">
-                <span><i ng-class="playClassBinding.play"></i></span>
+                <i class="fa fa-question"></i>
             </div>
         </div>
     </div>
@@ -31,28 +39,20 @@
         </span>
     </div></div>
 
-    <div id="map-onboarding" class="share-buttons-group affix-top">
-        <div id="map-onboarding-button" class="share-button-banner" ng-click="onboard1 = true">
-            <div class="share-container">
-                <i class="fa fa-question"></i>
-            </div>
-        </div>
-    </div>
-
     <div id="map-left-panel" ng-class="collapseClassBinding.collapse">
         <div id="user-profile">
-            <div class="user-avatar" ng-style="{'background-image': 'url(' + currentUser.avatar + ')' }"></div>
+            <div class="user-avatar" ng-style="{'background-image': 'url(' + currentUser.avatar + ')' }" ng-click="openFriendModal(currentUser, true)"></div>
             <div class="user-info">
                 <div class="user-name">{{ currentUser.name }}</div>
                 <!-- <div class="user-place pull-right"> {{ currentUser.total_checkins }} checkins</div> -->
                 <hr>
                 <div class="row icon-box">
-                    <span class="col-xs-3 tutorial-repeat glyphicon glyphicon-question-sign" ng-click="onboard1 = true"></span>
-                    <span class="col-xs-3 user-visibility" ng-click="toggleFriend(currentUser)">
+                    <span class="col-xs-3 tutorial-repeat glyphicon glyphicon-question-sign" ng-click="onboard1 = true" uib-tooltip="Help me"></span>
+                    <span class="col-xs-3 user-visibility" ng-click="toggleFriend(currentUser)" uib-tooltip="Show/hide my points">
                         <i ng-class="currentUser.toggle"></i>
                     </span>
-                    <span class="col-xs-3 profile-button glyphicon glyphicon-user" ng-click="openFriendModal(currentUser)"></span>
-                    <span class="col-xs-3 logout-button glyphicon glyphicon-log-out" ng-click="logout()"></span>
+                    <span class="col-xs-3 profile-button glyphicon glyphicon-user" ng-click="openFriendModal(currentUser, true)" uib-tooltip="View profile"></span>
+                    <span class="col-xs-3 logout-button glyphicon glyphicon-log-out" ng-click="logout()" uib-tooltip="Logout"></span>
                 </div>
             </div>
         </div>
@@ -64,11 +64,12 @@
         </div>
         <div id="friend-list">
             <div ng-repeat="friend in friends | filter: searchContent" class="row friend-entry" ng-class="friend.display">
-                <div class="col-xs-3 friend-avatar" ng-style="{'background-image': 'url({{ friend.avatar }})' }" ng-click="openFriendModal(friend)"></div>
+                <div class="col-xs-3 friend-avatar" ng-style="{'background-image': 'url({{ friend.avatar }})' }" ng-click="openFriendModal(friend)" uib-tooltip="View profile"></div>
                 <div class="col-xs-9">
                     <div class="row" style="color: {{ friend.primaryColor }}">
                         <div class="col-xs-10 friend-name">{{ friend.name }}</div>
-                        <div class="col-xs-1 friend-visibility pull-right" ng-click="toggleFriend(friend); $event.stopPropagation();"><i ng-class="friend.toggle"></i></div>
+                        <div class="col-xs-1 friend-visibility pull-right" ng-click="toggleFriend(friend); $event.stopPropagation();" tooltip-placement="bottom" uib-tooltip="Show/hide points">
+                            <i ng-class="friend.toggle"></i></div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12 friend-place"> {{ friend.total_checkins }} checkins</div>
@@ -79,7 +80,7 @@
 
         <div class="row input-box">
             <div class="col-xs-12 toggle-overall">
-                <div class="btn btn-primary" ng-class="toggleClassBinding.all" ng-click="toggleAllCheckins()"></div>
+                <div class="btn btn-primary" ng-class="toggleClassBinding.all" ng-click="toggleAllCheckins()" uib-tooltip="Show/hide all points"></div>
             </div>
         </div>
 
@@ -94,8 +95,8 @@
             <h3 class="modal-title" id="modal-title">Sharing your map to Facebook.</h3>
         </div>
         <div class="modal-body" id="modal-body">
-            <p>Congraduation! You have successfully created your travel map. Why not share it with your friends? ;)</p>
-            <p>Click "Share Now" below to share your awesome map to your facebook.</p>
+            <p>Congratulations! You have successfully created your travel map. Why not share it with your friends? ;)</p>
+            <p>Click "Share Now" below to share your awesome map on Facebook.</p>
             <img ng-src="{{$ctrl.snapshotUrl}}" width="100%">
         </div>
         <div class="modal-footer">
@@ -207,6 +208,25 @@
                 <img class="img-circle" ng-src="http://graph.facebook.com/{{ friend.fb_id }}/picture?height=128&width=128">
             </div>
             <div>
+                <h4> Countries Visited </h4>
+                <span ng-repeat="country in countries">
+                    <flag country="{{country}}"" size=32></flag>
+                </span>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/ng-template" id="self-modal.html">
+        <div class="modal-header">
+            <button class="close" ng-click="$close()"><i class="fa fa-times"></i></button>
+            <h3 class="modal-title" id="modal-title">{{ friend.name }}</h3>
+        </div>
+        <div class="modal-body" id="modal-friends-body">
+            <div>
+                <img class="img-circle" ng-src="http://graph.facebook.com/{{ friend.fb_id }}/picture?height=128&width=128">
+            </div>
+            <div>
+                <h5> {{friend.total_checkins}} checkins</h5>
                 <h4> Countries Visited </h4>
                 <span ng-repeat="country in countries">
                     <flag country="{{country}}"" size=32></flag>

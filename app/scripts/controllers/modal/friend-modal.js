@@ -4,6 +4,7 @@ angular.module('connectrFrontendApp').controller('FriendModalCtrl', function ($u
   console.log(friend);
 
   $scope.friend = friend;
+  $scope.total_checkins = friend.total_checkins
   $scope.countries = []
 
   function toIso(country) {
