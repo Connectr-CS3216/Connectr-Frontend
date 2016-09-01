@@ -33,7 +33,7 @@
 
     <div id="map-left-panel" ng-class="collapseClassBinding.collapse">
         <div id="user-profile">
-            <div class="user-avatar" ng-style="{'background-image': 'url(' + currentUser.avatar + ')' }" ng-click="openFriendModal(currentUser, true)"></div>
+            <div class="user-avatar" ng-style="{'background-image': 'url(' + currentUser.avatar + ')' }" ng-click="openFriendModal(currentUser)"></div>
             <div class="user-info">
                 <div class="user-name">{{ currentUser.name }}</div>
                 <!-- <div class="user-place pull-right"> {{ currentUser.total_checkins }} checkins</div> -->
@@ -43,7 +43,7 @@
                     <span class="col-xs-3 user-visibility" ng-click="toggleFriend(currentUser)" uib-tooltip="Show/hide my points">
                         <i ng-class="currentUser.toggle"></i>
                     </span>
-                    <span class="col-xs-3 profile-button glyphicon glyphicon-user" ng-click="openFriendModal(currentUser, true)" uib-tooltip="View profile"></span>
+                    <span class="col-xs-3 profile-button glyphicon glyphicon-user" ng-click="openFriendModal(currentUser)" uib-tooltip="View profile"></span>
                     <span class="col-xs-3 logout-button glyphicon glyphicon-log-out" ng-click="logout()" uib-tooltip="Logout"></span>
                 </div>
             </div>
@@ -201,27 +201,8 @@
                 <h5> {{ friend.total_checkins }} Checkins</h5>
                 <hr>
                 <h5 class="visitied-coutry-title"> {{ countries.length }} Countries or Regions </h5>
-                <span ng-repeat="country in countries" tooltip-placement="bottom" uib-tooltip="{{country.split('/')[1]}}">
-                    <img class="modal-flag" src="../images/flags/{{country.split('/')[0]}}.svg">
-                    <!-- <flag country="{{country.split('/')[0]}}" size=32></flag> -->
-                </span>
-            </div>
-        </div>
-    </script>
-
-    <script type="text/ng-template" id="self-modal.html">
-        <div class="modal-body" id="modal-friends-body">
-            <div>
-                <img class="img-circle" ng-src="http://graph.facebook.com/{{ friend.fb_id }}/picture?height=256&width=256" style="background: {{friend.primaryColor}}">
-            </div>
-            <div>
-                <h3 class="modal-title" id="modal-title">{{ friend.name }}</h3>
-                <hr>
-                <h5> {{ friend.total_checkins }} Checkins</h5>
-                <hr>
-                <h5 class="visitied-coutry-title"> {{ countries.length }} Countries or Regions </h5>
-                <span ng-repeat="country in countries" tooltip-placement="bottom" uib-tooltip="{{country.split('/')[1]}}" style="text-align: left">
-                    <img class="modal-flag" src="../images/flags/{{country.split('/')[0]}}.svg">
+                <span ng-repeat="country in countries" tooltip-placement="top" uib-tooltip="{{country.split('/')[1]}}">
+                    <img class="modal-flag" ng-src="../images/flags/{{country.split('/')[0]}}.svg">
                     <!-- <flag country="{{country.split('/')[0]}}" size=32></flag> -->
                 </span>
             </div>
