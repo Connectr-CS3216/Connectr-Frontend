@@ -4,8 +4,8 @@ angular.module('connectrFrontendApp').controller('FriendModalCtrl', function ($u
   console.log(friend);
 
   $scope.friend = friend;
-  $scope.total_checkins = friend.total_checkins
-  $scope.countries = []
+  $scope.total_checkins = friend.total_checkins;
+  $scope.countries = [];
 
   function toIso(country) {
     return countries.getCountryCode(country);
@@ -17,8 +17,11 @@ angular.module('connectrFrontendApp').controller('FriendModalCtrl', function ($u
       angular.forEach(friend.checkins.features, function(checkin) {
         if (checkin.properties && checkin.properties.place_country) {
           var cntry = (toIso(checkin.properties.place_country) || '').toLowerCase();
-          if (cntry && $scope.countries.indexOf(cntry) === -1) {  
-            $scope.countries.push(cntry);
+          if (cntry && $scope.countries.indexOf(cntry) === -1) {
+            var cntryAndName = cntry + '/' + checkin.properties.place_country;
+            if (!$scope.countries.includes(cntryAndName)) {
+              $scope.countries.push(cntryAndName);
+            }
           }
         }
       });
