@@ -25,5 +25,9 @@ angular.module('connectrFrontendApp').controller('FriendModalCtrl', function ($u
     }
   }
 
+  $scope.cancel = function () {
+    $uibModalInstance.dismiss('cancel');
+  };
+
   initialise();
 });
