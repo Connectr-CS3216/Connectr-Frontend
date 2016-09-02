@@ -250,6 +250,7 @@ body {
 }
 
 #friend-list {
+  -ms-overflow-style: none;
   border-top: solid 2px rgba(255, 255, 255, 0.5);
   border-bottom: solid 2px rgba(255, 255, 255, 0.5);
   margin-top: 10px;
