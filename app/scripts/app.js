@@ -76,22 +76,6 @@ angular
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 
-    // Includes polyfill
-    if (!String.prototype.includes) {
-      String.prototype.includes = function(search, start) {
-        'use strict';
-        if (typeof start !== 'number') {
-          start = 0;
-        }
-
-        if (start + search.length > this.length) {
-          return false;
-        } else {
-          return this.indexOf(search, start) !== -1;
-        }
-      };
-    }
-
     $rootScope.$on('$routeChangeStart', function(e, next) {
       if (session.isEmpty() && !next.isPublic) {
         // reload the login route
