@@ -59,11 +59,9 @@ angular
       $window.fbAsyncInit = function() {
           FB.init({
             appId: '631439630344992',
-            channelUrl: 'app/channel.html',
             status: true,
-            cookie: true,
             xfbml: true,
-            version: 'v2.4'
+            version: 'v2.7'
           });
       };
 
@@ -71,7 +69,7 @@ angular
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) {return;}
         js = d.createElement(s); js.id = id;
-        js.src = '//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.7&appId=631439630344992';
+        js.src = '//connect.facebook.net/en_US/sdk.js';
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
 
