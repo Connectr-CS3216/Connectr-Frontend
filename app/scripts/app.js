@@ -21,7 +21,7 @@ angular
     'ng-walkthrough',
     'ngFlag'
   ])
-  .config(function ($routeProvider) {
+  .config(function($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/home.html',
@@ -54,35 +54,54 @@ angular
       maxNumber: 1
     });
   }])
-  .run(function ($rootScope, $location, session, srvAuth, $window) {
+  .run(function($rootScope, $location, session, srvAuth, $window) {
 
-      $window.fbAsyncInit = function() {
-          FB.init({
-            appId: '631439630344992',
-            status: true,
-            xfbml: true,
-            version: 'v2.7'
-          });
-      };
+    $window.fbAsyncInit = function() {
+      FB.init({
+        appId: '631439630344992',
+        status: true,
+        xfbml: true,
+        version: 'v2.7'
+      });
+    };
 
-      (function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {return;}
-        js = d.createElement(s); js.id = id;
-        js.src = '//connect.facebook.net/en_US/sdk.js';
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {
+        return;
+      }
+      js = d.createElement(s);
+      js.id = id;
+      js.src = '//connect.facebook.net/en_US/sdk.js';
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
 
-      $rootScope.$on('$routeChangeStart', function(e, next){
-        if (session.isEmpty() && !next.isPublic) {
-          // reload the login route
-          $location.url('/');
+    // Includes polyfill
+    if (!String.prototype.includes) {
+      String.prototype.includes = function(search, start) {
+        'use strict';
+        if (typeof start !== 'number') {
+          start = 0;
         }
-      });
 
-      $rootScope.$on('$routeChangeSuccess', function(){
-        // https://developers.google.com/analytics/devguides/collection/analyticsjs/single-page-applications
-        ga('set', 'page', $location.path());
-        ga('send', 'pageview');
-      });
+        if (start + search.length > this.length) {
+          return false;
+        } else {
+          return this.indexOf(search, start) !== -1;
+        }
+      };
+    }
+
+    $rootScope.$on('$routeChangeStart', function(e, next) {
+      if (session.isEmpty() && !next.isPublic) {
+        // reload the login route
+        $location.url('/');
+      }
+    });
+
+    $rootScope.$on('$routeChangeSuccess', function() {
+      // https://developers.google.com/analytics/devguides/collection/analyticsjs/single-page-applications
+      ga('set', 'page', $location.path());
+      ga('send', 'pageview');
+    });
   });
