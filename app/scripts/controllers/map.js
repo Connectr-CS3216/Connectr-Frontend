@@ -139,7 +139,7 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function($rootScope,
     $scope.displayPlaceName = feature.properties.place_name;
     var timeString = feature.properties['checkin_time'];
     if (timeString) {
-      var date = new Date(timeString).toLocaleDateString('en-GB', {
+      var date = new Date(timeString.replace(/-/g, "/")).toLocaleDateString('en-GB', {
         day: 'numeric',
         month: 'short',
         year: 'numeric'
