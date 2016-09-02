@@ -149,6 +149,10 @@ body {
     right: 10px;
     bottom: 10px;
   }
+
+  #friend-list {
+    width: 250px;
+  }
 }
 
 @media screen and (min-width: 768px) {
@@ -160,6 +164,10 @@ body {
     position:relative;
     margin: auto ;
     width: 300px;
+  }
+
+  #friend-list {
+    width: 267px;
   }
 }
 
@@ -265,7 +273,6 @@ body {
   overflow-x: hidden;
   background-color: rgba(255, 255, 255, 0.1);
   height: 100%;
-  width: 267px;
 
   .friend-entry {
     padding: 10px;
