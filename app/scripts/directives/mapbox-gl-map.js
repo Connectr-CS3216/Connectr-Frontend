@@ -5,7 +5,7 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
     scope: true,
     replace: true,
     template: '<div id="map"></div>',
-    link: function($scope) {
+    link: function($scope, element) {
       mapboxgl.accessToken =
         'pk.eyJ1IjoibnVsbDA5MjY0IiwiYSI6ImNpcnlrcTZmYzAwMGYyeXBkaGF1c2JxZ2EifQ.pEmdeamPVAasYgavpT629g';
       $scope.checkInSources = [];
@@ -284,6 +284,12 @@ angular.module('connectrFrontendApp').directive('mapboxGlMap', function(session,
             loadCheckinData(entry[0], entry[1]);
           }
         }
+        // Hack the disappearing right scroll bar.
+        var canvas = element[0].querySelector('.mapboxgl-canvas');
+        var canvasWrap = angular.element(canvas);
+        var windowWidth = angular.element(window).width();
+        canvas.width = windowWidth;
+        canvasWrap.css({'width' : (windowWidth + 50) + 'px'});
       });
 
       $scope.$on('api.selfCheckinsLoaded', function() {
