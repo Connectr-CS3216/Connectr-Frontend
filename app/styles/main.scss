@@ -198,10 +198,6 @@ body {
   }
 }
 
-::-webkit-scrollbar {
-    display: none;
-}
-
 #user-profile {
 
   margin-top: 10px;
@@ -263,7 +259,7 @@ body {
   overflow-x: hidden;
   background-color: rgba(255, 255, 255, 0.1);
   height: calc(100% - 252px);
-  width: 250px;
+  width: 267px;
 
   .friend-entry {
     padding: 10px;
@@ -355,7 +351,7 @@ body {
   position:absolute;
   top:0;
   bottom:0;
-  min-width: 250px;
+  width: 250px;
   padding: 10px;
   border: none;
   color: #fff;
@@ -364,6 +360,7 @@ body {
   transition: all 0.5s ease-in-out;
   font-family: "Lato";
   z-index: 100;
+  overflow: hidden;
 
 /*  .brand {
     font-size: 20px;
