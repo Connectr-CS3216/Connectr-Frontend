@@ -247,18 +247,24 @@ body {
   }
 }
 
-#friend-list {
-  -ms-overflow-style: none;
+#friend-list-wrapper {
+  width: 250px;
+  overflow: hidden;
+  height: calc(100% - 252px);
+  margin-left: -10px;
   border-top: solid 2px rgba(255, 255, 255, 0.5);
   border-bottom: solid 2px rgba(255, 255, 255, 0.5);
   margin-top: 10px;
-  margin-left: -10px;
   margin-right: -10px;
+}
+
+#friend-list {
+  -ms-overflow-style: none;
   padding: 0px;
   overflow-y: scroll;
   overflow-x: hidden;
   background-color: rgba(255, 255, 255, 0.1);
-  height: calc(100% - 252px);
+  height: 100%;
   width: 267px;
 
   .friend-entry {
@@ -360,7 +366,6 @@ body {
   transition: all 0.5s ease-in-out;
   font-family: "Lato";
   z-index: 100;
-  overflow: hidden;
 
 /*  .brand {
     font-size: 20px;
