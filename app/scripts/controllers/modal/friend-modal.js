@@ -10,7 +10,6 @@ angular.module('connectrFrontendApp').controller('FriendModalCtrl', function ($u
   }
 
   function initialise() {
-
     if (friend && friend.checkins && friend.checkins.features) {
       angular.forEach(friend.checkins.features, function(checkin) {
         if (checkin.properties && checkin.properties.place_country) {

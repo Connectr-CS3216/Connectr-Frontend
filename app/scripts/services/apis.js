@@ -81,14 +81,14 @@ angular.module('connectrFrontendApp')
         return $http.get(buildUrl(apiHost + '/user/me', parameters), {
         });
       }
-    }
+    };
 
     this.stats = {
       get: function(parameters) {
         return $http.get(buildUrl(apiHost + '/stats', parameters), {
         });
       }
-    }
+    };
 
     this.checkins = {
       get: function(parameters) {

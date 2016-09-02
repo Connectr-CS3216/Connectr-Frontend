@@ -1,7 +1,6 @@
 'use strict';
 
-angular.module('connectrFrontendApp').controller('HomeCtrl', function(srvAuth, $scope, $location, $window,
-  anchorSmoothScroll) {
+angular.module('connectrFrontendApp').controller('HomeCtrl', function(srvAuth, $scope, $location, $window) {
   var height = $(window).height() + 5;
   var unitHeight = parseInt(height) + 'px';
   $('.homepage').css('height', unitHeight);
@@ -25,7 +24,7 @@ angular.module('connectrFrontendApp').controller('HomeCtrl', function(srvAuth, $
       }
     }, {
       scope: 'public_profile,email,user_tagged_places,user_friends,publish_actions',
-      auth_type: 'rerequest'
+      auth_type: 'rerequest' // check for updated permissions every time they login
     });
   };
 

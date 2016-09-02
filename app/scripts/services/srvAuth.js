@@ -22,41 +22,35 @@ angular.module('connectrFrontendApp')
            The user is not logged to the app, or into Facebook:
            destroy the session on the server.
           */
-         _self.logout();
+          _self.logout();
         }
       });
     };
 
     this.startSession = function(accessToken) {
       FB.api('/me', function(res) {
-        $rootScope.$broadcast("login.started");
+        $rootScope.$broadcast('login.started');
         $rootScope.$apply(function() {
 
-          apis.verifyFacebookToken.post(
-          {
-            "access_token": accessToken
-          }
-        ).success(function(data) {
-          console.log('success', data);
+          apis.verifyFacebookToken.post({
+            'access_token': accessToken
+          }).success(function(data) {
+            // save session details
+            session.save({
+              fbToken: accessToken,
+              serverToken: data,
+              userid: res.id,
+              username: res.name
+            });
 
-          // save session details
-          session.save({
-            fbToken: accessToken,
-            serverToken: data,
-            userid: res.id,
-            username: res.name
-          });
-
-          $location.url('/map');
-        }).error(function(err) {
-          console.log('failed', err);
-        });
+            $location.url('/map');
+          }).error(function(err) {});
         });
       });
     };
 
     this.logout = function() {
-      FB.logout(function(/*res*/) {
+      FB.logout(function( /*res*/ ) {
         $rootScope.$apply(function() {
           session.save();
 

@@ -203,7 +203,6 @@
                 <h5 class="visitied-coutry-title"> {{ countries.length }} Countries or Regions </h5>
                 <span ng-repeat="country in countries" tooltip-placement="bottom" uib-tooltip="{{country.split('/')[1]}}">
                     <img class="modal-flag" ng-src="../images/flags/{{country.split('/')[0]}}.svg">
-                    <!-- <flag country="{{country.split('/')[0]}}" size=32></flag> -->
                 </span>
             </div>
         </div>
