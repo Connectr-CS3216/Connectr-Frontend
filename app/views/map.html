@@ -120,7 +120,7 @@
                     </thead>
                     <tbody>
                       <tr ng-repeat="country in tab.data.country.most">
-                        <td>{{country.country}}</td>
+                        <td>{{country.country ? country.country: "Country of Freedom"}}</td>
                         <td>{{country.visits_count}}</td>
                       </tr>
                     </tbody>
@@ -137,7 +137,7 @@
                     </thead>
                     <tbody>
                       <tr ng-repeat="country in tab.data.country.least">
-                        <td>{{country.country}}</td>
+                        <td>{{country.country ? country.country: "Country of Freedom"}}</td>
                         <td>{{country.visits_count}}</td>
                       </tr>
                     </tbody>
