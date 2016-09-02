@@ -226,7 +226,7 @@
         is-round=true
         walkthrough-type="transparency"
         focus-element-selector=".user-avatar"
-        main-caption="Click on the display picture to see the profile."
+        main-caption="Click on the display picture to see the user profile."
         is-active="onboard2"
         force-caption-location="BOTTOM"
         has-glow=true
@@ -281,8 +281,8 @@
     <walkthrough
         is-round=true
         walkthrough-type="transparency"
-        focus-element-selector="#facebook-share"
-        main-caption="Click here to share your map with your friends on Facebook."
+        focus-element-selector="#map"
+        main-caption="Click on individual checkins to redirect to its Facebook page."
         is-active="onboard7"
         force-caption-location="BOTTOM"
         has-glow=true
@@ -292,8 +292,8 @@
     <walkthrough
         is-round=true
         walkthrough-type="transparency"
-        focus-element-selector="#map-control-play"
-        main-caption="Click here to recount the places you have visited in street view."
+        focus-element-selector="#map"
+        main-caption="Search a location with the search box."
         is-active="onboard8"
         force-caption-location="BOTTOM"
         has-glow=true
@@ -303,8 +303,8 @@
     <walkthrough
         is-round=true
         walkthrough-type="transparency"
-        focus-element-selector="#stats-section"
-        main-caption="Click here to see some site statistics."
+        focus-element-selector="#facebook-share"
+        main-caption="Click here to share your map with your friends on Facebook."
         is-active="onboard9"
         force-caption-location="BOTTOM"
         has-glow=true
@@ -314,8 +314,8 @@
     <walkthrough
         is-round=true
         walkthrough-type="transparency"
-        focus-element-selector="#left-panel"
-        main-caption="Click here to close the panel."
+        focus-element-selector="#map-control-play"
+        main-caption="Click here to recount the places you have visited in street view."
         is-active="onboard10"
         force-caption-location="BOTTOM"
         has-glow=true
@@ -325,9 +325,31 @@
     <walkthrough
         is-round=true
         walkthrough-type="transparency"
+        focus-element-selector="#stats-section"
+        main-caption="Click here to see some site statistics."
+        is-active="onboard11"
+        force-caption-location="BOTTOM"
+        has-glow=true
+        on-walkthrough-hide="onboard12 = true">
+    </walkthrough>
+
+    <walkthrough
+        is-round=true
+        walkthrough-type="transparency"
+        focus-element-selector="#left-panel"
+        main-caption="Click here to close the panel."
+        is-active="onboard12"
+        force-caption-location="BOTTOM"
+        has-glow=true
+        on-walkthrough-hide="onboard13 = true">
+    </walkthrough>
+
+    <walkthrough
+        is-round=true
+        walkthrough-type="transparency"
         focus-element-selector="#map-onboarding"
         main-caption="Click here to repeat the tutorial."
-        is-active="onboard11"
+        is-active="onboard13"
         force-caption-location="BOTTOM"
         has-glow=true
         on-walkthrough-hide="onboardingDone()">
