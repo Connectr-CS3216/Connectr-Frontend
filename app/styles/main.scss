@@ -3,6 +3,8 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower
 
+
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -185,7 +187,7 @@ body {
   text-align: center;
   font-family: "Lato";
   background: rgba(255, 255, 255, 0.6);
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+  @include box-shadow(rgba(0, 0, 0, 0.3) 0 0 2px);
   text-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
 
   span {
@@ -319,7 +321,7 @@ body {
   border-radius: 5px;
   color: #000;
   cursor: pointer;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+  @include box-shadow(rgba(0, 0, 0, 0.3) 0 0 2px);
 }
 
 #facebook-share {
@@ -471,7 +473,7 @@ body {
       width: 40px;
       border-radius: 5px;
       border: solid 2px white;
-      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.26);
+      @include box-shadow(rgba(0, 0, 0, 0.26) 0 2px 2px);
       background-size: cover;
       background-position: 50%;
   }
@@ -579,7 +581,7 @@ body {
     color: #000;
     font-size: 17px;
     padding-top: 1px;
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+    @include box-shadow(rgba(0, 0, 0, 0.1) 0 0 2px);
     transition: all 0.3s ease-in-out;
 }
 
@@ -695,11 +697,13 @@ body {
       width: 40vh;
       margin-bottom: 30px;
       -webkit-filter: drop-shadow(0 0 25px rgba(0,0,0,0.8));
+      filter: drop-shadow(0 0 5px rgba(0,0,0,0.4));
     }
 
     .logo-text-image {
       height: 9vh;
-      -webkit-filter: drop-shadow(0 0 5px rgba(0,0,0,0.4));
+      -moz-filter: drop-shadow(0 0 5px rgba(0,0,0,0.4));
+      filter: drop-shadow(0 0 5px rgba(0,0,0,0.4));
     }
 
     .text-slogan {
@@ -715,7 +719,7 @@ body {
 
 
     [data-wipe] {
-      box-shadow: 0 0 10px rgba(0,0,0,0.4);
+      @include box-shadow(rgba(0,0,0,0.4) 0 0 10px);
       cursor: pointer;
       display: inline-block;
       padding: 12px 18px;
@@ -849,7 +853,7 @@ body {
 
 .walkthrough-hole-glow {
     border: 2px solid #ffffff !important;
-    box-shadow: 0 0 36px #ffffff !important;
+    @include box-shadow(#ffffff 0 0 36px);
 }
 
 .walkthrough-hole-round{
@@ -893,7 +897,7 @@ body {
   height: 100px;
   width: 100px;
   border: solid 2px white;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.7); 
+  @include box-shadow(rgba(0, 0, 0, 0.7) 0 0 2px); 
 }
 
 .visitied-coutry-title {
@@ -901,7 +905,7 @@ body {
 }
 
 .modal-flag {
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3); 
+  @include box-shadow(rgba(0, 0, 0, 0.3) 0 0 2px); 
   height: 70px;
   margin: 5px 3px;
 }
