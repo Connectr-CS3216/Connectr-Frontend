@@ -21,7 +21,7 @@ angular
     'ng-walkthrough',
     'ngFlag'
   ])
-  .config(function($routeProvider) {
+  .config(function($routeProvider, $locationProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/home.html',
@@ -46,6 +46,8 @@ angular
       .otherwise({
         redirectTo: '/'
       });
+
+      $locationProvider.html5Mode(true);
   })
   .config(['ngToastProvider', function(ngToast) {
     ngToast.configure({
