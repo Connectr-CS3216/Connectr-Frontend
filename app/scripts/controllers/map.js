@@ -323,9 +323,6 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function($rootScope,
       // Set walkthrough to true
       $scope.onboard1 = onboadingPreference.hasViewed();
     }).error(function() {
-      ngToast.danger({
-        content: 'Failed to retrieve friend list :('
-      });
     });
   }
 
