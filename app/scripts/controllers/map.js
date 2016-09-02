@@ -17,7 +17,7 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function($rootScope,
   };
 
   $scope.collapseClassBinding = {
-    'collapse': 'panel-expanded'
+    'collapse': 'panel-collapse'
   };
 
   $scope.playClassBinding = {
@@ -280,6 +280,7 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function($rootScope,
       if (session.currentUser) {
         session.currentUser.checkins = data;
         $scope.toggleFriend(session.currentUser);
+        $scope.toggleLeftPanel()
       }
       session.checkins = data;
     }).error(function() {
@@ -296,6 +297,7 @@ angular.module('connectrFrontendApp').controller('MapCtrl', function($rootScope,
       $scope.currentUser.toggle = 'glyphicon glyphicon-eye-close';
       if (session.checkins) {
         session.currentUser.checkins = session.checkins;
+        $scope.toggleLeftPanel()
         // $scope.$broadcast('api.selfCheckinsLoaded');
         $scope.toggleFriend(session.currentUser);
       }
